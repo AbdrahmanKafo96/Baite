@@ -9,6 +9,7 @@ php artisan migrate
 php artisan db:seed
 php artisan serve --host= ip
 php artisan storage:link
+composer dump-autoload 
 
 composer require haruncpi/laravel-id-generator
 
