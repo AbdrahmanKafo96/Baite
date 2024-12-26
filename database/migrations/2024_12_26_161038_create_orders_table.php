@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_name');
+            $table->string('note');
             $table->enum("status", [
                 "pending",
                 "confirmed",
@@ -23,17 +24,10 @@ return new class extends Migration
             ]);
             $table->string('phone_number');
             $table->json('quantity');
-            $table->enum("status", [
-                "accepted",
-                'canceled',
-            ]);
-            // $table->string('payment_method');
             $table->float('total_price');
-            $table->float('cost');
-            // $table->json('cart_id')->references('id')->on('carts');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->json('product_codes'); //->references('product_code')->on('products');
-            $table->date('created_at')->nullable();
+            $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
+
             $table->timestamps();
         });
     }
