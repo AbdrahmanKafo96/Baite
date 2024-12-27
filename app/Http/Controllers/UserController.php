@@ -5,7 +5,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\StoreUserRequest;
-class UserController extends Controller
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\BaseController as BaseController;
+class UserController extends BaseController
 {
      /**
      * Display a listing of the resource.
@@ -62,11 +65,91 @@ class UserController extends Controller
     {
         //
     }
-    function login(Request $request){
-        return $request->email;
+    public function logout()
+    {
+        if (auth()->user()) {
+            $user = auth()->user();
+            $user->currentAccessToken()->delete();
+            $user->save();
+            return response()->json(['message' => 'Thank you for using our application']);
+        }
+        return response()->json([
+            'error' => 'Unable to logout user',
+            'code' => 401,
+        ], 401);
     }
 
-    function logout(Request $request){
-        return $request->a;
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+    public function getUser()
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+
+            return response()->json($user);
+        }
+
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+        $success['name'] =  $user->name;
+        $success['is_active'] = 1;
+        $success['is_trusted'] = 0;
+        $success['email'] =  $user->email;
+        $success['phone_number'] =  $user->phone_number;
+        $success['id'] =  $user->id;
+        $success['location'] =  $user->location;
+
+
+        return $this->sendResponse($success, 'User register successfully.');
+    }
+
+    /**
+     * Login api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+
+        if (Auth::guard('client_api')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('client_api')->user();
+
+            if ($user->is_active === 0)
+                return response()->json(['message' => 'حساب المستخدم مغلق يرجاء التواصل مع الدعم!'], 401);
+
+            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $success['name'] =  $user->name;
+            $success['is_active'] =  $user->is_active;
+            $success['is_trusted'] =  $user->is_trusted;
+            $success['email'] =  $user->email;
+            $success['phone_number'] =  $user->phone_number;
+            $success['location'] =  $user->location;
+            $success['id'] =  $user->id;
+
+
+            return $this->sendResponse($success, 'User login successfully.');
+        } else {
+            return response()->json(['message' =>  'تحقق من البريد الالكتروني او كلمة المرور'], 401);
+        }
     }
 }

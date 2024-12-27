@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->string('location');
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_trusted')->default(0);
+            
             $table->rememberToken();
             $table->timestamps();
         });

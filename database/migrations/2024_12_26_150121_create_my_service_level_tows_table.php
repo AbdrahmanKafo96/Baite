@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('my_service_level_tows', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
             $table->foreignId('service_id')->references('id')->on('my_service_level_ones');
             $table->string('service_name');
             $table->string('description');
+            $table->string('image1_path');
+            $table->string('image2_path')->nullable();
             $table->boolean('show');
             $table->float('cost');
             $table->timestamps();

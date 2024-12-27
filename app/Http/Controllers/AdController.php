@@ -3,64 +3,83 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ad;
-use App\Http\Requests\StoreAdRequest;
 use App\Http\Requests\UpdateAdRequest;
-
+use App\Builders\AttachmentBuilder;
+use App\Http\Requests\AdsFormRequest;
+use App\Http\Requests\StoreAdRequest;
+use App\Models\Notification;
+use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class AdController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return response()->json(
+
+            Ad::orderBy('created_at')->paginate($request->limit)
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAdRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Ad $ad)
     {
-        //
+        return response()->json($ad);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ad $ad)
+
+    public function store(StoreAdRequest $request)
     {
-        //
+        $ad = Ad::create([
+            'name' => $request->name,
+            'show' => $request->show,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'user_id' =>  Auth::user()->id,
+            'url' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+                $request,
+                'ads',
+                'url'
+            ),
+        ]);
+        if( $request->show ===1)
+            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+
+        return response()->json(['message' => 'insert success']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateAdRequest $request, Ad $ad)
     {
-        //
+
+        $ad->name = $request->name;
+        $ad->show = $request->show;
+        $ad->start_date = $request->start_date;
+        $ad->end_date = $request->end_date;
+        $ad->user_id =  Auth::user()->id;
+        $ad->url = $request->url;
+        // $ad->url = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        //     $request,
+        //     'ads',
+        //     'url'
+        // );
+
+        $ad->save();
+
+        return response()->json($ad);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Ad $ad)
     {
-        //
+
+        File::delete(public_path($ad->image_path));
+        $ad->delete();
+        return response()->json(['message' => 'delete success']);
+    }
+
+    public function searchAd($search_value)
+    {
+        $query =   Ad::where('show', $search_value)->orderBy('created_at')->paginate(10);
+        return response()->json(
+            $query,
+        );
     }
 }

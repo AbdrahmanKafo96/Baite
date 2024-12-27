@@ -41,7 +41,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
+    protected $guard_name =  'client_api';
     public function roles() {
         return $this->belongsToMany(Role::class);
     }
