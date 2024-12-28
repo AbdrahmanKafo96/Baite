@@ -29,19 +29,20 @@ class AdController extends Controller
 
     public function store(StoreAdRequest $request)
     {
+        //return  Auth::user()->id;
         $ad = Ad::create([
             'name' => $request->name,
             'show' => $request->show,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'user_id' =>  Auth::user()->id,
+            // 'user_id' =>  Auth::user()->id,
             'url' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
                 'ads',
                 'url'
             ),
         ]);
-        if( $request->show ===1)
+        // if( $request->show ===1)
             // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
 
         return response()->json(['message' => 'insert success']);

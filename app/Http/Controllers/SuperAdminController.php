@@ -5,62 +5,91 @@ namespace App\Http\Controllers;
 use App\Models\SuperAdmin;
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
-
-class SuperAdminController extends Controller
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserFormRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\BaseController as BaseController;
+class SuperAdminController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // public function __construct()
+    // {
+    //     $this->middleware('guest:admins')->except('logout');
+    // }
+    protected function guard()
     {
-        //
+        return Auth::guard('admins');
+    }
+    public function logout()
+    {
+        if (auth()->user()) {
+            $user = Auth:: user();
+            $user->currentAccessToken()->delete();
+            $user->save();
+            return response()->json(['message' => 'Thank you for using our application']);
+        }
+        return response()->json([
+            'error' => 'Unable to logout user',
+            'code' => 401,
+        ], 401);
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+    public function getUser()
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+
+            return response()->json($user);
+        }
+
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = SuperAdmin::create($input);
+        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+        $success['name'] =  $user->name;
+
+        return $this->sendResponse($success, 'User register successfully.');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Login api
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function login(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreSuperAdminRequest $request)
-    {
-        //
-    }
+        if (Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('admins')->user();
+            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $success['name'] =  $user->name;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SuperAdmin $superAdmin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SuperAdmin $superAdmin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSuperAdminRequest $request, SuperAdmin $superAdmin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SuperAdmin $superAdmin)
-    {
-        //
+            return $this->sendResponse($success, 'User login successfully.');
+        } else {
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+        }
     }
 }

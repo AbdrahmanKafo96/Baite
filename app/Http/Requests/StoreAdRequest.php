@@ -11,7 +11,7 @@ class StoreAdRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreAdRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:150|string',
+            'show' => 'required|boolean',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            // 'user_id' => 'required|exists:users,id',
+            'url' => ['required', 'image', 'max:10240', 'mimes:jpeg,png,jpg'],
         ];
     }
 }
