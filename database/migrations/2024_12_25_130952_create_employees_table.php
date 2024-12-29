@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique(); 
+            $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_active')->default(1);
-            $table->boolean('is_trusted')->default(0);
+           // $table->boolean('is_trusted')->default(0);
 
             $table->timestamps();
         });

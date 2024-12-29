@@ -55,7 +55,6 @@ class AdController extends Controller
         $ad->show = $request->show;
         $ad->start_date = $request->start_date;
         $ad->end_date = $request->end_date;
-        $ad->user_id =  Auth::user()->id;
         $ad->url = $request->url;
         // $ad->url = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
         //     $request,

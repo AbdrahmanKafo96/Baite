@@ -9,4 +9,5 @@ class myServiceLevelTow extends Model
 {
     /** @use HasFactory<\Database\Factories\MyServiceLevelTowFactory> */
     use HasFactory;
+    protected $guarded = [];
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class myService extends Model
+class MyService extends Model
 {
     /** @use HasFactory<\Database\Factories\MyServiceFactory> */
     use HasFactory , HasApiTokens;

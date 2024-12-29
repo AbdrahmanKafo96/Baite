@@ -3,8 +3,14 @@
 use App\Http\Controllers\AdController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MyServiceController;
+use App\Http\Controllers\MyServiceLevelOneController;
+use App\Http\Controllers\MyServiceLevelTowController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
+use App\Models\myServiceLevelOne;
+use App\Models\myServiceLevelTow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +44,7 @@ Route::group(
         Route::post("/get-employee", [EmployeeController::class, 'getUser']);
 
 
-     //   Route::post("/showRegistrationForm", "showRegistrationForm");
+        //   Route::post("/showRegistrationForm", "showRegistrationForm");
 
     }
 );
@@ -55,14 +61,35 @@ Route::group(
 // });
 Route::middleware(['auth:sanctum'])->group(
     function () {
-            Route::get('search-ad-show/{search_value}', [AdController::class, 'searchAd']);
-            Route::resource('ads',  AdController::class);
+        Route::get('search-ad-show/{search_value}', [AdController::class, 'searchAd']);
+        Route::resource('ads',  AdController::class);
 
-            Route::resource('customers', CustomerController::class);
-            Route::post('/customer-active', [CustomerController::class, 'chnageCustomerActiveStatus']);
-            Route::post('/customer-trust', [CustomerController::class, 'chnageCustomerTrustStatus']);
-            Route::post('/chnage-customers-trust', [CustomerController::class, 'chnageSomeCustomerStatus']);
-            Route::get('/search-customer/{search_value}', [CustomerController::class, 'search']);
+        Route::resource('customers', CustomerController::class);
+        Route::post('/customer-active', [CustomerController::class, 'chnageCustomerActiveStatus']);
+        Route::post('/customer-trust', [CustomerController::class, 'chnageCustomerTrustStatus']);
+        Route::post('/chnage-customers-trust', [CustomerController::class, 'chnageSomeCustomerStatus']);
+        Route::get('/search-customer/{search_value}', [CustomerController::class, 'search']);
 
-    });
+        Route::resource('employee', EmployeeController::class);
+        Route::post('/employee-active', [EmployeeController::class, 'chnageCustomerActiveStatus']);
+        // Route::post('/customer-trust', [EmployeeController::class, 'chnageCustomerTrustStatus']);
+        // Route::post('/chnage-customers-trust', [EmployeeController::class, 'chnageSomeCustomerStatus']);
+        Route::get('/search-employee/{search_value}', [EmployeeController::class, 'search']);
 
+
+        Route::resource('/service', MyServiceController::class);
+        Route::get('/search-service/{search_value}', [MyServiceController::class, 'search']);
+        //  Route::post('/service-active', [MyServiceController::class, 'enableService']);
+
+        Route::resource('/service-level-one', MyServiceLevelOneController::class);
+        Route::get('/search-service-level-one/{search_value}', [MyServiceLevelOneController::class, 'search']);
+        // Route::post('/service-level-one-active', [MyServiceLevelOneController::class, 'enableService']);
+
+        Route::resource('/service-level-tow', MyServiceLevelTowController::class);
+        Route::get('/search-service-level-tow/{search_value}', [MyServiceLevelTowController::class, 'search']);
+        // Route::post('/service-level-tow-active', [MyServiceLevelTowController::class, 'enableService']);
+
+        Route::resource('/order', OrderController::class);
+        Route::get('/order/{search_value}', [OrderController::class, 'search']);
+    }
+);

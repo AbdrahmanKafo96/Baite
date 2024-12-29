@@ -5,62 +5,86 @@ namespace App\Http\Controllers;
 use App\Models\myService;
 use App\Http\Requests\StoremyServiceRequest;
 use App\Http\Requests\UpdatemyServiceRequest;
-
+use App\Builders\AttachmentBuilder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class MyServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return response()->json(
+
+            data: MyService::orderBy('created_at')->paginate($request->limit)
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(MyService $service)
     {
-        //
+        return response()->json($service);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoremyServiceRequest $request)
     {
-        //
+
+        $service = MyService::create([
+            'service_name' => $request->service_name,
+            'description' => $request->description,
+            'show' => $request->show,
+            // 'user_id' =>  Auth::user()->id,
+            'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+                $request,
+                'MyServices',
+                'icon'
+            ),
+        ]);
+        // if( $request->show ===1)
+            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+
+        return response()->json(['message' => 'insert success']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(myService $myService)
+    public function update(UpdatemyServiceRequest $request, MyService $service)
     {
-        //
+
+        $service->service_name = $request->service_name;
+        $service->show = $request->show;
+        $service->description = $request->description;
+
+        $service->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+            $request,
+            'myServices',
+            'icon'
+        );
+
+        $service->save();
+
+        return response()->json($service);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(myService $myService)
+    public function destroy(MyService $service)
     {
-        //
+
+        File::delete(public_path($service->icon));
+        $service->delete();
+        return response()->json(['message' => 'delete success']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatemyServiceRequest $request, myService $myService)
+    public function search($search_value)
     {
-        //
+        $query =   MyService::where('service_name', $search_value)->orderBy('created_at')->paginate(10);
+        return response()->json(
+            $query,
+        );
+    }
+    function enableService(Request $request)
+    {
+        //$this->authorize('chnageCustomerActiveStatus', Customer::class);
+        $user = MyService::find($request->id);
+        $user->update(['show' => $request->is_active]);
+        return response()->json(['message' =>
+        'status was chnaged successfully']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(myService $myService)
-    {
-        //
-    }
 }

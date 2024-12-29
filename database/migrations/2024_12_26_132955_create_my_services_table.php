@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('service_name');
             $table->string('description');
-            $table->boolean('show'); 
+            $table->boolean('show');
+            $table->string('icon');
             $table->timestamps();
         });
     }

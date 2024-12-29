@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController as BaseController;
+
 class EmployeeController extends BaseController
 {
     public function index(Request $request)
@@ -26,63 +27,66 @@ class EmployeeController extends BaseController
         );
     }
 
-    public function show(Employee $User)
+    public function show(Employee $employee)
     {
-        return response()->json($User);
+        return response()->json($employee);
     }
 
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request) {}
+    function chnageCustomerActiveStatus(Request $request)
     {
-        $User = Employee::create([
-            'name' => $request->name,
-            'show' => $request->show,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'user_id' =>  Auth::user()->id,
-            'url' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-                $request,
-                'Users',
-                'url'
-            ),
-        ]);
-        // if( $request->show ===1)
-            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
-
-        return response()->json(['message' => 'insert success']);
+        //$this->authorize('chnageCustomerActiveStatus', Customer::class);
+        $user = Employee::find($request->id);
+        $user->update(['is_active' => $request->is_active]);
+        return response()->json(['message' =>
+        'status was chnaged successfully']);
     }
 
+    // function chnageCustomerTrustStatus(Request $request)
+    // {
+    //    // $this->authorize('chnageCustomerTrustStatus', Customer::class);
+    //     $user = Employee::find($request->id);
+    //     $user->update(['is_trusted' => $request->is_trusted]);
+    //     return response()->json(['message' =>
+    //     'status was chnaged successfully']);
+    // }
     public function update(UpdateUserRequest $request, Employee $User)
     {
+        // $table->string('name');
+        // $table->string('email')->unique();
+        // $table->string('password');
+        // $table->boolean('is_active')->default(1);
+        // $table->boolean('is_trusted')->default(0);
 
-        $User->name = $request->name;
-        $User->show = $request->show;
-        $User->start_date = $request->start_date;
-        $User->end_date = $request->end_date;
-        $User->user_id =  Auth::user()->id;
-        $User->url = $request->url;
-        // $User->url = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-        //     $request,
-        //     'Users',
-        //     'url'
-        // );
+        // $User->name = $request->name;
+        // $User->show = $request->show;
+        // $User->start_date = $request->start_date;
+        // $User->end_date = $request->end_date;
+        // $User->user_id =  Auth::user()->id;
+        // $User->url = $request->url;
+        // // $User->url = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        // //     $request,
+        // //     'Users',
+        // //     'url'
+        // // );
 
-        $User->save();
+        // $User->save();
 
-        return response()->json($User);
+        // return response()->json($User);
     }
 
-    public function destroy(Employee $User)
+    public function destroy(Employee $user)
     {
 
         // File::delete(public_path($User->image_path));
-        $User->delete();
+        $user->delete();
         return response()->json(['message' => 'delete success']);
     }
 
-    public function searchUser($search_value)
+    public function search($search_value)
     {
-        $query =   Employee::where('show', $search_value)->orderBy('created_at')->paginate(10);
+        $query =   Employee::where('name', $search_value)->orderBy('created_at')->paginate(10);
         return response()->json(
             $query,
         );
@@ -99,7 +103,7 @@ class EmployeeController extends BaseController
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
             $success['is_active'] =  $user->is_active;
-            $success['is_trusted'] =  $user->is_trusted;
+            // $success['is_trusted'] =  $user->is_trusted;
             $success['email'] =  $user->email;
             $success['id'] =  $user->id;
 
@@ -156,7 +160,7 @@ class EmployeeController extends BaseController
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
         $success['is_active'] = 1;
-        $success['is_trusted'] = 0;
+        // $success['is_trusted'] = 0;
         $success['email'] =  $user->email;
         $success['id'] =  $user->id;
 

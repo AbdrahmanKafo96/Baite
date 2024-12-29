@@ -37,7 +37,7 @@ class UserController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(User $service)
+    public function show(User $user)
     {
         //
     }

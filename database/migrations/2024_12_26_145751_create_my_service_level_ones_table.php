@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('my_service_level_ones', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
             $table->foreignId('service_id')->references('id')->on('my_services');
             $table->string('service_name');
             $table->string('description');
             $table->boolean('show');
+            $table->string('icon');
             $table->timestamps();
         });
     }
