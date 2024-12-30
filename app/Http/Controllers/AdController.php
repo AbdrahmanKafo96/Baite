@@ -10,7 +10,7 @@ use App\Http\Requests\StoreAdRequest;
 use App\Models\Notification;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 class AdController extends Controller
 {
     public function index(Request $request)

@@ -8,6 +8,6 @@ use Laravel\Sanctum\HasApiTokens;
 class Ad extends Model
 {
     /** @use HasFactory<\Database\Factories\AdFactory> */
-    use HasFactory, HasApiTokens;
+    use HasFactory;
     protected $guarded = [];
 }

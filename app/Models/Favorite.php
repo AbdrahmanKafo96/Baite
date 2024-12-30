@@ -10,4 +10,8 @@ class Favorite extends Model
     /** @use HasFactory<\Database\Factories\FavoriteFactory> */
     use HasFactory;
     protected $guarded = [];
+    public function services()
+    {
+        return $this->hasMany(myServiceLevelTow::class, 'id', 'item_id');
+    }
 }

@@ -9,4 +9,5 @@ class Rate extends Model
 {
     /** @use HasFactory<\Database\Factories\RateFactory> */
     use HasFactory;
+    protected $guarded = [];
 }

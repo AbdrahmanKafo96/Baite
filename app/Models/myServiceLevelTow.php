@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class myServiceLevelTow extends Model
 {
     /** @use HasFactory<\Database\Factories\MyServiceLevelTowFactory> */
-    use HasFactory;
+    use HasFactory ;
     protected $guarded = [];
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('customers');
             $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
             $table->timestamps();
         });

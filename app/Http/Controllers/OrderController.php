@@ -7,6 +7,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Builders\AttachmentBuilder;
+use App\Models\Cart;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,31 +34,33 @@ class OrderController extends Controller
         $prefix = "#";
         $randomNumber = IdGenerator::generate(['table' => 'orders', 'field' => 'order_number', 'length' => 9, 'prefix' => $prefix]);
 
+        $user_id = Auth::user()->id;
+        $carts = Cart::where('user_id',   $user_id)->get();
+        $itemsSelected = [];
+        $quantitySelected = [];
+
+        foreach ($carts as $item) {
+            $itemsSelected[] = $item->service_id;
+            $quantitySelected[] = $item->quantities;
+        }
+
         Order::create([
             'order_number' =>  $randomNumber,
             'note' => $request->note,
             'status' =>  "pending",
-            'quantity' => $request->quantity,
-            'phone_number' => $request->phone_number,
+            'service_seclected' => $itemsSelected,
+            'quantity_selected' =>  $quantitySelected,
+            'phone_number' => Auth::user()->phone_number,
             'total_price' => $request->total_price,
-            'user_id' =>   Auth::user()->id,
+            'user_id' =>   $user_id,
             'service_id' => $request->service_id,
         ]);
+
         return response()->json(['message' => 'insert success']);
     }
 
     public function update(UpdateOrderRequest $request, Order $order)
-    {
-
-        // // $order->update();
-        // $order->save([
-        //     'note' => $request->note,
-        //     'quantity' => $request->quantity,
-        //     'phone_number' => $request->phone_number,
-        //     'total_price' => $request->total_price,
-        //     'user_id' =>   Auth::user()->id,
-        //     'service_id' => $request->service_id,]);
-        // return response()->json($order);
+    { 
     }
 
     public function destroy(Order $order)

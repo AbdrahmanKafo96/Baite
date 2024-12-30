@@ -9,6 +9,6 @@ use Laravel\Sanctum\HasApiTokens;
 class MyService extends Model
 {
     /** @use HasFactory<\Database\Factories\MyServiceFactory> */
-    use HasFactory , HasApiTokens;
+    use HasFactory;
     protected $guarded = [];
 }

@@ -8,6 +8,6 @@ use Laravel\Sanctum\HasApiTokens;
 class myServiceLevelOne extends Model
 {
     /** @use HasFactory<\Database\Factories\MyServiceLevelOneFactory> */
-    use HasFactory, HasApiTokens;
+    use HasFactory ;
     protected $guarded = [];
 }

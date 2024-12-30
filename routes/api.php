@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MyServiceController;
 use App\Http\Controllers\MyServiceLevelOneController;
 use App\Http\Controllers\MyServiceLevelTowController;
@@ -65,31 +67,38 @@ Route::middleware(['auth:sanctum'])->group(
         Route::resource('ads',  AdController::class);
 
         Route::resource('customers', CustomerController::class);
-        Route::post('/customer-active', [CustomerController::class, 'chnageCustomerActiveStatus']);
-        Route::post('/customer-trust', [CustomerController::class, 'chnageCustomerTrustStatus']);
+        Route::post('/customes-active', [CustomerController::class, 'chnageCustomerActiveStatus']);
+        Route::post('/customers-trust', [CustomerController::class, 'chnageCustomerTrustStatus']);
         Route::post('/chnage-customers-trust', [CustomerController::class, 'chnageSomeCustomerStatus']);
-        Route::get('/search-customer/{search_value}', [CustomerController::class, 'search']);
+        Route::get('/search-customers/{search_value}', [CustomerController::class, 'search']);
 
-        Route::resource('employee', EmployeeController::class);
-        Route::post('/employee-active', [EmployeeController::class, 'chnageCustomerActiveStatus']);
+        Route::resource('employees', EmployeeController::class);
+        Route::post('/employees-active', [EmployeeController::class, 'chnageCustomerActiveStatus']);
         // Route::post('/customer-trust', [EmployeeController::class, 'chnageCustomerTrustStatus']);
         // Route::post('/chnage-customers-trust', [EmployeeController::class, 'chnageSomeCustomerStatus']);
-        Route::get('/search-employee/{search_value}', [EmployeeController::class, 'search']);
+        Route::get('/search-employees/{search_value}', [EmployeeController::class, 'search']);
 
 
-        Route::resource('/service', MyServiceController::class);
-        Route::get('/search-service/{search_value}', [MyServiceController::class, 'search']);
+        Route::resource('/services', MyServiceController::class);
+        Route::get('/search-services/{search_value}', [MyServiceController::class, 'search']);
         //  Route::post('/service-active', [MyServiceController::class, 'enableService']);
 
-        Route::resource('/service-level-one', MyServiceLevelOneController::class);
-        Route::get('/search-service-level-one/{search_value}', [MyServiceLevelOneController::class, 'search']);
+        Route::resource('/services-level-one', MyServiceLevelOneController::class);
+        Route::get('/search-services-level-one/{search_value}', [MyServiceLevelOneController::class, 'search']);
         // Route::post('/service-level-one-active', [MyServiceLevelOneController::class, 'enableService']);
 
-        Route::resource('/service-level-tow', MyServiceLevelTowController::class);
-        Route::get('/search-service-level-tow/{search_value}', [MyServiceLevelTowController::class, 'search']);
+        Route::resource('/services-level-tow', MyServiceLevelTowController::class);
+        Route::get('/search-services-level-tow/{search_value}', [MyServiceLevelTowController::class, 'search']);
         // Route::post('/service-level-tow-active', [MyServiceLevelTowController::class, 'enableService']);
 
-        Route::resource('/order', OrderController::class);
-        Route::get('/order/{search_value}', [OrderController::class, 'search']);
+        Route::resource('/orders', OrderController::class);
+        Route::get('/orders/{search_value}', [OrderController::class, 'search']);
+
+        Route::resource('/carts', CartController::class);
+
+        Route::resource('/favorites', FavoriteController::class);
+       // Route::get('/favorites', [FavoriteController::class, 'fetchAllFavorite']);
+        // Route::post('/addToFavorites', [FavoriteController::class, 'addToFavorites']);
+        // Route::delete('/removeFromFavorites', [FavoriteController::class, 'removeFromFavorites']);
     }
 );

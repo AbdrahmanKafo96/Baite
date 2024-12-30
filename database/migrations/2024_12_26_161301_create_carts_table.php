@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
 
             $table->integer('quantities');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('customers');
             $table->timestamps();
         });
     }
