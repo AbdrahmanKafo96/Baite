@@ -84,12 +84,14 @@ class SuperAdminController extends BaseController
 
         if (Auth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::guard('admins')->user();
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
+            $result['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $result['name'] =  $user->name;
+            $result['success'] =  true;
 
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse( $result, 'User login successfully.');
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            $result['success'] =  false;
+            return    $this->sendResponse($result , 'User login unsuccessfully.');
         }
     }
 }
