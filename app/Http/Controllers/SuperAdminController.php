@@ -26,6 +26,7 @@ class SuperAdminController extends BaseController
     }
     public function logout()
     {
+
         if (auth()->user()) {
             $user = Auth:: user();
             $user->currentAccessToken()->delete();
