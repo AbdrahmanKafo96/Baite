@@ -1,0 +1,113 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+nav {
+    background: rgb(3, 88, 158);
+    color: white;
+    font-weight: 800;
+}
+
+.navbar-nav .nav-link, .navbar-nav .nav-link.active {
+    color: white;
+}
+
+/* Logo of the navbar */
+.navbar-brand {
+    padding-left: 120px;
+    color: white;
+}
+
+.navbar a.operationButton, #login-screen form a.operationButton, #login-screen form input.operationButton {
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 7px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 0, 0.816);
+}
+
+/* Start of the hero background customization */
+
+section#hero-background {
+    background: rgb(3, 88, 158);
+    height: 400px;
+}
+
+/* Start of the Article customization */
+
+article {
+    margin-top: 90px;
+}
+
+article p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+article#main .row div:first-child {
+    padding-top: 70px; 
+}
+
+article#service-advantages {
+    background-color: rgb(210, 234, 250);
+}
+
+article#service-advantages .container .wrapper span {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+
+/* Start of the login screen customization */
+
+#login-screen {
+    background: rgb(3, 88, 158);
+    min-height: 100vh;
+}
+
+#login-screen form#loginForm input {
+    border: 1px solid green;
+}
+
+#login-screen form#loginForm p#noticeText {
+    font-size: 12px;
+}
+
+/* End of the login screen customization */
+
+/* Start of the footer customization */
+
+footer {
+    background: rgb(3, 88, 158);
+    color: #fff;
+}
+
+footer h5 {
+    color: rgba(255, 255, 0, 0.816);
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgba(255, 255, 0, 0.816);
+}
+
+/* End of the footer customization */
+
+/* warning style for when the user fails to login */
+
+.warning {
+    background: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
