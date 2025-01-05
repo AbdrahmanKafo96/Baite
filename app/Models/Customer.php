@@ -20,4 +20,8 @@ class Customer extends Authenticatable
 
     protected $guarded = [];
     protected $guard_name =  'client_api';
+    protected $hidden = [
+        'password',
+        'email_verified_at',
+    ];
 }

@@ -20,4 +20,9 @@ class Employee extends Authenticatable
 
     protected $guarded = [];
     protected $guard_name =  'emp_api';
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }
