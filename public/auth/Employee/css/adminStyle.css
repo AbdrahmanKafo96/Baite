@@ -1,0 +1,27 @@
+/* Start of the Employee Register screen customization */
+
+#regEmp-screen {
+    background: rgb(86, 186, 225);
+}
+
+#regEmp-screen {
+    background: rgb(3, 88, 158);
+    min-height: 100vh;
+}
+
+#regEmp-screen form#registerEmp input {
+    border: 1px solid green;
+}
+
+/* #regEmp-screen form#registerEmp p#noticeText {
+    font-size: 12px;
+} */
+
+.warning {
+    background: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* End of the login screen customization */

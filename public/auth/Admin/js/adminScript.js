@@ -21,6 +21,7 @@ function logOut() {
     .then(data => {
       // Handle successful login, e.g., store token in local storage
       console.log('Logout successful:', data);
+      localStorage.removeItem('token');
       // similar behavior as an HTTP redirect
       window.location.replace("../../index.php");
     })

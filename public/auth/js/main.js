@@ -1,6 +1,5 @@
 // login form for client
 
-// Register an Employee function
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function(event) {
@@ -77,3 +76,4 @@ function logOut() {
     console.error('There has been a problem with your fetch operation:', error);
   });
 }
+

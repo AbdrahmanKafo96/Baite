@@ -9,7 +9,7 @@
                         <form id="loginForm">
                             <div class="form-group">
                                 <img class="d-block mx-auto" src="../images/sign-in.png" alt="" width="100" height="100">
-                                <h3 class="text-center p-4">تسجيل الدخول</h3>
+                                <h3 class="text-center p-4">تسجيل دخول الموظف</h3>
                                 <label class="py-2 fw-bold" for="email">
                                     البريد الإلكتروني
                                 </label>
