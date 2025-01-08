@@ -23,7 +23,7 @@ class EmployeeController extends BaseController
     {
         return response()->json(
 
-            Employee::orderBy('created_at')->paginate($request->limit)
+            Employee::orderBy('created_at')->paginate(10)
         );
     }
 

@@ -1,3 +1,61 @@
+// Script to collapse the sidebar on smaller screens
+
+const hamBurger = document.querySelector(".toggle-btn");
+
+hamBurger.addEventListener("click", function () {
+  document.querySelector("#sidebar").classList.toggle("expand");
+});
+
+/* Code to manipulate data set in table */
+
+// token of the admin that was already saved and will be used to fetch the data
+const token = localStorage.getItem('token');
+
+$(document).ready(function() {
+  $('#myTable').DataTable({
+      ajax: {
+          url: 'http://127.0.0.1:8000/api/employees',
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          dataSrc: 'data' // Assuming the response data is directly in the array
+      },
+      // data: data,
+      columns: [
+          {
+              data: 'id'
+          },
+          // {
+          //     data: 'created_at'
+          // },
+          {
+              data: 'name'
+          },
+          {
+              data: 'email'
+          },
+          {
+              data: 'is_active'
+          }
+          // {
+          //     data: 'updated_at'
+          // }
+      ]
+  });
+
+  // Customizing DataTable to the requirements of arabic langauge
+  document.querySelector('label').innerHTML = 'سجلات';
+  document.querySelector('label').classList.add('me-2');
+  document.querySelector('.dt-search label').innerHTML = '';
+  document.getElementById('dt-search-0').style.border = '1.6px solid gray';
+  document.getElementById('dt-search-0').placeholder = 'البحث فى السجلات';
+  document.getElementById('dt-search-0').classList.add('me-4');
+});
+
+/* ===================================== */
+
 // logout function 
 
 function logOut() {
