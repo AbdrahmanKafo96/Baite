@@ -13,6 +13,8 @@ const token = localStorage.getItem('token');
 
 $(document).ready(function() {
   $('#myTable').DataTable({
+    processing: true,
+    serverSide: true,
       ajax: {
           url: 'http://127.0.0.1:8000/api/employees',
           method: 'GET',
@@ -20,7 +22,18 @@ $(document).ready(function() {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`
           },
-          dataSrc: 'data' // Assuming the response data is directly in the array
+          data: function(d) {
+           // Append page and draw parameters (DataTables expects this)
+           d.page = d.start / d.length + 1;  // Convert `start` to `page`
+           d.length = d.length;  // Send length (number of records per page)
+           d.draw = d.draw;  // Send draw count
+        },
+          dataSrc: function (json) {
+            // This function modifies the data before sending to DataTable
+            return json.data; // Adjust according to your JSON structure
+        }, // Assuming the response data is directly in the array
+          pagingType: "full_numbers",  // This enables pagination buttons like Next, Previous
+          pageLength: 10
       },
       // data: data,
       columns: [
@@ -56,11 +69,11 @@ $(document).ready(function() {
 
 /* ===================================== */
 
-// logout function 
+// logout function
 
 function logOut() {
     const token = localStorage.getItem('token');
-  
+
     fetch('http://127.0.0.1:8000/api/auth/logout-admin', {
       method: 'POST',
       headers: {
@@ -68,7 +81,7 @@ function logOut() {
         'accept': 'application/json',
         'Authorization':`Bearer ${token}`
       },
-      // body: `{"token": "${token}"}` 
+      // body: `{"token": "${token}"}`
     })
     .then(response => {
       if (!response.ok) {
@@ -102,7 +115,7 @@ form.addEventListener('submit', function(event) {
   if (password !== passConf) {
     let warningPara = "<p>حقل كلمة المرور وتأكيد كلمة المرور غير متوافق</p>";
     const h3 = document.querySelector('#registerEmp h3');
-    h3.insertAdjacentHTML("afterend", warningPara); 
+    h3.insertAdjacentHTML("afterend", warningPara);
     // Set attribute of class to customize a warning css style
     document.querySelector('#registerEmp p').setAttribute('class', 'warning');
   }
