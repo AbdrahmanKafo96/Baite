@@ -1,4 +1,4 @@
-<!-- Admin dashboard -->
+<!-- Customers Records Page  -->
 <?php include './include/template/header.php' ?>
 
 <!-- Start of the sidebar component -->
@@ -9,12 +9,12 @@
                 <i class="fa-sharp fa-solid fa-chart-line"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="#">لوحة التحكم</a>
+                <a href="./index.php">لوحة التحكم</a>
             </div>
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="customersRecords.php" class="sidebar-link">
+                <a href="registerEmployee.php" class="sidebar-link">
                     <i class="fa-solid fa-user pe-1"></i>
                     <span class="pe-2">إدارة الزبائن</span>
                 </a>
@@ -39,13 +39,37 @@
             </a>
         </div>
     </aside>
-    <div class="main p-3">
-        <div class="text-center">
-            <h1>أهلا بك الي لوحة التحكم بالنظام</h1>
+
+    <div class="main p-3 mt-3">
+        <div class="me-5">
+            <h1 style="font-size: 30px;">إدارة الزبائن</h1>
+        </div>
+
+        <div class="container">
+            <table id="customers" class="table mt-4">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col" style="text-align: right">الرقم</th>
+                        <th scope="col">الإسم</th>
+                        <th scope="col">البريد الإلكتروني</th>
+                        <th scope="col" style="text-align: right">رقم الهاتف</th>
+                        <th scope="col">الموقع</th>
+                        <th scope="col">حالة الحساب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 <!-- End of the sidebar component -->
+<!-- End of the table of the employees -->
 
-<script src="./js/adminScript.js"></script>
-<!-- <?php include '../include/template/scripts.php' ?> -->
+<script>
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script src="./js/customersScript.js"></script>

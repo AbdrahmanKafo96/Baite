@@ -50,7 +50,19 @@ $(document).ready(function() {
               data: 'email'
           },
           {
-              data: 'is_active'
+              data: 'is_active',
+              render: function (data, type, row) {
+                var isActiveValue = data === 1 ? 'checked' : ''; // Set checked based on value
+                var switchHTML = `
+                <div class="d-flex justify-content-right"> 
+                  <div class="form-check form-switch">
+                    <input class="form-check-input switch" type="checkbox" id="switch_${row.rowIndex}" ${isActiveValue}>
+                    <label class="form-check-label" for="switch_${row.rowIndex}"></label>
+                  </div>
+                </div>  
+                `;
+                return switchHTML;
+              }
           }
           // {
           //     data: 'updated_at'
@@ -65,6 +77,35 @@ $(document).ready(function() {
   document.getElementById('dt-search-0').style.border = '1.6px solid gray';
   document.getElementById('dt-search-0').placeholder = 'البحث فى السجلات';
   document.getElementById('dt-search-0').classList.add('me-4');
+
+  // Attach event listener to the table body (after DataTables initialization)
+
+  // $('.switch').on('change', function() {
+  //   var currentID = $(this).data('id'); // Get the ID associated with the switch
+  //   var currentValue = $(this).is(':checked'); // Get the current checked state
+
+  //   console.log(this);
+    
+
+    // AJAX request
+    // $.ajax({
+    //     url: 'your-server-endpoint-url', // Replace with your server endpoint
+    //     type: 'POST',
+    //     data: {
+    //         id: currentID,
+    //         value: currentValue
+    //     },
+    //     success: function(response) {
+    //         console.log('Success:', response);
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.error('Error:', error);
+    //     }
+    // });
+  // });
+
+///////////////////////////////////// 
+
 });
 
 /* ===================================== */

@@ -174,3 +174,12 @@ a.sidebar-link:hover {
 #myTable tbody td {
     text-align: right;
 }
+
+/* Stats page styling */
+
+.wrapper #statistics-section i {
+    font-size: 30px;
+    background-color: rgba(147, 51, 234, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+}

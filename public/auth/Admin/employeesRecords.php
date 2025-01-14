@@ -14,22 +14,28 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="registerEmployee.php" class="sidebar-link">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <span>إنشاء حساب موظف</span>
+                <a href="customersRecords.php" class="sidebar-link">
+                    <i class="fa-solid fa-user pe-1"></i>
+                    <span class="pe-2">إدارة الزبائن</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="employeesRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
-                    <span>عرض سجلات الموظفين</span>
+                    <span class="pe-2">إدارة الموظفين</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="statistics.php" class="sidebar-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="pe-2">الإحصائيات</span>
                 </a>
             </li>
         </ul>
         <div class="sidebar-footer">
-            <a href="#" class="sidebar-link">
+            <a href="#" class="sidebar-link" onclick="logOut()">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <span>تسجيل الخروج</span>
+                <span class="pe-2">تسجيل الخروج</span>
             </a>
         </div>
     </aside>
