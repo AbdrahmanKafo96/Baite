@@ -19,9 +19,18 @@ class CustomerController extends BaseController
 {
     public function index(Request $request)
     {
-        return response()->json(
-            Customer::latest()->orderBy('is_trusted')->paginate($request->limit)
-        );
+        $clients = Customer::paginate($request->limit);  // You can modify the number of items per page as needed
+
+        // Prepare the response for DataTables
+        return response()->json([
+            'draw' => $request->input('draw'), // Required by DataTables
+            'recordsTotal' => $clients->total(), // Total number of records
+            'recordsFiltered' => $clients->total(), // Total filtered records
+            'data' => $clients->items() // The actual employee data for the current page
+        ]);
+        // return response()->json(
+        //     Customer::latest()->orderBy('is_trusted')->paginate($request->limit)
+        // );
     }
     public function chnageSomeCustomerStatus(Request $request)
     {

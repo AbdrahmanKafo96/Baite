@@ -27,13 +27,13 @@ class EmployeeController extends BaseController
         // );
         $employees = Employee::paginate(10);  // You can modify the number of items per page as needed
 
-    // Prepare the response for DataTables
-    return response()->json([
-        'draw' => $request->input('draw'), // Required by DataTables
-        'recordsTotal' => $employees->total(), // Total number of records
-        'recordsFiltered' => $employees->total(), // Total filtered records
-        'data' => $employees->items() // The actual employee data for the current page
-    ]);
+        // Prepare the response for DataTables
+        return response()->json([
+            'draw' => $request->input('draw'), // Required by DataTables
+            'recordsTotal' => $employees->total(), // Total number of records
+            'recordsFiltered' => $employees->total(), // Total filtered records
+            'data' => $employees->items() // The actual employee data for the current page
+        ]);
     }
 
     public function show(Employee $employee)
