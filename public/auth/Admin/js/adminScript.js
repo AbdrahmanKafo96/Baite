@@ -78,6 +78,18 @@ $(document).ready(function() {
   document.getElementById('dt-search-0').placeholder = 'البحث فى السجلات';
   document.getElementById('dt-search-0').classList.add('me-4');
 
+  // Grab the switch value with its' id of the first cell in row
+  document.querySelector('#myTable').addEventListener('change', (event) => {
+    let switchValue = event.target.checked;
+    console.log(switchValue);
+        
+    let row = event.target.parentElement.parentElement.parentElement.parentElement;
+
+    console.log(row.firstChild.textContent);
+    let cellId = row.firstChild.textContent;
+           
+  })
+
   // Attach event listener to the table body (after DataTables initialization)
 
   // $('.switch').on('change', function() {
