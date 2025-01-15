@@ -1,3 +1,11 @@
+// Script to collapse the sidebar on smaller screens
+
+const hamBurger = document.querySelector(".toggle-btn");
+
+hamBurger.addEventListener("click", function () {
+  document.querySelector("#sidebar").classList.toggle("expand");
+});
+
 // logout function 
 
 function logOut() {
