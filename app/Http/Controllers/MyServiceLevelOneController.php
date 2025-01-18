@@ -15,7 +15,7 @@ class MyServiceLevelOneController extends Controller
     {
         return response()->json(
 
-            data: myServiceLevelOne::orderBy('created_at')->paginate($request->limit)
+            data: myServiceLevelOne::all()
         );
     }
 

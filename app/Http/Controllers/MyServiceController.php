@@ -8,15 +8,11 @@ use App\Http\Requests\UpdatemyServiceRequest;
 use App\Builders\AttachmentBuilder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 class MyServiceController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(
-
-            data: MyService::orderBy('created_at')->paginate($request->limit)
-        );
+        return response()->json(data: MyService::all());
     }
 
     public function show(MyService $service)

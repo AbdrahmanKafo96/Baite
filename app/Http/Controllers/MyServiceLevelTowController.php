@@ -14,10 +14,7 @@ class MyServiceLevelTowController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(
-
-            data: myServiceLevelTow::orderBy('created_at')->paginate($request->limit)
-        );
+        return response()->json(data: myServiceLevelTow::all());
     }
 
     public function show(myServiceLevelTow $service_level_tow)
