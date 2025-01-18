@@ -15,10 +15,7 @@ class AdController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(
-
-            Ad::orderBy('created_at')->paginate($request->limit)
-        );
+        return response()->json(  Ad::all() );
     }
 
     public function show(Ad $ad)
