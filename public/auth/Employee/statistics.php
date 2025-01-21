@@ -31,6 +31,12 @@
                     <span class="pe-2">الإحصائيات</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="ads.php" class="sidebar-link">
+                    <i class="fas fa-ad"></i>
+                    <span class="pe-2">الإعلانات</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="#" class="sidebar-link" onclick="logOut()">
