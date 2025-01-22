@@ -58,25 +58,28 @@
             <div class="row mt-4">
                 <div class="col-4">
                     <label class="fw-bold p-2">تاريخ بداية الإعلان</label>
-                    <input type="date" class="form-control">
+                    <input id="startDate" type="date" class="form-control" required>
                 </div>
                 <div class="col-4">
                     <label class="fw-bold p-2">تاريخ نهاية الإعلان</label>
-                    <input type="date" class="form-control">
+                    <input id="endDate" type="date" class="form-control" required>
                 </div>
             </div>
             <div class="form-check form-switch form-switch-md me-5 mt-4">
                 <h6 class="mt-5 pb-2">تفعيل الإعلان</h6>
                 <input class="form-check-input arabic-switch-btns" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">غير مفعل</label>
+                <span id="adNotification" class="d-block pt-3">الإعلان غير مفعل حاليا</span>
             </div>
 
             <div id="image-uploader" class="form-group mt-5">
-                <label for="adImage" class="d-block">
+                <label id="uploaderIcon" for="adImage">
                     <i class="fa-solid fa-image d-inline-block"></i>
                 </label>
                 <input type="file" id="adImage" name="adImage" accept="image/png, image/gif, image/jpeg" onchange="previewImage()" />
-                <img id="preview" class="img-fluid mt-3">
+                <label for="adImage">
+                    <img id="preview" class="img-fluid mt-3">
+                </label>
             </div>
             <input type="submit" value="إضافة" class="btn btn-primary mt-4 operationButton fw-bold">
         </form>

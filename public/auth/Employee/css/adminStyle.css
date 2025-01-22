@@ -218,6 +218,7 @@ a.sidebar-link:hover {
 
 /*-------*/
 
+/* Display needs to be replaced by visibility to fix form validation or use custom validation by js */
 #adForm #image-uploader>input {
     display: none;
 } 
@@ -226,10 +227,12 @@ a.sidebar-link:hover {
     box-shadow: 0px -2px 5px 6px rgba(0, 0, 0, 0.1); 
     font-size: 100px;
     padding: 30px;
+    cursor: pointer;
 } 
 
 #adForm #image-uploader img#preview {
     border-radius: 10px;
     border: 1px solid blueviolet;
     padding: 3px;
+    cursor: pointer;
 } 

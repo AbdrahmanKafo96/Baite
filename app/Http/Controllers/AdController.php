@@ -15,7 +15,7 @@ class AdController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(  Ad::all() );
+        return response()->json(Ad::all());
     }
 
     public function show(Ad $ad)
@@ -24,7 +24,7 @@ class AdController extends Controller
     }
 
 
-    public function store(StoreAdRequest $request)
+    public function store(Request $request)
     {
         //return  Auth::user()->id;
         $ad = Ad::create([
@@ -40,7 +40,7 @@ class AdController extends Controller
             ),
         ]);
         // if( $request->show ===1)
-            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+        // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
 
         return response()->json(['message' => 'insert success']);
     }
