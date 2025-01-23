@@ -32,8 +32,8 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
-            'serve' => true,
+            'root' => storage_path('app/'),
+          //  'serve' => true,
             'throw' => false,
         ],
 
@@ -44,6 +44,8 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+
+
 
         's3' => [
             'driver' => 's3',

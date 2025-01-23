@@ -8,14 +8,15 @@ use App\Builders\AttachmentBuilder;
 use App\Http\Requests\AdsFormRequest;
 use App\Http\Requests\StoreAdRequest;
 use App\Models\Notification;
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class AdController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(Ad::all());
+        return response()->json(  Ad::all() );
     }
 
     public function show(Ad $ad)
@@ -24,15 +25,17 @@ class AdController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store( Request $request)
     {
-        //return  Auth::user()->id;
+
         $ad = Ad::create([
             'name' => $request->name,
-            'show' => $request->show,
+            'show' => $request->show==true?1:0 ,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             // 'user_id' =>  Auth::user()->id,
+         //   'url'=> env('APP_URL').'/' .$request->file('url')->store('public/ads'),
+            //     $imagePath = $image->store('public/uploads');
             'url' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
                 'ads',
@@ -40,7 +43,7 @@ class AdController extends Controller
             ),
         ]);
         // if( $request->show ===1)
-        // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
 
         return response()->json(['message' => 'insert success']);
     }

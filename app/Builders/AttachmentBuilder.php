@@ -32,9 +32,8 @@ class AttachmentBuilder extends Builder
             Storage::putFileAs('private/services/kyc_form_attachments/',  $attachment, $attachment->hashName());
         }
     }
-    public static function storeOneFile($request, $key, $colName): string
+    public static function storeOneFile($request , $key, $colName): string
     {
-
         $file = $request->file($colName);
         // $path=storage_path('private/'.$key);
         // return $request->file($colName)->storeAs($key,  date('YmdHi').$file->getClientOriginalName(), 'public');
