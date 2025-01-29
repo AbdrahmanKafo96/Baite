@@ -28,9 +28,9 @@ class AdController extends Controller
     public function store( Request $request)
     {
 
-        $ad = Ad::create([
+         Ad::create([
             'name' => $request->name,
-            'show' => $request->show===1?1:0 ,
+            'show' => json_decode($request->show),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             // 'user_id' =>  Auth::user()->id,
