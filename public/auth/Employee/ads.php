@@ -35,14 +35,16 @@
     </aside>
     <div id="ads-section" class="main p-3">
         <div>
-            <h1 class="text-right m-3">الإعلانات</h1>
+            <h1 class="text-right m-3">لوحة التحكم بالإعلانات</h1>
             <a href="./adForm.php" type="button" class="btn btn-primary my-4 px-5 pe-3 me-3 fw-bold" style="border-radius: 15px;">
                 <i class="fa-solid fa-ad"></i>
                 <span>إنشاء إعلان </span>
             </a>
         </div>
-        <img class="d-block mx-auto img-fluid" src="images/ad.png" alt="images-not-found" height="500" width="500">
-        <h3 class="text-center">لا توجد إعلانات</h3>
+        <!-- Display the ads in cards if found -->
+
+        <div id="imgsRow" class="row">
+        </div>
     </div>
 </div>
 <!-- End of the sidebar component -->

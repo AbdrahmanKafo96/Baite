@@ -186,12 +186,12 @@ a.sidebar-link:hover {
 
 /* ads form styling */
 
-#ads-form form#adForm input {
+#ads-form form#adForm input, #ads-form form#editForm input {
     border: 1px solid green;
     /* width: 50%; */
 }
 
-#ads-form form#adForm input.btn {
+#ads-form form#adForm input.btn, #ads-form form#editForm input.btn {
     border-radius: 20px;
     width: 10%;
 }
@@ -236,3 +236,19 @@ a.sidebar-link:hover {
     padding: 3px;
     cursor: pointer;
 } 
+
+/* CSS style for the buttons within the ad cards */
+
+#adCard {
+    box-shadow: 0px -2px 5px 6px rgba(0, 0, 0, 0.1); 
+}
+
+#adCard .card-body a {
+    border: 2px solid;
+    border-radius: 20px;
+}
+
+#adCard ,#adCard img {
+    border-radius: 15px;
+    border: 1px solid gray;
+}
