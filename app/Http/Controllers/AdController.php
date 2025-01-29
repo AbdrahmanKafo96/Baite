@@ -30,7 +30,7 @@ class AdController extends Controller
 
         $ad = Ad::create([
             'name' => $request->name,
-            'show' => $request->show,
+            'show' => $request->show===true?1:0 ,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             // 'user_id' =>  Auth::user()->id,
