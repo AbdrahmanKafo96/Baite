@@ -54,7 +54,7 @@ const token = localStorage.getItem('token');
                     colDiv.classList.add('col-md-2', 'me-5', 'mt-3', 'mb-5');
                     
                     colDiv.innerHTML = '<div id="adCard" class="card p-2">' +
-                    '<img id="adImg" src="' + item.url + '" alt="Ad Image" height="250" width="250" class="img-fluid">' +
+                    '<img id="adImg" src="' + item.url + '" alt="Ad Image" height="250" width="250" class="img-fluid" style="object-fit: contain">' +
                         '<div class="card-body">' +
                             '<h5 class="card-title pb-3 text-right">' + item.name + '</h5>' +
                             '<div class="d-flex justify-content-end">' +
@@ -169,6 +169,13 @@ adForm.addEventListener("submit", (event) => {
     const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
     const token = localStorage.getItem("token");
 
+    // if (switchBtn) {
+    //     switchBtn = 1;
+    // } else {
+    //     switchBtn = 0;
+    // }
+    
+
     // Validating the form will be done later
     // if (adNameField.value.trim() === '' || startDate.value.trim() === '' || endDate.value.trim() === '') {
     //   console.log('field is empty');
@@ -229,7 +236,7 @@ adForm.addEventListener("submit", (event) => {
                     "There has been a problem with your fetch operation:",
                     error
                 );
-            });
+        });
 
     event.preventDefault();
 });
