@@ -2,10 +2,10 @@
 
 // A function that triggers when edit button is clicked and saves image's details into a sessionStorage
 function handleClick(itemid, itemName, itemUrl, itemShow, startDate, endDate) {
-    // console.log(itemid, itemName, itemUrl, itemShow, startDate, endDate); 
+    // console.log(itemid, itemName, itemUrl, itemShow, startDate, endDate);
     // clear all session storage before storing the new clicked values
-    sessionStorage.clear();   
-    
+    sessionStorage.clear();
+
     // Save the values to sessionStorage
     sessionStorage.setItem('id', itemid);
     sessionStorage.setItem('name', itemName);
@@ -15,7 +15,7 @@ function handleClick(itemid, itemName, itemUrl, itemShow, startDate, endDate) {
     sessionStorage.setItem('end_date', endDate);
 
     // redirect to the edit form of the ads
-    window.location.replace("./adEditForm.php"); 
+    window.location.replace("./adEditForm.php");
 }
 
 // Load the ads if ads exist if not load the illustration
@@ -39,20 +39,20 @@ const token = localStorage.getItem('token');
         .then((data) => {
             // Handle successful login, e.g., store token in local storage
             console.log("Ads retreived successful:", data);
-            // window.location.replace("../../index.php");    
+            // window.location.replace("../../index.php");
             if(data.length < 1) {
                 const wrapperDiv = document.createElement('div');
                 wrapperDiv.innerHTML = `<img class="d-block mx-auto img-fluid" src="images/ad.png" alt="images-not-found" height="500" width="500">
                 <h3 class="text-center">لا توجد إعلانات</h3>`;
-                document.getElementById('ads-section').appendChild(wrapperDiv);                
+                document.getElementById('ads-section').appendChild(wrapperDiv);
             } else {
-                // Create the adds     
+                // Create the adds
                 data.map((item) => {
-                    // console.log(item.url); 
+                    // console.log(item.url);
 
                     let colDiv = document.createElement('div');
                     colDiv.classList.add('col-md-2', 'me-5', 'mt-3', 'mb-5');
-                    
+
                     colDiv.innerHTML = '<div id="adCard" class="card p-2">' +
                     '<img id="adImg" src="' + item.url + '" alt="Ad Image" height="250" width="250" class="img-fluid" style="object-fit: contain">' +
                         '<div class="card-body">' +
@@ -63,11 +63,11 @@ const token = localStorage.getItem('token');
                             '</div>' +
                         '</div>' +
                     '</div>';
-                    
+
                     document.getElementById('imgsRow').appendChild(colDiv);
-                })         
+                })
             }
-                    
+
         })
         .catch((error) => {
             console.error(
@@ -174,7 +174,7 @@ adForm.addEventListener("submit", (event) => {
     // } else {
     //     switchBtn = 0;
     // }
-    
+
 
     // Validating the form will be done later
     // if (adNameField.value.trim() === '' || startDate.value.trim() === '' || endDate.value.trim() === '') {

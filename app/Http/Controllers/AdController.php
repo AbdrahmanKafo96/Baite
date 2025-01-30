@@ -51,20 +51,16 @@ class AdController extends Controller
     public function update(UpdateAdRequest $request, Ad $ad)
     {
 
-        $ad->name = $request->name;
-        $ad->show = $request->show;
-        $ad->start_date = $request->start_date;
-        $ad->end_date = $request->end_date;
-        $ad->url = $request->url;
-        // $ad->url = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-        //     $request,
-        //     'ads',
-        //     'url'
-        // );
+        $ad->update(
+            [
+                'name' => $request->input('name'),
+                'show' =>  json_decode($request->show),
+                'start_date' => $request->input('start_date'),
+                'end_date' =>  $request->input('end_date'),
+            ]
+        );
 
-        $ad->save();
-
-        return response()->json($ad);
+        return response()->json( ['message' => 'update success']);
     }
 
     public function destroy(Ad $ad)
