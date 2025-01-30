@@ -1,36 +1,36 @@
-// Prepare the values from the Storage session if they exist 
+// Prepare the values from the Storage session if they exist
 /* Note
-the code below also fixes a bug with the switch so it can really behave depending on the value received 
+the code below also fixes a bug with the switch so it can really behave depending on the value received
 */
 document.addEventListener('DOMContentLoaded', () => {
-    // Code to execute after the DOM content is loaded    
-    
+    // Code to execute after the DOM content is loaded
+
     const adName = sessionStorage.getItem('name');
     const startDate = sessionStorage.getItem('start_date').slice(0, 10);
     const endDate = sessionStorage.getItem('end_date').slice(0, 10);
     let show = sessionStorage.getItem('show');
 
     // console.log(show);
-    
+
     const toggleLabel = document.querySelector('.form-check-label');
     const adNote = document.querySelector('#adNotification');
 
     if (show === '1') {
         show = 1;
-        toggleLabel.textContent = 'مفعل';    
-        adNote.textContent = "الإعلان مفعل حالياً وسيظهر للمستخدمين";   
+        toggleLabel.textContent = 'مفعل';
+        adNote.textContent = "الإعلان مفعل حالياً وسيظهر للمستخدمين";
     } else {
-        show = 0; 
-        toggleLabel.textContent = 'غير مفعل';       
+        show = 0;
+        toggleLabel.textContent = 'غير مفعل';
         adNote.textContent = "الإعلان غير مفعل حاليا";
     }
 
     // console.log(show);
-    
-    document.querySelector('#ad-name').value = adName; 
-    document.querySelector('#startDate').value = startDate; 
-    document.querySelector('#endDate').value = endDate; 
-    document.querySelector('#flexSwitchCheckDefault').checked = show; 
+
+    document.querySelector('#ad-name').value = adName;
+    document.querySelector('#startDate').value = startDate;
+    document.querySelector('#endDate').value = endDate;
+    document.querySelector('#flexSwitchCheckDefault').checked = show;
 
     const toggleSwitch = document.querySelector('#flexSwitchCheckDefault');
 
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 /////////////////////////////////////////////
 
-// Update-Edit Ad form code 
+// Update-Edit Ad form code
 const form = document.getElementById('editForm');
 
 form.addEventListener('submit', (event) => {
@@ -61,18 +61,20 @@ form.addEventListener('submit', (event) => {
     console.log(`name: ${editedAdNameField}`, `start date: ${editedStartDate}`, `end date: ${editedEndDate}`, `switch button: ${switchBtn}`, `token: ${token}`, `id: ${ad}`);
 
     const formData = new FormData();
-        // formData.append("_method", 'put');
+        formData.append("_method", "PUT")
         formData.append("name", editedAdNameField);
-        formData.append("show", switchBtn);
+        formData.append("show",JSON.parse(switchBtn) );
         formData.append("start_date", editedStartDate);
         formData.append("end_date", editedEndDate);
-        
+
 
     // Fetch Function
     fetch("http://127.0.0.1:8000/api/ads/" + ad, {
-        method: 'PUT',
+        method: 'POST',
+        credentials: 'omit',
+        mode: 'same-origin',
         headers: {
-            'Content-Type': "application/json",
+            //'Content-Type': "application/json",
             'accept': "application/json",
             Authorization: `Bearer ${token}`,
         },
@@ -93,8 +95,8 @@ form.addEventListener('submit', (event) => {
                 "There has been a problem with your fetch operation:",
                 error
             );
-    });    
-    
+    });
+
     event.preventDefault();
 })
 
