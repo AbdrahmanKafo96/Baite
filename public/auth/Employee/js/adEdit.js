@@ -61,7 +61,7 @@ form.addEventListener('submit', (event) => {
     console.log(`name: ${editedAdNameField}`, `start date: ${editedStartDate}`, `end date: ${editedEndDate}`, `switch button: ${switchBtn}`, `token: ${token}`, `id: ${ad}`);
 
     const formData = new FormData();
-        formData.append("_method", "PUT")
+        formData.append("_method", "PUT");
         formData.append("name", editedAdNameField);
         formData.append("show",JSON.parse(switchBtn) );
         formData.append("start_date", editedStartDate);
