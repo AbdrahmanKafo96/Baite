@@ -51,10 +51,10 @@ const token = localStorage.getItem('token');
                     // console.log(item.url); 
 
                     let colDiv = document.createElement('div');
-                    colDiv.classList.add('col-md-2', 'me-5', 'mt-3', 'mb-5');
+                    colDiv.classList.add('col-md-3', 'me-5', 'mt-3', 'mb-5');
                     
                     colDiv.innerHTML = '<div id="adCard" class="card p-2">' +
-                    '<img id="adImg" src="' + item.url + '" alt="Ad Image" height="250" width="250" class="img-fluid" style="object-fit: contain">' +
+                    '<img id="adImg" src="' + item.url + '" alt="Ad Image"  style="object-fit: contain; aspect-ratio: 16/9;">' +
                         '<div class="card-body">' +
                             '<h5 class="card-title pb-3 text-right">' + item.name + '</h5>' +
                             '<div class="d-flex justify-content-end">' +
