@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('service_id')->references('id')->on('my_service_level_ones');
             $table->string('service_name');
             $table->string('description');
-            $table->string('icon');
             $table->string('image1_path')->nullable();
             $table->boolean('show');
             $table->float('cost');

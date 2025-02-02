@@ -23,20 +23,20 @@ class MyServiceLevelTowController extends Controller
     }
 
 
-    public function store(StoremyServiceLevelTowRequest $request)
+    public function store(Request $request)
     {
 
          myServiceLevelTow::create([
             'service_name' => $request->service_name,
             'description' => $request->description,
-            'show' => $request->show,
+            'show' => json_decode( $request->show),
             'service_id' => $request->service_id,
             'cost' => $request->cost,
-            'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-                $request,
-                'myServiceLevelTows',
-                'icon'
-            ),
+            // 'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+            //     $request,
+            //     'myServiceLevelTows',
+            //     'icon'
+            // ),
             'image1_path' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
                 'myServiceLevelTow',
@@ -49,18 +49,18 @@ class MyServiceLevelTowController extends Controller
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(UpdatemyServiceLevelTowRequest $request, myServiceLevelTow $service_level_tow)
+    public function update(Request $request, myServiceLevelTow $service_level_tow)
     {
 
         $service_level_tow->service_name = $request->service_name;
         $service_level_tow->show = $request->show;
         $service_level_tow->description = $request->description;
         $service_level_tow->cost = $request->cost;
-        $service_level_tow->show = $request->show;
-        $service_level_tow->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        $service_level_tow->show = json_decode( $request->show);
+        $service_level_tow->image1_path = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
             $request,
             'myServiceLevelTows',
-            'icon'
+            'image1_path'
         );
 
         $service_level_tow->save();

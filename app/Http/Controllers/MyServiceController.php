@@ -21,13 +21,13 @@ class MyServiceController extends Controller
     }
 
 
-    public function store(StoremyServiceRequest $request)
+    public function store(Request $request)
     {
 
         $service = MyService::create([
             'service_name' => $request->service_name,
             'description' => $request->description,
-            'show' => $request->show,
+            'show' => json_decode( $request->show),
             // 'user_id' =>  Auth::user()->id,
             'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
@@ -41,11 +41,11 @@ class MyServiceController extends Controller
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(UpdatemyServiceRequest $request, MyService $service)
+    public function update(Request $request, MyService $service)
     {
 
         $service->service_name = $request->service_name;
-        $service->show = $request->show;
+        $service->show = json_decode( $request->show);
         $service->description = $request->description;
 
         $service->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(

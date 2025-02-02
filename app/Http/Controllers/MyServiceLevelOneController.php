@@ -25,13 +25,13 @@ class MyServiceLevelOneController extends Controller
     }
 
 
-    public function store(StoremyServiceLevelOneRequest $request)
+    public function store(Request $request)
     {
 
         $service_level_one = myServiceLevelOne::create([
             'service_name' => $request->service_name,
             'description' => $request->description,
-            'show' => $request->show,
+            'show' => json_decode( $request->show),
             'service_id' => $request->service_id,
             'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
@@ -45,11 +45,11 @@ class MyServiceLevelOneController extends Controller
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(UpdatemyServiceLevelOneRequest $request, myServiceLevelOne $service_level_one)
+    public function update(Request $request, myServiceLevelOne $service_level_one)
     {
 
         $service_level_one->service_name = $request->service_name;
-        $service_level_one->show = $request->show;
+        $service_level_one->show = json_decode( $request->show);
         $service_level_one->description = $request->description;
         $service_level_one->service_id = $request->service_id;
         $service_level_one->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
