@@ -1,3 +1,37 @@
+// Delete function 
+function handleDelete(id) {
+    const itemId = id;
+    const token = localStorage.getItem('token');
+
+    fetch("http://127.0.0.1:8000/api/ads/" + itemId, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Handle successful login, e.g., store token in local storage
+            console.log("Ads Removed successful:", data);
+            // window.location.replace("../../index.php");
+        })
+        .catch((error) => {
+            console.error(
+                "There has been a problem with your fetch operation:",
+                error
+            );
+    });
+
+}
+
+
 // ads script
 
 // A function that triggers when edit button is clicked and saves image's details into a sessionStorage
@@ -51,15 +85,15 @@ const token = localStorage.getItem('token');
                     // console.log(item.url);
 
                     let colDiv = document.createElement('div');
-                    colDiv.classList.add('col-md-2', 'me-5', 'mt-3', 'mb-5');
-
+                    colDiv.classList.add('col-md-3', 'me-5', 'mt-3', 'mb-5');
+                    
                     colDiv.innerHTML = '<div id="adCard" class="card p-2">' +
-                    '<img id="adImg" src="' + item.url + '" alt="Ad Image" height="250" width="250" class="img-fluid" style="object-fit: contain">' +
+                    '<img id="adImg" src="' + item.url + '" alt="Ad Image"  style="object-fit: contain; aspect-ratio: 16/9;">' +
                         '<div class="card-body">' +
                             '<h5 class="card-title pb-3 text-right">' + item.name + '</h5>' +
                             '<div class="d-flex justify-content-end">' +
                             '<a onclick="handleClick(\'' + item.id + '\', \'' + item.name + '\', \'' + item.url + '\', \'' + item.show + '\', \'' + item.start_date + '\', \'' + item.end_date + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
-                            '<a class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
+                            '<a onclick="handleDelete(' + item.id + ')" class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                             '</div>' +
                         '</div>' +
                     '</div>';

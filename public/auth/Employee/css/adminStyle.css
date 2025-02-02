@@ -249,6 +249,6 @@ a.sidebar-link:hover {
 }
 
 #adCard ,#adCard img {
-    border-radius: 15px;
-    border: 1px solid gray;
+    /* border-radius: 15px;
+    border: 1px solid gray; */
 }
