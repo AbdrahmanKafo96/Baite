@@ -52,11 +52,11 @@ class MyServiceLevelOneController extends Controller
         $service_level_one->show = json_decode( $request->show);
         $service_level_one->description = $request->description;
         $service_level_one->service_id = $request->service_id;
-        $service_level_one->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-            $request,
-            'myServiceLevelOnes',
-            'icon'
-        );
+        // $service_level_one->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        //     $request,
+        //     'myServiceLevelOnes',
+        //     'icon'
+        // );
 
         $service_level_one->save();
 

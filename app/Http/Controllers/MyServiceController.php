@@ -48,11 +48,11 @@ class MyServiceController extends Controller
         $service->show = json_decode( $request->show);
         $service->description = $request->description;
 
-        $service->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-            $request,
-            'myServices',
-            'icon'
-        );
+        // $service->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        //     $request,
+        //     'myServices',
+        //     'icon'
+        // );
 
         $service->save();
 
