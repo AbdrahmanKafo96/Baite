@@ -93,7 +93,7 @@ const token = localStorage.getItem('token');
                             '<h5 class="card-title pb-3 text-right">' + item.name + '</h5>' +
                             '<div class="d-flex justify-content-end">' +
                             '<a onclick="handleClick(\'' + item.id + '\', \'' + item.name + '\', \'' + item.url + '\', \'' + item.show + '\', \'' + item.start_date + '\', \'' + item.end_date + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
-                            '<a onclick="handleDelete(' + item.id + ')" class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
+                            '<a data-bs-toggle="modal" data-bs-target="#removeModal"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                             '</div>' +
                         '</div>' +
                     '</div>';
@@ -274,10 +274,3 @@ adForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
 });
-
-
-// backup code
-{/* <div class="d-flex justify-content-end">
-                            <a class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>
-                            <a href="#" class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>
-                            </div> */}

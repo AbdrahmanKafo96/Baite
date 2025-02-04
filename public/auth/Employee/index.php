@@ -37,6 +37,12 @@
                     <span class="pe-2">الإعلانات</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="services.php" class="sidebar-link">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span class="pe-2">الخدمات</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="#" class="sidebar-link" onclick="logOut()">
