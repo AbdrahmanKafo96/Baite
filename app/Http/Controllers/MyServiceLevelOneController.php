@@ -60,7 +60,7 @@ class MyServiceLevelOneController extends Controller
 
         $service_level_one->save();
 
-        return response()->json($service_level_one);
+        return response()->json(['message' => 'update success']);
     }
 
     public function destroy(myServiceLevelOne $service_level_one)

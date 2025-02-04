@@ -64,7 +64,7 @@ class MyServiceLevelTowController extends Controller
 
         $service_level_tow->save();
 
-        return response()->json($service_level_tow);
+        return response()->json(['message' => 'update success']);
     }
 
     public function destroy(myServiceLevelTow $service_level_tow)

@@ -56,7 +56,7 @@ class MyServiceController extends Controller
 
         $service->save();
 
-        return response()->json($service);
+        return response()->json(['message' => 'update success']);
     }
 
     public function destroy(MyService $service)
