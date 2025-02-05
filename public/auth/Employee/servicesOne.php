@@ -63,6 +63,24 @@
 <!-- End of the sidebar component -->
 
 <script>
+    // A function that triggers when edit button is clicked and saves service's details into a sessionStorage
+    function handleClick(id, name, description, show, serviceID) {
+        console.log(`ID: ${id}, SERVICE NAME: ${name}, DESCRIPTION: ${description}, STATUS: ${show}, SERVICE ID: ${serviceID}`);
+        // clear all session storage before storing the new clicked values
+        sessionStorage.clear();
+
+        // Save the values to sessionStorage
+        sessionStorage.setItem('id', id);
+        sessionStorage.setItem('service_name', name);
+        sessionStorage.setItem('service_description', description);
+        sessionStorage.setItem('status', show);
+        sessionStorage.setItem('serviceID', serviceID);
+
+        // redirect to the edit form of the ads
+        window.location.replace("./servicesOneUpdate.php");
+    }
+    // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
     // Delete function 
     function handleDelete(id) {
         const itemId = id;
@@ -137,7 +155,7 @@
                         '<h5 class="card-title pb-3 text-right">' + item.service_name + '</h5>' +
                         '<p class="card-text">' + item.description + '</p>' +
                         '<div class="d-flex justify-content-end">' +
-                        '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
+                        '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\', \'' + item.service_id + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
                         '<a onclick="handleDelete(' + item.id + ')"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                         '</div>' +
                         '</div>' +
