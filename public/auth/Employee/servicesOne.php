@@ -63,6 +63,40 @@
 <!-- End of the sidebar component -->
 
 <script>
+    // Delete function 
+    function handleDelete(id) {
+        const itemId = id;
+        const token = localStorage.getItem('token');
+
+        fetch("http://127.0.0.1:8000/api/services-level-one/" + itemId, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    accept: "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Handle successful login, e.g., store token in local storage
+                console.log("Service Removed successful!");
+                // window.location.replace("../../index.php");
+            })
+            .catch((error) => {
+                console.error(
+                    "There has been a problem with your fetch operation:",
+                    error
+                );
+            });
+
+    }
+
+
     // Load all Sub Services of level one into the page
     const token = localStorage.getItem('token');
 
@@ -104,7 +138,7 @@
                         '<p class="card-text">' + item.description + '</p>' +
                         '<div class="d-flex justify-content-end">' +
                         '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
-                        '<a onclick="handleDelete(' + item.id + ')" data-bs-toggle="modal" data-bs-target="#removeModal"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
+                        '<a onclick="handleDelete(' + item.id + ')"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
@@ -121,7 +155,7 @@
             );
             const adNoFoundNote = `<img class="d-block mx-auto img-fluid" src="images/ad.png" alt="images-not-found" height="500" width="500">
             <h3 class="text-center">لا توجد إعلانات</h3>`;
-            document.getElementById('ads-section').appendChild(adNoFoundNote);
+            document.getElementById('services-section').appendChild(adNoFoundNote);
         });
 
     /* ^^^^^^^^^^^^^ */
