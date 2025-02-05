@@ -63,11 +63,10 @@ class MyServiceLevelOneController extends Controller
         return response()->json(['message' => 'update success']);
     }
 
-    public function destroy(myServiceLevelOne $service_level_one)
+    public function destroy(myServiceLevelOne $services_level_one)
     {
-
-        File::delete(public_path($service_level_one->icon));
-        $service_level_one->delete();
+        File::delete(public_path($services_level_one->icon));
+        $services_level_one->delete();
         return response()->json(['message' => 'delete success']);
     }
 
