@@ -134,7 +134,7 @@ const token = localStorage.getItem('token');
                             '<p class="card-text">' + item.description + '</p>' +
                             '<div class="d-flex justify-content-end">' +
                             '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
-                            '<a onclick="handleDelete('+ item.id +')" data-bs-toggle="modal" data-bs-target="#removeModal"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
+                            '<a onclick="handleDelete('+ item.id +')" class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                             '</div>' +
                         '</div>' +
                     '</div>';
@@ -151,7 +151,7 @@ const token = localStorage.getItem('token');
             );
             const adNoFoundNote = `<img class="d-block mx-auto img-fluid" src="images/ad.png" alt="images-not-found" height="500" width="500">
             <h3 class="text-center">لا توجد إعلانات</h3>`;
-            document.getElementById('ads-section').appendChild(adNoFoundNote);
+            document.getElementById('services-section').appendChild(adNoFoundNote);
         });
 
 /* ^^^^^^^^^^^^^ */
