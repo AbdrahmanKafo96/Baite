@@ -17,9 +17,9 @@ class MyServiceLevelTowController extends Controller
         return response()->json(data: myServiceLevelTow::all());
     }
 
-    public function show(myServiceLevelTow $service_level_tow)
+    public function show(myServiceLevelTow $services_level_tow)
     {
-        return response()->json($service_level_tow);
+        return response()->json($services_level_tow);
     }
 
 
@@ -49,29 +49,29 @@ class MyServiceLevelTowController extends Controller
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(Request $request, myServiceLevelTow $service_level_tow)
+    public function update(Request $request, myServiceLevelTow $services_level_tow)
     {
 
-        $service_level_tow->service_name = $request->service_name;
-        $service_level_tow->description = $request->description;
-        $service_level_tow->cost = $request->cost;
-        $service_level_tow->show = json_decode( $request->show);
-        // $service_level_tow->image1_path = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+        $services_level_tow->service_name = $request->service_name;
+        $services_level_tow->description = $request->description;
+        $services_level_tow->cost = $request->cost;
+        $services_level_tow->show = json_decode( $request->show);
+        // $services_level_tow->image1_path = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
         //     $request,
         //     'myServiceLevelTows',
         //     'image1_path'
         // );
 
-        $service_level_tow->save();
+        $services_level_tow->save();
 
         return response()->json(['message' => 'update success']);
     }
 
-    public function destroy(myServiceLevelTow $service_level_tow)
+    public function destroy(myServiceLevelTow $services_level_tow)
     {
 
-        File::delete(public_path($service_level_tow->icon));
-        $service_level_tow->delete();
+        File::delete(public_path($services_level_tow->icon));
+        $services_level_tow->delete();
         return response()->json(['message' => 'delete success']);
     }
 
@@ -83,11 +83,11 @@ class MyServiceLevelTowController extends Controller
             $query,
         );
     }
-    // function enableService(myServiceLevelTow $service_level_tow)
+    // function enableService(myServiceLevelTow $services_level_tow)
     // {
     //     //$this->authorize('chnageCustomerActiveStatus', Customer::class);
-    //     $user = myServiceLevelTow::find($service_level_tow->id);
-    //     $user->update(['show' => $service_level_tow->is_active]);
+    //     $user = myServiceLevelTow::find($services_level_tow->id);
+    //     $user->update(['show' => $services_level_tow->is_active]);
     //     return response()->json(['message' =>
     //     'status was chnaged successfully']);
     // }
