@@ -38,12 +38,6 @@
                     <span class="pe-2">الخدمات الفرعية</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a href="servicesTwo.php" class="sidebar-link">
-                    <i class="fa-solid fa-headset"></i>
-                    <span class="pe-2">الخدمات الثانوية</span>
-                </a>
-            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="#" class="sidebar-link" onclick="logOut()">
@@ -54,8 +48,8 @@
     </aside>
     <div id="ads-form" class="main p-3 me-3">
         <div>
-            <h1 class="text-right m-3">إضافة خدمة فرعية جديدة</h1>
-            <a href="./servicesOne.php" type="button" class="btn btn-primary my-4 px-5 pe-3 me-3 fw-bold" style="border-radius: 15px;">
+            <h1 class="text-right m-3">تعديل خدمة الثانوية</h1>
+            <a href="./servicesTwo.php" type="button" class="btn btn-primary my-4 px-5 pe-3 me-3 fw-bold" style="border-radius: 15px;">
                 <i class="fa-solid fa-ad"></i>
                 <span>الرجوع إلى الخدمات</span>
             </a>
@@ -100,7 +94,17 @@
                 <span id="adNotification" class="d-block pt-3">الإعلان غير مفعل حاليا</span>
             </div>
 
-            <div id="image-uploader" class="form-group mt-5">
+            <div class="form-group">
+                <label class="py-2 fw-bold" for="cost">
+                    سعر الخدمة
+                </label>
+                <input type="number"
+                    class="form-control w-50"
+                    id="cost"
+                    placeholder="سعر الخدمة" required />
+            </div>
+
+            <!-- <div id="image-uploader" class="form-group mt-5">
                 <label id="uploaderIcon" for="adImage">
                     <i class="fa-solid fa-image d-inline-block"></i>
                 </label>
@@ -108,8 +112,8 @@
                 <label for="adImage">
                     <img id="preview" class="img-fluid mt-3">
                 </label>
-            </div>
-            <input type="submit" value="إضافة" class="btn btn-primary mt-4 operationButton fw-bold">
+            </div> -->
+            <input type="submit" value="تعديل" class="btn btn-primary mt-4 operationButton fw-bold">
         </form>
     </div>
 </div>
@@ -158,11 +162,53 @@
             });
     }
 
-    // Load All services into the select options menus
-    document.addEventListener("DOMContentLoaded", (event) => {
+    // Check the toggle's status representing the ad's status
+    const toggleSwitch = document.querySelector("#flexSwitchCheckDefault");
+    const toggleLabel = document.querySelector(".form-check-label");
+    const adNote = document.querySelector("#adNotification");
+
+    toggleSwitch.addEventListener("click", (event) => {
+        if (event.target.checked) {
+            toggleLabel.textContent = "مفعل";
+            adNote.textContent = "الخدمة ستظهر حاليا فى لوحة التحكم";
+        } else {
+            toggleLabel.textContent = "غير مفعل";
+            adNote.textContent = "الخدمة لن تظهر فى لوحة التحكم";
+        }
+    });
+
+
+    // Prepare incoming data 
+    document.addEventListener('DOMContentLoaded', () => {
+        //     // Code to execute after the DOM content is loaded
+
         const token = localStorage.getItem('token');
 
-        fetch("http://127.0.0.1:8000/api/services", {
+        const id = sessionStorage.getItem('id');
+        const serviceName = sessionStorage.getItem('service_name');
+        const serviceDescription = sessionStorage.getItem('service_description');
+        let show = sessionStorage.getItem('status');
+        let serviceID = sessionStorage.getItem('serviceID');
+        let path = sessionStorage.getItem('Path');
+        let cost = sessionStorage.getItem('cost');
+
+        console.log(`id: ${id}, Name of service: ${serviceName}, Desciption: ${serviceDescription}, Status: ${show}, Service ID: ${serviceID}, Path: ${path}, cost: ${cost}`);
+
+        const toggleLabel = document.querySelector('.form-check-label');
+        const adNote = document.querySelector('#adNotification');
+
+        if (show === '1') {
+            show = 1;
+            toggleLabel.textContent = 'مفعل';
+            adNote.textContent = "الخدمة سوف تظهر في لوحة التحكم";
+        } else {
+            show = 0;
+            toggleLabel.textContent = 'غير مفعل';
+            adNote.textContent = "الخدمة لن تظهر فى لوحة التحكم";
+        }
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!
+        fetch("http://127.0.0.1:8000/api/services-level-one", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -193,6 +239,10 @@
 
                 })
                 // End of Code
+                console.log(document.querySelector(`option[value="${serviceID}"]`));
+
+                document.querySelector(`option[value="${serviceID}"]`).selected = true;
+
             })
             .catch((error) => {
                 console.error(
@@ -200,67 +250,62 @@
                     error
                 );
             });
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        // Populate the dropdown menu with incoming data
+        // const selector = "#servicesCategory option[value='" + 8 + "']";
+
+        document.querySelector('#service-name').value = serviceName;
+        document.querySelector('#description').value = serviceDescription;
+        document.querySelector('#cost').value = cost;
+        document.querySelector('#flexSwitchCheckDefault').checked = show;
+
+        const toggleSwitch = document.querySelector('#flexSwitchCheckDefault');
+
+        toggleSwitch.addEventListener("click", (event) => {
+            if (event.target.checked) {
+                toggleLabel.textContent = "مفعل";
+                adNote.textContent = "الخدمة سوف تظهر في لوحة التحكم";
+            } else {
+                toggleLabel.textContent = "غير مفعل";
+                adNote.textContent = "الخدمة لن تظهر فى لوحة التحكم";
+            }
+        });
+
     });
+    /////////////////////////////////////////////
 
-    // Check the toggle's status representing the ad's status
-    const toggleSwitch = document.querySelector("#flexSwitchCheckDefault");
-    const toggleLabel = document.querySelector(".form-check-label");
-    const adNote = document.querySelector("#adNotification");
-
-    toggleSwitch.addEventListener("click", (event) => {
-        if (event.target.checked) {
-            toggleLabel.textContent = "مفعل";
-            adNote.textContent = "الخدمة ستظهر حاليا فى لوحة التحكم";
-        } else {
-            toggleLabel.textContent = "غير مفعل";
-            adNote.textContent = "الخدمة لن تظهر فى لوحة التحكم";
-        }
-    });
-
-    /* Preview advertisement image before Uploading */
-    function previewImage() {
-        let file = document.getElementById("adImage").files;
-        if (file.length > 0) {
-            let fileReader = new FileReader();
-
-            fileReader.onload = function(event) {
-                document.getElementById("uploaderIcon").style.display = "none";
-                document
-                    .getElementById("preview")
-                    .setAttribute("src", event.target.result);
-                document.getElementById("preview").setAttribute("width", 300);
-                document.getElementById("preview").setAttribute("height", 300);
-            };
-
-            fileReader.readAsDataURL(file[0]);
-        }
-    }
-
-    // Function to send form data containing the ad image through the API
+    // Update Function to send form data containing the ad image through the API
     const adForm = document.querySelector("#adForm"); // The form
 
     adForm.addEventListener("submit", (event) => {
 
-        const fileImgInput = document.querySelector("#adImage").files[0];
-        const serviceName = document.querySelector("#service-name").value;
-        const description = document.querySelector("#description").value;
+        const id = sessionStorage.getItem('id');
+        const imgPath = sessionStorage.getItem('Path');
+        const editedServiceName = document.querySelector("#service-name").value;
+        const editedServiceDesc = document.querySelector("#description").value;
         const option = document.querySelector("#servicesCategory").value;
         const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
+        const cost = document.querySelector("#cost").value;
         const token = localStorage.getItem("token");
 
-        console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}`);
+        // console.log(`ID: ${id}, Service Name: ${editedServiceName}, Desciption: ${editedServiceDesc}, Service ID: ${option}, Status: ${switchBtn} Image Path: ${icon}`);
 
         const formData = new FormData();
-        formData.append("service_name", serviceName);
-        formData.append("description", description);
-        formData.append("show", switchBtn);
-        formData.append("icon", fileImgInput);
+        formData.append("service_name", editedServiceName);
+        formData.append("description", editedServiceName);
+        formData.append("show", JSON.parse(switchBtn));
         formData.append("service_id", option);
+        formData.append("image1_path", imgPath);
+        formData.append("cost", cost);
+        formData.append("_method", "PUT");
 
-        fetch("http://127.0.0.1:8000/api/services-level-one", {
-                method: "POST",
+        fetch("http://127.0.0.1:8000/api/services-level-tow/" + id, {
+                method: 'POST',
+                credentials: 'omit',
+                mode: 'same-origin',
                 headers: {
-                    //  'Content-Type': 'multipart/form-data',
+                    //'Content-Type': "application/json",
                     'accept': "application/json",
                     Authorization: `Bearer ${token}`,
                 },
@@ -274,7 +319,7 @@
             })
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
-                console.log("Saved successful:", data.data);
+                console.log("Updated successful:", data.data);
             })
             .catch((error) => {
                 console.error(
@@ -288,4 +333,3 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-<!-- <script src="./js/addServices.js"></script> -->

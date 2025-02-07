@@ -9,6 +9,7 @@ use App\Builders\AttachmentBuilder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class MyServiceLevelOneController extends Controller
 {
     public function index(Request $request)
@@ -31,7 +32,7 @@ class MyServiceLevelOneController extends Controller
         $service_level_one = myServiceLevelOne::create([
             'service_name' => $request->service_name,
             'description' => $request->description,
-            'show' => json_decode( $request->show),
+            'show' => json_decode($request->show),
             'service_id' => $request->service_id,
             'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
@@ -40,25 +41,26 @@ class MyServiceLevelOneController extends Controller
             ),
         ]);
         // if( $request->show ===1)
-            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+        // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
 
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(Request $request, myServiceLevelOne $service_level_one)
+    public function update(Request $request, myServiceLevelOne $services_level_one)
     {
 
-        $service_level_one->service_name = $request->service_name;
-        $service_level_one->show = json_decode( $request->show);
-        $service_level_one->description = $request->description;
-        $service_level_one->service_id = $request->service_id;
+        $services_level_one->service_name = $request->service_name;
+        $services_level_one->show = json_decode($request->show);
+        $services_level_one->description = $request->description;
+        $services_level_one->service_id = $request->service_id;
+        $services_level_one->icon = $request->icon;
         // $service_level_one->icon = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
         //     $request,
         //     'myServiceLevelOnes',
         //     'icon'
         // );
 
-        $service_level_one->save();
+        $services_level_one->save();
 
         return response()->json(['message' => 'update success']);
     }

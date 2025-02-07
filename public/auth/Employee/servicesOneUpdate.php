@@ -94,7 +94,7 @@
                 <span id="adNotification" class="d-block pt-3">الإعلان غير مفعل حاليا</span>
             </div>
 
-            <div id="image-uploader" class="form-group mt-5">
+            <!-- <div id="image-uploader" class="form-group mt-5">
                 <label id="uploaderIcon" for="adImage">
                     <i class="fa-solid fa-image d-inline-block"></i>
                 </label>
@@ -102,7 +102,7 @@
                 <label for="adImage">
                     <img id="preview" class="img-fluid mt-3">
                 </label>
-            </div>
+            </div> -->
             <input type="submit" value="إضافة" class="btn btn-primary mt-4 operationButton fw-bold">
         </form>
     </div>
@@ -211,24 +211,6 @@
         }
     });
 
-    /* Preview advertisement image before Uploading */
-    function previewImage() {
-        let file = document.getElementById("adImage").files;
-        if (file.length > 0) {
-            let fileReader = new FileReader();
-
-            fileReader.onload = function(event) {
-                document.getElementById("uploaderIcon").style.display = "none";
-                document
-                    .getElementById("preview")
-                    .setAttribute("src", event.target.result);
-                document.getElementById("preview").setAttribute("width", 300);
-                document.getElementById("preview").setAttribute("height", 300);
-            };
-
-            fileReader.readAsDataURL(file[0]);
-        }
-    }
 
     // Prepare incoming data 
     document.addEventListener('DOMContentLoaded', () => {
@@ -289,6 +271,10 @@
 
                 })
                 // End of Code
+                console.log(document.querySelector(`option[value="${serviceID}"]`));
+
+                document.querySelector(`option[value="${serviceID}"]`).selected = true;
+
             })
             .catch((error) => {
                 console.error(
@@ -299,13 +285,7 @@
         // !!!!!!!!!!!!!!!!!!!!!!!!!!
 
         // Populate the dropdown menu with incoming data
-        const selector = "#servicesCategory option[value='" + 8 + "']";
-
-        console.log(serviceID);
-
-        console.log(document.querySelector(`[value="${serviceID}"]`));
-
-
+        // const selector = "#servicesCategory option[value='" + 8 + "']";
 
         document.querySelector('#service-name').value = serviceName;
         document.querySelector('#description').value = serviceDescription;
@@ -326,55 +306,59 @@
     });
     /////////////////////////////////////////////
 
-    // Function to send form data containing the ad image through the API
-    // const adForm = document.querySelector("#adForm"); // The form
+    // Update Function to send form data containing the ad image through the API
+    const adForm = document.querySelector("#adForm"); // The form
 
-    // adForm.addEventListener("submit", (event) => {
+    adForm.addEventListener("submit", (event) => {
 
-    //     const fileImgInput = document.querySelector("#adImage").files[0];
-    //     const serviceName = document.querySelector("#service-name").value;
-    //     const description = document.querySelector("#description").value;
-    //     const option = document.querySelector("#servicesCategory").value;
-    //     const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
-    //     const token = localStorage.getItem("token");
+        const id = sessionStorage.getItem('id');
+        const icon = sessionStorage.getItem('icon');
+        const editedServiceName = document.querySelector("#service-name").value;
+        const editedServiceDesc = document.querySelector("#description").value;
+        const option = document.querySelector("#servicesCategory").value;
+        const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
+        const token = localStorage.getItem("token");
 
-    //     console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}`);
+        console.log(`ID: ${id}, Service Name: ${editedServiceName}, Desciption: ${editedServiceDesc}, Service ID: ${option}, Status: ${switchBtn} Image Path: ${icon}`);
 
-    //     const formData = new FormData();
-    //     formData.append("service_name", serviceName);
-    //     formData.append("description", description);
-    //     formData.append("show", switchBtn);
-    //     formData.append("icon", fileImgInput);
-    //     formData.append("service_id", option);
+        const formData = new FormData();
+        formData.append("service_name", editedServiceName);
+        formData.append("description", editedServiceName);
+        formData.append("show", JSON.parse(switchBtn));
+        formData.append("service_id", option);
+        formData.append("icon", icon);
+        formData.append("_method", "PUT");
 
-    //     // fetch("http://127.0.0.1:8000/api/services-level-one", {
-    //     //         method: "POST",
-    //     //         headers: {
-    //     //             //  'Content-Type': 'multipart/form-data',
-    //     //             'accept': "application/json",
-    //     //             Authorization: `Bearer ${token}`,
-    //     //         },
-    //     //         body: formData
-    //     //     })
-    //     //     .then((response) => {
-    //     //         if (!response.ok) {
-    //     //             throw new Error("Network response was not ok");
-    //     //         }
-    //     //         return response.json();
-    //     //     })
-    //     //     .then((data) => {
-    //     //         // Handle successful login, e.g., store token in local storage
-    //     //         console.log("Saved successful:", data.data);
-    //     //     })
-    //     //     .catch((error) => {
-    //     //         console.error(
-    //     //             "There has been a problem with your fetch operation:",
-    //     //             error
-    //     //         );
-    //     //     });
+        fetch("http://127.0.0.1:8000/api/services-level-one/" + id, {
+                method: 'POST',
+                credentials: 'omit',
+                mode: 'same-origin',
+                headers: {
+                    //'Content-Type': "application/json",
+                    'accept': "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Handle successful login, e.g., store token in local storage
+                console.log("Updated successful:", data.data);
+            })
+            .catch((error) => {
+                console.error(
+                    "There has been a problem with your fetch operation:",
+                    error
+                );
+            });
 
-    //     // event.preventDefault();
-    // });
+        event.preventDefault();
+    });
 </script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>

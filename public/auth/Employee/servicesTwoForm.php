@@ -54,8 +54,8 @@
     </aside>
     <div id="ads-form" class="main p-3 me-3">
         <div>
-            <h1 class="text-right m-3">إضافة خدمة فرعية جديدة</h1>
-            <a href="./servicesOne.php" type="button" class="btn btn-primary my-4 px-5 pe-3 me-3 fw-bold" style="border-radius: 15px;">
+            <h1 class="text-right m-3">إضافة خدمة ثانوية جديدة</h1>
+            <a href="./servicesTwo.php" type="button" class="btn btn-primary my-4 px-5 pe-3 me-3 fw-bold" style="border-radius: 15px;">
                 <i class="fa-solid fa-ad"></i>
                 <span>الرجوع إلى الخدمات</span>
             </a>
@@ -98,6 +98,15 @@
                 <input class="form-check-input arabic-switch-btns" type="checkbox" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">غير مفعل</label>
                 <span id="adNotification" class="d-block pt-3">الإعلان غير مفعل حاليا</span>
+            </div>
+            <div class="form-group">
+                <label class="py-2 fw-bold" for="cost">
+                    سعر الخدمة
+                </label>
+                <input type="number"
+                    class="form-control w-50"
+                    id="cost"
+                    placeholder="سعر الخدمة" required />
             </div>
 
             <div id="image-uploader" class="form-group mt-5">
@@ -162,7 +171,7 @@
     document.addEventListener("DOMContentLoaded", (event) => {
         const token = localStorage.getItem('token');
 
-        fetch("http://127.0.0.1:8000/api/services", {
+        fetch("http://127.0.0.1:8000/api/services-level-one", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -202,7 +211,7 @@
             });
     });
 
-    // Check the toggle's status representing the ad's status
+    // // Check the toggle's status representing the ad's status
     const toggleSwitch = document.querySelector("#flexSwitchCheckDefault");
     const toggleLabel = document.querySelector(".form-check-label");
     const adNote = document.querySelector("#adNotification");
@@ -217,7 +226,7 @@
         }
     });
 
-    /* Preview advertisement image before Uploading */
+    // /* Preview advertisement image before Uploading */
     function previewImage() {
         let file = document.getElementById("adImage").files;
         if (file.length > 0) {
@@ -236,7 +245,7 @@
         }
     }
 
-    // Function to send form data containing the ad image through the API
+    // // Function to send form data containing the ad image through the API
     const adForm = document.querySelector("#adForm"); // The form
 
     adForm.addEventListener("submit", (event) => {
@@ -246,18 +255,20 @@
         const description = document.querySelector("#description").value;
         const option = document.querySelector("#servicesCategory").value;
         const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
+        const cost = document.querySelector("#cost").value;
         const token = localStorage.getItem("token");
 
-        console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}`);
+        console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}, Cost: ${cost}`);
 
         const formData = new FormData();
         formData.append("service_name", serviceName);
         formData.append("description", description);
         formData.append("show", switchBtn);
-        formData.append("icon", fileImgInput);
+        formData.append("image1_path", fileImgInput);
         formData.append("service_id", option);
+        formData.append("cost", cost);
 
-        fetch("http://127.0.0.1:8000/api/services-level-one", {
+        fetch("http://127.0.0.1:8000/api/services-level-tow", {
                 method: "POST",
                 headers: {
                     //  'Content-Type': 'multipart/form-data',
