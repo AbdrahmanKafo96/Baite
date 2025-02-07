@@ -320,6 +320,7 @@
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Updated successful:", data.data);
+                window.location.replace('./servicesTwo.php');
             })
             .catch((error) => {
                 console.error(

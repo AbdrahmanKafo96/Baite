@@ -103,7 +103,7 @@
                     <img id="preview" class="img-fluid mt-3">
                 </label>
             </div> -->
-            <input type="submit" value="إضافة" class="btn btn-primary mt-4 operationButton fw-bold">
+            <input type="submit" value="تعديل" class="btn btn-primary mt-4 operationButton fw-bold">
         </form>
     </div>
 </div>
@@ -349,6 +349,7 @@
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Updated successful:", data.data);
+                window.location.replace('./servicesOne.php');
             })
             .catch((error) => {
                 console.error(

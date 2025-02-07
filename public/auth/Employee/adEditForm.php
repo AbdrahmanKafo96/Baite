@@ -26,6 +26,25 @@
                     <span class="pe-2">الإعلانات</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="services.php" class="sidebar-link">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span class="pe-2">الخدمات</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="servicesOne.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">قسم الصيانة</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="servicesTwo.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">الخدمات الثانوية</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="#" class="sidebar-link" onclick="logOut()">
@@ -81,7 +100,7 @@
                     <img id="preview" class="img-fluid mt-3">
                 </label>
             </div> -->
-            <input type="submit" value="إضافة" class="btn btn-primary mt-4 operationButton fw-bold">
+            <input type="submit" value="تعديل" class="btn btn-primary mt-4 operationButton fw-bold">
         </form>
     </div>
 </div>

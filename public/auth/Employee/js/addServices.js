@@ -111,6 +111,7 @@ form.addEventListener("submit", (event) => {
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Register successful:", data.data);
+                window.location.replace('./servicesForm.php');
             })
             .catch((error) => {
                 console.error(

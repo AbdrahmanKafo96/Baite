@@ -35,7 +35,7 @@
             <li class="sidebar-item">
                 <a href="servicesOne.php" class="sidebar-link">
                     <i class="fa-solid fa-headset"></i>
-                    <span class="pe-2">الخدمات الفرعية</span>
+                    <span class="pe-2">قسم الصيانة</span>
                 </a>
             </li>
             <li class="sidebar-item">
@@ -275,6 +275,7 @@
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Saved successful:", data.data);
+                window.location.replace('./servicesOne.php');
             })
             .catch((error) => {
                 console.error(

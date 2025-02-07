@@ -20,7 +20,7 @@ function handleDelete(id) {
         .then((data) => {
             // Handle successful login, e.g., store token in local storage
             console.log("Ads Removed successful:", data);
-            // window.location.replace("../../index.php");
+            window.location.replace("./ads.php");
         })
         .catch((error) => {
             console.error(
@@ -264,6 +264,7 @@ adForm.addEventListener("submit", (event) => {
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Register successful:", data.data);
+                window.location.replace('./adForm.php');
             })
             .catch((error) => {
                 console.error(

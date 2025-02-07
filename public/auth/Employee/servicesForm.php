@@ -32,6 +32,19 @@
                     <span class="pe-2">الخدمات</span>
                 </a>
             </li>
+
+            <li class="sidebar-item">
+                <a href="servicesOne.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">قسم الصيانة</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="servicesTwo.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">الخدمات الثانوية</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="#" class="sidebar-link" onclick="logOut()">

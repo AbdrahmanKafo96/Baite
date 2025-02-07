@@ -144,7 +144,7 @@
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Service Removed successful!");
-                // window.location.replace("../../index.php");
+                window.location.replace("./servicesTwo.php");
             })
             .catch((error) => {
                 console.error(

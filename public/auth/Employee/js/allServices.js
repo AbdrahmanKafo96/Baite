@@ -19,8 +19,8 @@ function handleDelete(id) {
         })
         .then((data) => {
             // Handle successful login, e.g., store token in local storage
-            alert("Service Removed successful!");
-            // window.location.replace("../../index.php");
+            // alert("Service Removed successful!");
+            window.location.replace("./services.php");
         })
         .catch((error) => {
             console.error(
