@@ -85,11 +85,11 @@ Route::middleware(['auth:sanctum'])->group(
 
         Route::resource('/services-level-one', MyServiceLevelOneController::class);
         Route::get('/search-services-level-one/{search_value}', [MyServiceLevelOneController::class, 'search']);
-        // Route::post('/service-level-one-active', [MyServiceLevelOneController::class, 'enableService']);
+        Route::get('/get-all-myservices-level-1/{service_id}', [MyServiceLevelOneController::class, 'getAllServices']);
 
         Route::resource('/services-level-tow', MyServiceLevelTowController::class);
         Route::get('/search-services-level-tow/{search_value}', [MyServiceLevelTowController::class, 'search']);
-        // Route::post('/service-level-tow-active', [MyServiceLevelTowController::class, 'enableService']);
+        Route::get('/get-all-myservices-level-2/{service_id}', [MyServiceLevelOneController::class, 'getAllServices']);
 
         Route::resource('/orders', OrderController::class);
         Route::get('/orders/{search_value}', [OrderController::class, 'search']);

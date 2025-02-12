@@ -32,11 +32,11 @@ class MyServiceLevelTowController extends Controller
             'show' => json_decode( $request->show),
             'service_id' => $request->service_id,
             'cost' => $request->cost,
-            // 'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-            //     $request,
-            //     'myServiceLevelTows',
-            //     'icon'
-            // ),
+            'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+                $request,
+                'myServiceLevelTows',
+                'image1_path'
+            ),
             'image1_path' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
                 'myServiceLevelTow',
@@ -91,4 +91,8 @@ class MyServiceLevelTowController extends Controller
     //     return response()->json(['message' =>
     //     'status was chnaged successfully']);
     // }
+
+    function getAllServices(Request $request){
+        return response()->json(myServiceLevelTow::where('service_id', $request->service_id )->get() );
+    }
 }

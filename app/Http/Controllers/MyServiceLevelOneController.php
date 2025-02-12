@@ -88,4 +88,7 @@ class MyServiceLevelOneController extends Controller
         return response()->json(['message' =>
         'status was chnaged successfully']);
     }
+    function getAllServices(Request $request){
+        return response()->json(myServiceLevelOne::where('service_id', $request->service_id )->get() );
+    }
 }
