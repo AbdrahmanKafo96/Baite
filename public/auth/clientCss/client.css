@@ -108,6 +108,19 @@ section#services .btnCustom:hover {
     color: #fff;
 }
 
+#allServices a {
+    border-radius: 15px;
+    padding: 6px 50px;
+    font-weight: 1000;
+    font-size: 18px;
+}
+
+#allServices a:hover {
+    background: #fff;
+    border: 3px solid blue;
+    color: blue;
+}
+
 /* End of the services section */
 
 footer {

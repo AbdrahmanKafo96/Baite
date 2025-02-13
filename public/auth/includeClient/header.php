@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php"><i class="fa-solid fa-house ps-2"></i>الرئيسية</a>
+                        <a class="nav-link active" aria-current="page" href="clientDashboard.php"><i class="fa-solid fa-house ps-2"></i>الرئيسية</a>
                     </li>
 
                     <li class="nav-item">

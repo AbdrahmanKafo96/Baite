@@ -28,7 +28,7 @@
             <!-- JS code will fill data here -->
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-outline-primary my-5 btnCustom ">جميع الخدمات</button>
+            <a href="allServicesClient.php" type="button" class="btn btn-outline-primary my-5 btnCustom ">جميع الخدمات</a>
         </div>
     </div>
 </section>
@@ -135,7 +135,7 @@
                         document.querySelectorAll('.carousel-caption')[index].appendChild(ad);
                     }
                     ///////
-                })
+                }) // end of mapping
             }
             document.querySelector('.carousel-indicators').style.visibility = 'hidden';
         })
