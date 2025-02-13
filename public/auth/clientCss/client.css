@@ -102,6 +102,7 @@ section#services .btnCustom {
     color: blue;
     font-weight: 1000;
     font-size: 18px;
+    padding: 6px 50px;
 }
 
 section#services .btnCustom:hover {

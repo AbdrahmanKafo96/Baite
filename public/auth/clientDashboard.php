@@ -173,7 +173,17 @@
                 document.querySelector('#services .container .row').appendChild(wrapperDiv);
             } else {
 
-                data.map((item, index) => {
+                const newArr = [];
+                data.forEach((currentValue, index) => {
+                    if (index === 0 || index === 1 || index === 2) {
+                        newArr.push(currentValue);
+                    }
+                })
+
+                console.log(newArr[0]);
+
+
+                newArr.map((item, index) => {
 
                     const colDiv = document.createElement('div');
                     colDiv.setAttribute('class', 'col-md-3 pe-5');
