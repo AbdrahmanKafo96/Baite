@@ -175,7 +175,7 @@
 
                 const newArr = [];
                 data.forEach((currentValue, index) => {
-                    if (index === 0 || index === 1 || index === 2) {
+                    if (index === 0 || index === 1 || index === 2 || index === 3) {
                         newArr.push(currentValue);
                     }
                 })
