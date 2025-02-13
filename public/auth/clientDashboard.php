@@ -3,33 +3,7 @@
 <!-- Start of the carousel containing the ads -->
 <div class="container">
     <div id="adsCarousel" class="carousel slide carousel-fade my-4 p-2" data-bs-ride="carousel">
-        <!-- <div class="carousel-indicators">
-            <button type="button" data-bs-target="#adsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#adsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#adsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div> -->
         <div class="carousel-inner">
-            <!-- <div class="carousel-item active">
-                <img src="https://www.psu.com/wp/wp-content/uploads/2020/10/ghost-recon-wildlands-ps4-wallpapers-23.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block mb-2">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.alphacoders.com/107/thumb-1920-1079182.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block mb-2">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVjjRlIzb926FMOCQFzXqSoPi-Prez9vKUfQ&s" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block mb-2">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div> -->
         </div>
 
         <button class="carousel-control-prev" type="button" data-bs-target="#adsCarousel" data-bs-slide="prev">
@@ -43,6 +17,24 @@
     </div>
 </div>
 <!-- End of the carousel containing the ads -->
+
+<!-- Start of the services section -->
+
+<section id="services">
+    <div class="container">
+        <h4 class="my-5 d-block text-center">الخدمات المتوفرة</h4>
+        <!-- All services -->
+        <div class="row">
+            <!-- JS code will fill data here -->
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-outline-primary my-5 btnCustom ">جميع الخدمات</button>
+        </div>
+    </div>
+</section>
+
+<!-- End of the services section -->
+
 
 <!-- Start of the js script -->
 
@@ -67,7 +59,7 @@
         })
         .then((data) => {
             // Handle successful login, e.g., store token in local storage
-            console.log("Ads retreived successful:", data);
+            // console.log("Ads retreived successful:", data);
             // window.location.replace("../../index.php");
             if (data.length < 1) {
                 const wrapperDiv = document.createElement('div');
@@ -153,11 +145,66 @@
                 error
             );
         });
+
+    //////////////////////////////////////////////
+    // Get all services 
+    fetch("http://127.0.0.1:8000/api/services", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Handle successful login, e.g., store token in local storage
+            console.log("Services retreived successful:", data);
+            // window.location.replace("../../index.php");
+            if (data.length < 1) {
+                const wrapperDiv = document.createElement('div');
+                wrapperDiv.innerHTML = `<img class="d-block mx-auto img-fluid" src="images/not-found.png" alt="images-not-found" height="500" width="500">
+                <h3 class="text-center">لا توجد خدمات</h3>`;
+                document.querySelector('#services .container .row').appendChild(wrapperDiv);
+            } else {
+
+                data.map((item, index) => {
+
+                    const colDiv = document.createElement('div');
+                    colDiv.setAttribute('class', 'col-md-3 pe-5');
+
+                    colDiv.innerHTML = `<div class="service" style="width: 150px">
+                    <div id="imgWrpr" class="text-center">
+                        <img height="100" width="100" alt="" class="img-fluid p-3">
+                     </div>
+                        <div class="info text-center">
+                        <h6>Lorem ipsum dolor sit amet.</h6>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores, provident!</p>
+                        </div>
+                    </div>`;
+
+                    document.querySelector('#services .container .row').appendChild(colDiv);
+
+                    document.querySelectorAll('.service img')[index].setAttribute('src', item.icon);
+
+                    document.querySelectorAll('.service .info h6')[index].textContent = item.service_name;
+
+                    document.querySelectorAll('.service .info p')[index].textContent = item.description;
+                })
+
+            }
+        })
+        .catch((error) => {
+            console.error(
+                "There has been a problem with your fetch operation:",
+                error
+            );
+        });
 </script>
 
 <?php include './includeClient/footer.php' ?>
-
-<!-- Code might be used later as reference for carousel sizing -->
-<!-- <div class="carousel slide" data-bs-ride="carousel" style="height: 500px;">  <div class="carousel-inner" style="height: 100%;"> <div class="carousel-item active" style="height: 100%;"> <img src="..." class="d-block w-100" alt="..." style="object-fit: cover; height: 100%;"> </div>
-    </div>
-</div> -->
