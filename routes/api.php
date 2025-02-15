@@ -89,7 +89,7 @@ Route::middleware(['auth:sanctum'])->group(
 
         Route::resource('/services-level-tow', MyServiceLevelTowController::class);
         Route::get('/search-services-level-tow/{search_value}', [MyServiceLevelTowController::class, 'search']);
-        Route::get('/get-all-myservices-level-2/{service_id}', [MyServiceLevelOneController::class, 'getAllServices']);
+        Route::get('/get-all-myservices-level-2/{service_id}', [MyServiceLevelTowController::class, 'getAllServices']);
 
         Route::resource('/orders', OrderController::class);
         Route::get('/orders/{search_value}', [OrderController::class, 'search']);
@@ -97,7 +97,7 @@ Route::middleware(['auth:sanctum'])->group(
         Route::resource('/carts', CartController::class);
 
         Route::resource('/favorites', FavoriteController::class);
-       // Route::get('/favorites', [FavoriteController::class, 'fetchAllFavorite']);
+        // Route::get('/favorites', [FavoriteController::class, 'fetchAllFavorite']);
         // Route::post('/addToFavorites', [FavoriteController::class, 'addToFavorites']);
         // Route::delete('/removeFromFavorites', [FavoriteController::class, 'removeFromFavorites']);
     }

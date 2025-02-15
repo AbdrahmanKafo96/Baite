@@ -122,6 +122,12 @@ section#services .btnCustom:hover {
     color: blue;
 }
 
+#allServices .service:hover {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid blue;
+    cursor: pointer;
+}
+
 /* End of the services section */
 
 footer {

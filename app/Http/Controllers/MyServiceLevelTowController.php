@@ -9,6 +9,7 @@ use App\Builders\AttachmentBuilder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class MyServiceLevelTowController extends Controller
 {
 
@@ -26,17 +27,17 @@ class MyServiceLevelTowController extends Controller
     public function store(Request $request)
     {
 
-         myServiceLevelTow::create([
+        myServiceLevelTow::create([
             'service_name' => $request->service_name,
             'description' => $request->description,
-            'show' => json_decode( $request->show),
+            'show' => json_decode($request->show),
             'service_id' => $request->service_id,
             'cost' => $request->cost,
-            'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
-                $request,
-                'myServiceLevelTows',
-                'image1_path'
-            ),
+            // 'icon' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
+            //     $request,
+            //     'myServiceLevelTows',
+            //     'image1_path'
+            // ),
             'image1_path' => env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
                 $request,
                 'myServiceLevelTow',
@@ -44,7 +45,7 @@ class MyServiceLevelTowController extends Controller
             ),
         ]);
         // if( $request->show ===1)
-            // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
+        // Notification::sendNotification('تم إضافة اعلان جديد' , 'تصفح التطبيق من فضلك.');
 
         return response()->json(['message' => 'insert success']);
     }
@@ -55,7 +56,7 @@ class MyServiceLevelTowController extends Controller
         $services_level_tow->service_name = $request->service_name;
         $services_level_tow->description = $request->description;
         $services_level_tow->cost = $request->cost;
-        $services_level_tow->show = json_decode( $request->show);
+        $services_level_tow->show = json_decode($request->show);
         // $services_level_tow->image1_path = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
         //     $request,
         //     'myServiceLevelTows',
@@ -92,7 +93,8 @@ class MyServiceLevelTowController extends Controller
     //     'status was chnaged successfully']);
     // }
 
-    function getAllServices(Request $request){
-        return response()->json(myServiceLevelTow::where('service_id', $request->service_id )->get() );
+    function getAllServices(Request $request)
+    {
+        return response()->json(myServiceLevelTow::where('service_id', $request->service_id)->get());
     }
 }
