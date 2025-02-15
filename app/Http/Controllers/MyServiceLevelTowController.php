@@ -57,6 +57,7 @@ class MyServiceLevelTowController extends Controller
         $services_level_tow->description = $request->description;
         $services_level_tow->cost = $request->cost;
         $services_level_tow->show = json_decode($request->show);
+        $services_level_tow->service_id = $request->service_id;
         // $services_level_tow->image1_path = env('APP_URL') . '/storage/' . AttachmentBuilder::storeOneFile(
         //     $request,
         //     'myServiceLevelTows',
