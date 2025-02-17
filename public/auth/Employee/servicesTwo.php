@@ -184,16 +184,13 @@
             } else {
                 // Create the Services cards
                 data.map((item) => {
-                    // console.log(item.image1_path);
-                    let newUrl = item.image1_path.slice(16);
-                    console.log(newUrl);
-
+                    console.log(item.image1_path);
 
                     let colDiv = document.createElement('div');
                     colDiv.classList.add('col-md-3', 'me-5', 'mt-3', 'mb-5');
 
                     colDiv.innerHTML = '<div id="service" class="card p-2">' +
-                        '<img id="adImg" src="' + newUrl + '" alt="Service Image"  style="object-fit: contain; aspect-ratio: 16/9;">' +
+                        '<img id="adImg" src="' + item.image1_path + '" alt="Service Image"  style="object-fit: contain; aspect-ratio: 16/9;">' +
                         '<div class="card-body">' +
                         '<h5 class="card-title pb-3 text-right">' + item.service_name + '</h5>' +
                         '<p class="card-text">' + item.description + '</p>' +

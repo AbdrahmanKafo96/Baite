@@ -63,7 +63,7 @@
 
                     document.querySelector('#allServices .container .row').appendChild(colDiv);
 
-                    document.querySelectorAll('.service img')[index].setAttribute('src', item.icon);
+                    document.querySelectorAll('.service img')[index].setAttribute('src', item.image1_path);
 
                     document.querySelectorAll('.service .info h6')[index].textContent = item.service_name;
 
