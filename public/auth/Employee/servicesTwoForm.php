@@ -259,6 +259,8 @@
         const token = localStorage.getItem("token");
 
         console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}, Cost: ${cost}`);
+        console.log(fileImgInput);
+
 
         const formData = new FormData();
         formData.append("service_name", serviceName);

@@ -122,7 +122,7 @@ const token = localStorage.getItem('token');
             } else {
                 // Create the adds
                 data.map((item) => {
-                    // console.log(item.url);
+                    console.log(item.icon);
 
                     let colDiv = document.createElement('div');
                     colDiv.classList.add('col-md-3', 'me-5', 'mt-3', 'mb-5');
