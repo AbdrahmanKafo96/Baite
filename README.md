@@ -11,6 +11,8 @@ php artisan serve --host= ip
 php artisan storage:link
 composer dump-autoload 
 
+APP_URL=http://127.0.0.1:8000
+
 composer require haruncpi/laravel-id-generator
 
 // Command to migrate the New or Updated DB (Required Command for Future Use)
