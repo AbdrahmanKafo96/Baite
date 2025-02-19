@@ -1,18 +1,44 @@
 <?php include './includeClient/header.php' ?>
+<!-- %%%%%%%%%%%%%% -->
+<div class="d-flex flex-column">
+    <div id="wrapper" class="container mb-5">
+
+        <h4 class="text-center my-5">الخدمات</h4>
+
+        <!-- Dynamic elements here -->
+
+    </div>
+</div>
+
+<!-- %%%%%%%%%%%%%% -->
 
 <!-- All services of level one -->
-<section id="allServices">
-    <div class="container mb-5 p-4">
+<!-- <section id="allServices" class="d-flex flex-column">
+    <div id="wrapper" class="container mb-5 p-4">
         <h4 class="my-5 d-block text-center">الخدمات المتوفرة</h4>
         <!-- All services -->
-        <div class="row">
-            <!-- JS code will fill data here -->
-        </div>
-        <div class="text-center">
-            <a href="#" type="button" class="btn btn-primary my-5 fw-bold">أطلب الأن</a>
+
+<!-- %%%%%%%%%%%%%% -->
+<!-- <div class="d-flex flex-column">
+    <div id="wrapper" class="container">
+
+        <div class="card-body d-flex align-items-center mx-auto" style="width:700px">
+            <img height="110" width="110" alt="" class="img-fluid p-3 mt-3" src="http://127.0.0.1:8000/storage/image1_path/Op4WcrjecY8HSeWGZxXdSYGTl9hXQMMoJPVzHRRX.png">
+            <div class=" pe-3">
+                <h5 class="card-title pt-4">عدد الزبائن</h5>
+                <p style="line-height:1.6" class="card-text mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, reprehenderit.</p>
+                <h6 class="cost">Cost 100LYD</h6>
+            </div>
+
+            <button class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4" type="button">أطلب</button>
+            <button type="button" class="btn btn-outline-primary mt-5 btnCustom">تفاصيل</button>
         </div>
     </div>
-</section>
+</div> -->
+
+<!-- %%%%%%%%%%%%%% -->
+</div>
+</section> -->
 
 <script>
     // Get all services 
@@ -49,25 +75,21 @@
                 data.map((item, index) => {
 
                     const colDiv = document.createElement('div');
-                    colDiv.setAttribute('class', 'col-md-3 pe-5');
+                    colDiv.setAttribute('class', 'card-body d-flex align-items-center mx-auto mb-5 item');
+                    colDiv.style.width = '700px';
 
-                    colDiv.innerHTML = `<div class='service p-2' style='width: 150px'> 
-                        <div id='imgWrpr' class='text-center'>
-                        <img height='100' width='100' alt='' class='img-fluid p-3'>
-                        </div>
-                        <div class='info text-center'>
-                        <h6>Lorem ipsum dolor sit amet.</h6>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores, provident!</p>
-                        </div>
-                        </div>`;
+                    colDiv.innerHTML = `<img height="110" width="110" alt="" class="img-fluid p-3 mt-3" src="${item.image1_path}">
+                    <div class="pe-3 ps-5">
+                        <h5 class="card-title pt-4">${item.service_name}</h5>
+                        <p style="line-height:1.6; width: 200px" class="card-text mt-1">${item.description}</p>
+                        <h6 class="cost">دينار ${item.cost} :السعر</h6>
+                    </div>
 
-                    document.querySelector('#allServices .container .row').appendChild(colDiv);
+                    <button class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4" type="button">أطلب</button>
+                    <button type="button" class="btn btn-outline-primary mt-5 btnCustom">تفاصيل</button>`;
+                    console.log(colDiv);
+                    document.querySelector('#wrapper').appendChild(colDiv);
 
-                    document.querySelectorAll('.service img')[index].setAttribute('src', item.image1_path);
-
-                    document.querySelectorAll('.service .info h6')[index].textContent = item.service_name;
-
-                    document.querySelectorAll('.service .info p')[index].textContent = item.description;
                 })
 
             } // End of mapping

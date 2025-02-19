@@ -123,9 +123,20 @@ section#services .btnCustom:hover {
 }
 
 #allServices .service:hover {
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid blue;
+    box-shadow: 10px 10px 13px rgba(0.2, 0.1, 0.1, 0.1);
+    /* border: 2px solid blue; */
     cursor: pointer;
+}
+
+#wrapper button.btnCustom {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid blue;
+    color: blue;
+}
+
+#wrapper .item {
+    /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);  */
 }
 
 /* End of the services section */
