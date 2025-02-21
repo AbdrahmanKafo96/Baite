@@ -21,7 +21,7 @@ class MyServiceController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoremyServiceRequest $request)
     {
 
         $service = MyService::create([

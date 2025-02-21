@@ -22,7 +22,7 @@ class StoremyServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "service_name" => "required",
         ];
     }
 }
