@@ -139,6 +139,26 @@ section#services .btnCustom:hover {
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);  */
 }
 
+/* Customizing the badge for the cart */
+
+.cart-container {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.badge {
+    position: absolute; /* Position the badge over the cart */
+    top: 0px; /* Adjust vertical position */
+    left: 68px; /* Adjust horizontal position */
+    font-size: 10px;
+}
+
+nav .fa-cart-shopping {
+    display: inline-block;
+    font-size: 20px;
+}
+
 /* End of the services section */
 
 footer {

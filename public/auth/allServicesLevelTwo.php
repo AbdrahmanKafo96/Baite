@@ -44,7 +44,23 @@
     // Get all services 
     const token = localStorage.getItem('token');
     const id = sessionStorage.getItem('service_id');
-    console.log(id);
+    // Global variable to add more items to basket 
+    let basketItems = 0;
+
+    // Handle Order click
+    function handleOrder(element, id) {
+        // console.log(element, id);
+        element.textContent = 'في السلة';
+        console.log(`items in basket before adding: ${basketItems}`);
+
+        // add one item to basket
+        basketItems += 1;
+        console.log(basketItems);
+
+        document.querySelector('.cart-container span').textContent = basketItems;
+        element.onclick = null;
+
+    }
 
 
     fetch("http://127.0.0.1:8000/api/get-all-myservices-level-2/" + id, {
@@ -78,16 +94,18 @@
                     colDiv.setAttribute('class', 'card-body d-flex align-items-center mx-auto mb-5 item');
                     colDiv.style.width = '700px';
 
-                    colDiv.innerHTML = `<img height="110" width="110" alt="" class="img-fluid p-3 mt-3" src="${item.image1_path}">
-                    <div class="pe-3 ps-5">
-                        <h5 class="card-title pt-4">${item.service_name}</h5>
-                        <p style="line-height:1.6; width: 200px" class="card-text mt-1">${item.description}</p>
-                        <h6 class="cost">دينار ${item.cost} :السعر</h6>
-                    </div>
+                    colDiv.innerHTML = '<img height="110" width="110" alt="" class="img-fluid p-3 mt-3" src="' + item.image1_path + '">' +
+                        '<div class="pe-3 ps-5">' +
+                        '<h5 class="card-title pt-4">' + item.service_name + '</h5>' +
+                        '<p style="line-height:1.6; width: 200px" class="card-text mt-1">' + item.description + '</p>' +
+                        '<h6 class="cost">السعر: ' + item.cost + ' دينار</h6>' +
+                        '</div>' +
 
-                    <button class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4" type="button">أطلب</button>
-                    <button type="button" class="btn btn-outline-primary mt-5 btnCustom">تفاصيل</button>`;
-                    console.log(colDiv);
+                        '<a onclick="handleOrder(this,' + item.service_id + ')" class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4 order" type="button">أطلب</a>' +
+
+                        '<a type="button" class="btn btn-outline-primary mt-5 btnCustom details">تفاصيل</a>';
+
+                    // console.log();
                     document.querySelector('#wrapper').appendChild(colDiv);
 
                 })

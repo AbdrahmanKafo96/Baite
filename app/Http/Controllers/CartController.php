@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\JsonDecoder;
 use Illuminate\Support\Facades\Auth;
+
 class CartController extends Controller
 {
     /**
@@ -22,7 +23,7 @@ class CartController extends Controller
     public function index(Request $request)
     {
         return response()->json(
-            Cart::where('user_id', operator: $request->user_id)->get()
+            Cart::where('user_id', operator: Auth::user()->id)->get()
         );
     }
 
@@ -31,9 +32,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-    }
+    public function create() {}
     public function show(Cart $cart)
     {
         return response()->json(['result' => $cart, 'total' => $cart->service->cost * $cart->quantities]);

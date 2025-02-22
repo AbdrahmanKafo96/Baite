@@ -39,7 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-envelope ps-2"></i>تواصل معنا</a>
                     </li>
-                    <a href="login.php" type="button" class="btn btn-primary "><i class="fa-solid fa-cart-shopping"></i>السلة</a>
+                    <a href="#" type="button" class="btn btn-primary cart-container"><i class="fa-solid fa-cart-shopping"></i>السلة<span class="badge text-bg-danger"></span> </a>
 
                 </ul>
             </div>
