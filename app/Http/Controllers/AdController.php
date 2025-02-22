@@ -25,7 +25,7 @@ class AdController extends Controller
     }
 
 
-    public function store( Request $request)
+    public function store(StoreAdRequest $request)
     {
 
          Ad::create([

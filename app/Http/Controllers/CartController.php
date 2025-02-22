@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
-
+use App\Http\Resources\Cart as ResourcesCart;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class CartController extends Controller
     public function index(Request $request)
     {
         return response()->json(
-            Cart::where('user_id', operator: Auth::user()->id)->get()
+            ResourcesCart::collection(Cart::where('user_id', operator: Auth::user()->id)->get())
         );
     }
 

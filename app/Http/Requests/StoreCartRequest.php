@@ -22,7 +22,9 @@ class StoreCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_id' => 'required|exists:my_service_level_tows,id',
+            'quantities' => 'required',
+            // 'user_id' => 'required|exists:customers,id',
         ];
     }
 }

@@ -22,7 +22,12 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'note' => 'required|max:150|string',
+            //'service_seclected' => 'required',
+            'total_price' => 'required',
+           // 'quantity_selected' => 'required',
+            'service_id' => 'required|exists:my_service_level_tows,id',
+            //'user_id' => 'required|exists:customers,id',
         ];
     }
 }

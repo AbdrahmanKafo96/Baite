@@ -22,7 +22,11 @@ class StoremyServiceLevelOneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'service_name' => 'required|max:150|string',
+            'show' => 'required|boolean',
+            'description' => 'required',
+            'service_id' => 'required|exists:my_service_level_ones,id',
+            // 'user_id' => 'required|exists:users,id',
         ];
     }
 }
