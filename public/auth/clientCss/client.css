@@ -139,24 +139,40 @@ section#services .btnCustom:hover {
     /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);  */
 }
 
+#wrapper a {
+    white-space: nowrap;
+}
+
 /* Customizing the badge for the cart */
 
-.cart-container {
+/* .cart-container {
     position: relative;
     display: inline-block;
     vertical-align: top;
 }
 
-.badge {
-    position: absolute; /* Position the badge over the cart */
-    top: 0px; /* Adjust vertical position */
-    left: 68px; /* Adjust horizontal position */
-    font-size: 10px;
-}
 
 nav .fa-cart-shopping {
     display: inline-block;
     font-size: 20px;
+} */
+
+#cart .rm-btn {
+    color: red;
+    cursor: pointer;
+    font-size: 17px;
+    text-decoration: underline;
+}
+
+#cart .rm-btn:hover {
+    color: rgb(229, 71, 71);
+    cursor: pointer;
+    font-size: 19px;
+}
+
+nav span.badge {
+    border-radius: 15px;
+    border: 0.5px solid #fff;
 }
 
 /* End of the services section */

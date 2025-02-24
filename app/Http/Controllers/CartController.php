@@ -44,7 +44,7 @@ class CartController extends Controller
      * @param  \App\Http\Requests\StoreCartRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCartRequest $request)
+    public function store(Request $request)
     {
         $service_id = $request->service_id;
         //logic the quantities

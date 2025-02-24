@@ -1,5 +1,6 @@
 <?php include './includeClient/header.php' ?>
 <!-- %%%%%%%%%%%%%% -->
+<!-- This page displays the deepest nested level of services -->
 <div class="d-flex flex-column">
     <div id="wrapper" class="container mb-5">
 
@@ -49,6 +50,9 @@
 
     // Handle Order click
     function handleOrder(element, id) {
+        // Save service_id that will go to the cart under different name
+        sessionStorage.setItem('order_id', id);
+
         // console.log(element, id);
         element.textContent = 'في السلة';
         console.log(`items in basket before adding: ${basketItems}`);
@@ -58,6 +62,44 @@
         console.log(basketItems);
 
         document.querySelector('.cart-container span').textContent = basketItems;
+
+        // Start of Adding item to cart using Fetch api 
+        const formData = new FormData();
+        // formData.append('servcie_id', service_id);
+        // formData.append('quantities', 1);
+        // console.log(service_id);
+
+
+        fetch("http://127.0.0.1:8000/api/carts", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    service_id: id,
+                    quantities: 1
+                })
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Handle successful login, e.g., store token in local storage
+                console.log("Added Item to Cart successful:", data.data);
+                // window.location.replace('./adForm.php');
+            })
+            .catch((error) => {
+                console.error(
+                    "There has been a problem with your fetch operation:",
+                    error
+                );
+            });
+        // End of Fetch API
         element.onclick = null;
 
     }
@@ -101,7 +143,7 @@
                         '<h6 class="cost">السعر: ' + item.cost + ' دينار</h6>' +
                         '</div>' +
 
-                        '<a onclick="handleOrder(this,' + item.service_id + ')" class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4 order" type="button">أطلب</a>' +
+                        '<a onclick="handleOrder(this,' + item.id + ')" class="btn btn-primary mt-5 ms-2 me-5 py-2 px-4 order" type="button">أطلب</a>' +
 
                         '<a type="button" class="btn btn-outline-primary mt-5 btnCustom details">تفاصيل</a>';
 
