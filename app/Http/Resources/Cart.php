@@ -31,7 +31,7 @@ class cart extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->service;
+        return ['id'=>$this->id , 'service_data'=>$this->service];
     }
 }
 
