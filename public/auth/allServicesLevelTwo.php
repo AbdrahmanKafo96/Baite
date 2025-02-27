@@ -7,7 +7,9 @@
         <h4 class="text-center my-5">الخدمات</h4>
 
         <!-- Dynamic elements here -->
-
+    </div>
+    <div class="text-center">
+        <a href="./allServicesClient.php" style="padding: 6px 50px" type="button" class="btn btn-primary mt-3 mb-4">الرجوع</a>
     </div>
 </div>
 
