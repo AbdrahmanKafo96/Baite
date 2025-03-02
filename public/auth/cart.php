@@ -10,14 +10,16 @@
 
     </div>
     <div id="cart_summary" class="mb-5">
-        <div class="container">
+        <div class="container mb-4" style="width: 400px; box-shadow:
+            0 -0.3rem 1rem rgba(0, 0, 0, 0.15), 
+            0.3rem 0 1rem rgba(0, 0, 0, 0.15),
+            0 0.3rem 1rem rgba(0, 0, 0, 0.15);">
 
         </div>
     </div>
 </div>
 
 </div>
-</section> -->
 
 <script>
     // Get all services 
@@ -148,7 +150,7 @@
                 summDiv = document.createElement('div');
                 summDiv.setAttribute('class', 'summ_wrapper mx-auto');
                 summDiv.style.width = '300px';
-                summDiv.innerHTML = `<h4 class="text-center">ملخص</h4>
+                summDiv.innerHTML = `<h4 class="text-center p-4">ملخص</h4>
                 <h5 class="mt-4">المشتريات</h5>`;
 
                 document.querySelector('#cart_summary .container').appendChild(summDiv);
