@@ -29,7 +29,7 @@ class OrderController extends Controller
     }
 
 
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
         $prefix = "#";
         $randomNumber = IdGenerator::generate(['table' => 'orders', 'field' => 'order_number', 'length' => 9, 'prefix' => $prefix]);
@@ -59,9 +59,7 @@ class OrderController extends Controller
         return response()->json(['message' => 'insert success']);
     }
 
-    public function update(UpdateOrderRequest $request, Order $order)
-    { 
-    }
+    public function update(UpdateOrderRequest $request, Order $order) {}
 
     public function destroy(Order $order)
     {

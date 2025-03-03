@@ -28,14 +28,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-toolbox ps-2"></i>خدمات الصيانة المنزلية</a>
+                        <a class="nav-link" href="orders.php"><i class="fa-solid fa-check-circle ps-2"></i>الطلبات</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-screwdriver-wrench ps-2"></i>خدمات قطاع الأعمال</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-newspaper ps-2"></i> المدونة الرقمية</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-envelope ps-2"></i>تواصل معنا</a>
                     </li>

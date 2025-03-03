@@ -29,19 +29,58 @@
     let basketItems = 0;
 
     // Checkout function to show the thank you message for buying
-    function checkOut() {
-        document.getElementById('cart').remove();
-        document.getElementById('cart_summary').remove();
+    function checkOut(serviceID, total) {
 
-        let wrapper = document.createElement('div');
-        wrapper.setAttribute('id', 'purchase_greet');
-        wrapper.setAttribute('class', 'my-5 mt-3 mb-5 text-center');
-        wrapper.innerHTML = `<h3 class="mt-5 mb-5">شكرا لك على شرائك</h3>
-            <p class="fw-bold" style="font-size: 20px">لقد تم اضافة مقتنياتك إلي الطلبات بنجاح يمكنك مراجعة معلوماتك</p>
-            <a href="./allServicesClient.php" style="padding: 6px 50px" type="button" class="btn btn-primary mt-4 mb-3 fw-bold">الرجوع</a>
-        `;
+        const service_id = 22;
+        const totalPrice = total;
+        const note = document.getElementById('note').value;
 
-        document.querySelector('.d-flex').appendChild(wrapper);
+        console.log(typeof note);
+
+
+        const formData = new FormData();
+        formData.append("service_id", service_id);
+        formData.append("total_price", totalPrice);
+        formData.append("note", note);
+
+        // Add Order API
+        fetch("http://127.0.0.1:8000/api/orders", {
+                method: "POST",
+                headers: {
+                    // 'Content-Type': 'application/json',
+                    'accept': "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Handle successful login, e.g., store token in local storage
+                console.log("Added Item to Order successful:", data.data);
+                document.getElementById('cart').remove();
+                document.getElementById('cart_summary').remove();
+
+                let wrapper = document.createElement('div');
+                wrapper.setAttribute('id', 'purchase_greet');
+                wrapper.setAttribute('class', 'my-5 mt-3 mb-5 text-center');
+                wrapper.innerHTML = `<h3 class="mt-5 mb-5">شكرا لك على شرائك</h3>
+                    <p class="fw-bold" style="font-size: 20px">لقد تم اضافة مقتنياتك إلي الطلبات بنجاح يمكنك مراجعة معلوماتك</p>
+                    <a href="./allServicesClient.php" style="padding: 6px 50px" type="button" class="btn btn-primary mt-4 mb-3 fw-bold">الرجوع</a>
+                `;
+
+                document.querySelector('.d-flex').appendChild(wrapper);
+            })
+            .catch((error) => {
+                console.error(
+                    "There has been a problem with your fetch operation:",
+                    error
+                );
+            });
     }
 
     function handleDelete(id) {
@@ -74,21 +113,6 @@
                 );
             }); // End of fetch API
     }
-
-    // Handle Order click
-    // function handleOrder(element, id) {
-    //     // console.log(element, id);
-    //     element.textContent = 'في السلة';
-    //     console.log(`items in basket before adding: ${basketItems}`);
-
-    //     // add one item to basket
-    //     basketItems += 1;
-    //     console.log(basketItems);
-
-    //     document.querySelector('.cart-container span').textContent = basketItems;
-    //     element.onclick = null;
-
-    // }
 
 
     fetch("http://127.0.0.1:8000/api/carts/", {
@@ -161,9 +185,24 @@
 
                 document.querySelector('#cart_summary .container').appendChild(totalSpan);
 
+                textArea = document.createElement('textarea');
+                // textArea.setAttribute('rows', '3');
+                // textArea.setAttribute('cols', '7');
+                textArea.setAttribute('class', 'form-control');
+                textArea.setAttribute('id', 'note');
+                textArea.setAttribute('name', 'note');
+                textArea.setAttribute('placeholder', 'أكتب ملاخظاتك');
+                textArea.setAttribute('required', '');
+                textArea.style.border = '1px solid blue';
+                textArea.style.border.radius = '15px';
+
+                document.querySelector('#cart_summary .container').appendChild(textArea);
+
                 div2 = document.createElement('div');
                 div2.setAttribute('class', 'text-center p-3');
-                div2.innerHTML = `<a onclick="checkOut()" style="padding: 6px 50px" type="button" class="btn btn-primary mt-3 fw-bold">الدفع</a>`;
+
+                // Sending data to Add Order API 
+                div2.innerHTML = '<a onclick="checkOut(' + data[0].service_data.service_id + ', ' + total + ')" style="padding: 6px 50px" type="button" class="btn btn-primary mt-3 fw-bold">تقديم طلب</a>';
 
                 document.querySelector('#cart_summary .container').appendChild(div2);
 

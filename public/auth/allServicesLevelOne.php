@@ -18,7 +18,7 @@
 <script>
     // handleClick function to save the id of the service
     function handleClick(service_id) {
-        alert(service_id);
+        // alert(service_id);
         sessionStorage.clear();
         sessionStorage.setItem('service_id', service_id);
         window.location.assign('./allServicesLevelTwo.php');
