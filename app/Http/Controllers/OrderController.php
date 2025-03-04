@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function getMyOrder(Request $request)
     {
         return response()->json(
-            OrderCollection::collection(Order::where('user_id', $request->user_id)->get())
+            OrderCollection::collection(Order::where('user_id', Auth::user()->id )->get())
         );
     }
     public function show(Order $order)
