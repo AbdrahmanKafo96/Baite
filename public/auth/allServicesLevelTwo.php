@@ -129,7 +129,7 @@
                 const wrapperDiv = document.createElement('div');
                 wrapperDiv.innerHTML = `<img class="d-block mx-auto img-fluid" src="images/not-found.png" alt="images-not-found" height="500" width="500">
                 <h3 class="text-center">لا توجد خدمات</h3>`;
-                document.querySelector('#allServices .container .row').appendChild(wrapperDiv);
+                document.querySelector('#wrapper').appendChild(wrapperDiv);
             } else {
 
                 data.map((item, index) => {
