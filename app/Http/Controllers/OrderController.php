@@ -23,7 +23,12 @@ class OrderController extends Controller
             OrderCollection::collection(Order::all())
         );
     }
-
+    public function getMyOrder(Request $request)
+    {
+        return response()->json(
+            OrderCollection::collection(Order::where('user_id', $request->user_id)->get())
+        );
+    }
     public function show(Order $order)
     {
         return response()->json($order);
@@ -56,7 +61,7 @@ class OrderController extends Controller
             'user_id' =>   $user_id,
             //'service_id' => $request->service_id,
         ]);
-        $carts->delete();
+        Cart::where('user_id',  $user_id)->delete();
         return response()->json(['message' => 'insert success']);
     }
 

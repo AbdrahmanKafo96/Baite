@@ -93,6 +93,7 @@ Route::middleware(['auth:sanctum'])->group(
 
         Route::resource('/orders', OrderController::class);
         Route::get('/orders/{search_value}', [OrderController::class, 'search']);
+        Route::get('/get-my-order', [OrderController::class, 'getMyOrder']);
 
         Route::resource('/carts', CartController::class);
 
