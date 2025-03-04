@@ -7,6 +7,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Builders\AttachmentBuilder;
+use App\Http\Resources\OrderCollection;
 use App\Models\Cart;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -18,8 +19,8 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         return response()->json(
-
-            data: Order::orderBy('created_at')->paginate($request->limit)
+            // data: Order::orderBy('created_at')->paginate($request->limit)
+            OrderCollection::collection(Order::all())
         );
     }
 
@@ -41,7 +42,7 @@ class OrderController extends Controller
 
         foreach ($carts as $item) {
             $itemsSelected[] = $item->service_id;
-            $quantitySelected[] = $item->quantities;
+           // $quantitySelected[] = $item->quantities;
         }
 
         Order::create([
@@ -49,13 +50,13 @@ class OrderController extends Controller
             'note' => $request->note,
             'status' =>  "pending",
             'service_seclected' => $itemsSelected,
-            'quantity_selected' =>  $quantitySelected,
+            //'quantity_selected' =>  $quantitySelected,
             'phone_number' => Auth::user()->phone_number,
             'total_price' => $request->total_price,
             'user_id' =>   $user_id,
-            'service_id' => $request->service_id,
+            //'service_id' => $request->service_id,
         ]);
-
+        $carts->delete();
         return response()->json(['message' => 'insert success']);
     }
 

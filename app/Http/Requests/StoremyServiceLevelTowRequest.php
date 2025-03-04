@@ -23,7 +23,7 @@ class StoremyServiceLevelTowRequest extends FormRequest
     {
         return [
             'service_name' => 'required|max:150|string',
-            'show' => 'required|boolean',
+            'show' => 'required',
             'description' => 'required',
             'service_id' => 'required|exists:my_service_level_tows,id',
         ];

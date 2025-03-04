@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
-
-            $table->integer('quantities');
+            // $table->integer('quantities');
             $table->foreignId('user_id')->references('id')->on('customers');
             $table->timestamps();
         });

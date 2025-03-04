@@ -35,7 +35,7 @@ class CartController extends Controller
     public function create() {}
     public function show(Cart $cart)
     {
-        return response()->json(['result' => $cart, 'total' => $cart->service->cost * $cart->quantities]);
+        return response()->json(['result' => $cart, 'total' => $cart->service->cost]);
     }
 
     /**
@@ -50,42 +50,16 @@ class CartController extends Controller
         //logic the quantities
         $cart = Cart::where('user_id',   Auth::user()->id)->where('service_id',  $service_id)->first();
 
-        if ($cart) {
-            if ($this->updatequantities($cart->quantities, $service_id, $request->quantities)) {
-                $cart->quantities = $request->quantities;
-
-                $cart->save();
-            } else {
-                return response()->json(['message' => 'The required quantities is not available']);
-            }
-        } else {
-            if ($this->checkquantities($service_id, $request->quantities))
-                Cart::create([
-                    'user_id' =>  Auth::user()->id,
-                    'service_id' =>  $service_id,
-                    'quantities' => $request->quantities,
-                ]);
-            else return response()->json(['message' => 'The required quantities is not available']);
-        }
+        Cart::create([
+            'user_id' =>  Auth::user()->id,
+            'service_id' =>  $service_id,
+          //  'quantities' => $request->quantities,
+        ]);
 
         return response()->json(['message' => 'insert success']);
     }
-    function checkquantities($product_code, $quantitiesRequired)
-    {
-        return true; // for now there's no need to check because client asked to stop check the quantities in inventory.
-        // $productSelected = Product::where('product_code', $product_code)->first();
-        // $total = $productSelected->inventory - $quantitiesRequired;
-        // return $this->checkTotal($total, $productSelected);
-    }
 
-    public function updatequantities($oldquantities, $product_code, $quantitiesRequired)
-    {
-        // $productSelected = Product::where('product_code', $product_code)->first();
 
-        // $total = ($productSelected->inventory + $oldquantities) - $quantitiesRequired;
-        // return $this->checkTotal($total, $productSelected);
-        return true;
-    }
     // function checkTotal($total, $productSelected)
     // {
     //     if ($total >= 0) {
