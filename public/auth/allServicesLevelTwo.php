@@ -81,7 +81,7 @@
                 },
                 body: JSON.stringify({
                     service_id: id,
-                    quantities: 1
+                    // quantities: 1
                 })
             })
             .then((response) => {

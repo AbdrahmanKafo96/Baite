@@ -175,12 +175,12 @@ nav span.badge {
     border: 0.5px solid #fff;
 }
 
-#cart_summary span {
+#cart_summary span, .cstm {
     font-size: 20px;
     font-weight: bold;
 }
 
-#cart_summary .item i {
+#cart_summary .item i, .cstm {
     color: blue;
 }
 
@@ -192,6 +192,20 @@ nav span.badge {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.cartSpc {
+    margin-left: 90px;
+}
+
+.order {
+    background-color: blue;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.total_price {
+    font-size: 20px;
+}
+  
 /* End of the services section */
 
 footer {
