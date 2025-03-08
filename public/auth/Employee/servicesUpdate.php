@@ -21,6 +21,18 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="customersRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">سجلات الزبائن</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="orderRecords.php" class="sidebar-link">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span class="pe-2">سجلات الطلبات</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="ads.php" class="sidebar-link">
                     <i class="fas fa-ad"></i>
                     <span class="pe-2">الإعلانات</span>

@@ -14,21 +14,45 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="registerEmployee.php" class="sidebar-link">
-                    <i class="fa-solid fa-user pe-1"></i>
-                    <span class="pe-2">إدارة الزبائن</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="employeesRecords.php" class="sidebar-link">
-                    <i class="fas fa-users"></i>
-                    <span class="pe-2">إدارة الموظفين</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
                 <a href="statistics.php" class="sidebar-link">
                     <i class="fas fa-chart-bar"></i>
                     <span class="pe-2">الإحصائيات</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="customersRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">سجلات الزبائن</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="orderRecords.php" class="sidebar-link">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span class="pe-2">سجلات الطلبات</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="ads.php" class="sidebar-link">
+                    <i class="fas fa-ad"></i>
+                    <span class="pe-2">الإعلانات</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="services.php" class="sidebar-link">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span class="pe-2">الخدمات</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="servicesOne.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">قسم الصيانة</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="servicesTwo.php" class="sidebar-link">
+                    <i class="fa-solid fa-headset"></i>
+                    <span class="pe-2">الخدمات الثانوية</span>
                 </a>
             </li>
         </ul>
