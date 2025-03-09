@@ -1,6 +1,24 @@
 <!-- Customers Orders Records Page  -->
 <?php include './include/template/header.php' ?>
 
+<!-- Start of the Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: blue; color: white;">
+                <h5 class="modal-title">تفاصيل</h5>
+            </div>
+            <div class="modal-body">
+                <!-- <p>هل أنت متأكد من حذف الصورة ؟</p> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of the Modal -->
+
 <!-- Start of the sidebar component -->
 <div class="wrapper">
     <aside id="sidebar">
@@ -92,5 +110,8 @@
 <!-- End of the table of the employees -->
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 <script src="js/ordersTable.js"></script>

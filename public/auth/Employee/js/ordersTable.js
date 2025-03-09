@@ -9,6 +9,36 @@
      document.querySelector("#sidebar").classList.toggle("expand");
  });
 
+ // Pass data to the modal 
+ function addDetails(order) {
+    console.log(order);
+    
+    const modalBody = document.querySelector('.modal-body');
+    
+    let btnsDetails = document.querySelectorAll('.modal-body p');    
+
+    function loopThroughOrder() {
+        order.map((item, index) => {         
+            para = document.createElement('p');
+            para.setAttribute('class', 'fw-bold');
+            para.style.fontSize = '20px';
+            para.innerHTML = `<span style="color: blue"><i class="fa-solid fa-wrench"></i> إسم الخدمة:</span> ${item.service_name}`;
+    
+            modalBody.appendChild(para);
+        });
+    }
+
+    if (btnsDetails.length === 0) {
+        loopThroughOrder();
+    } else {
+        btnsDetails.forEach((item, index) =>{
+            item.remove();
+        })    
+
+        loopThroughOrder();
+    }
+}
+
  // #################################
 
 $(document).ready(function() {
@@ -38,10 +68,16 @@ $(document).ready(function() {
                 document.getElementById('orders').appendChild(wrapperDiv);
             } else {
                 const tableBody = document.querySelector('#customersOrders tbody');
-                // console.log(data[0].order_number);
+
+                const objs = [];
+
+                // console.log(data[0].order_details);
                 
                 // Create the rows
                 data.map((item, index) => {
+
+                        objs.push(item.order_details);
+
                     const row = document.createElement('tr');
 
                     const idCell = document.createElement('td');
@@ -63,7 +99,7 @@ $(document).ready(function() {
                     totalPrice.textContent = item.total_price;
 
                     const action = document.createElement('td');
-                    action.innerHTML = '<button type="button" class="btn btn-primary fw-bold">تفاصيل</button>';
+                    action.innerHTML = '<button type="button" class="btn btn-primary fw-bold details" data-bs-toggle="modal" data-bs-target="#detailsModal">تفاصيل</button>';
 
                     row.appendChild(idCell);
                     row.appendChild(orderNum);
@@ -73,10 +109,18 @@ $(document).ready(function() {
                     row.appendChild(totalPrice);
                     row.appendChild(action);
 
-                    tableBody.appendChild(row);
-                    
-                })
-                           
+                    tableBody.appendChild(row);                   
+                })         
+
+                btnsDetails = document.querySelectorAll('.details');
+                // console.log(objs);
+                
+                btnsDetails.forEach((item, index) => {
+                    item.addEventListener("click", function() {
+                        addDetails(objs[index]);
+                    });
+                });
+                
             }
 
         })
