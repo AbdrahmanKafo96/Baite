@@ -55,6 +55,7 @@ class CartController extends Controller
             'service_id' =>  $service_id,
           //  'quantities' => $request->quantities,
         ]);
+        
 
         return response()->json(['message' => 'insert success']);
     }

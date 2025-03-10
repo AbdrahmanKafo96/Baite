@@ -89,4 +89,15 @@ class OrderController extends Controller
     //     return response()->json(['message' =>
     //     'status was chnaged successfully']);
     // }
+    function chanageStatus(Request $request)
+    {
+        $order = Order::where('order_number', $request->order_number)->first();
+        if ($order === null) {
+            return response()->json(['message' => 'item not found']);
+        }
+
+        $order->update(['status' => $request->status]);
+        return response()->json(['message' =>
+        'status was chnaged successfully']);
+    }
 }
