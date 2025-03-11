@@ -12,11 +12,30 @@
                 <!-- <p>هل أنت متأكد من حذف الصورة ؟</p> -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">إغلاق</button>
+                <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">إغلاق</button>
             </div>
         </div>
     </div>
 </div>
+<!-- End of the Modal -->
+
+<!-- Start of the Modal -->
+<!-- <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: blue; color: white;">
+                <h5 class="modal-title">العملية</h5>
+            </div>
+            <div class="modal-body">
+                <p class="fw-bold" style="font-size: 20px"><i class="fa-solid fa-circle-check"></i>
+                    تمت العملية بنجاح</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div> -->
 <!-- End of the Modal -->
 
 <!-- Start of the sidebar component -->

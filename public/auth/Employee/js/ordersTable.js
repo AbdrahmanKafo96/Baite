@@ -10,9 +10,7 @@
  });
 
  // Pass data to the modal 
- function addDetails(order) {
-    console.log(order);
-    
+ function addDetails(order) {    
     const modalBody = document.querySelector('.modal-body');
     
     let btnsDetails = document.querySelectorAll('.modal-body p');    
@@ -22,7 +20,7 @@
             para = document.createElement('p');
             para.setAttribute('class', 'fw-bold');
             para.style.fontSize = '20px';
-            para.innerHTML = `<span style="color: blue"><i class="fa-solid fa-wrench"></i> إسم الخدمة:</span> ${item.service_name}`;
+            para.innerHTML = `<span><i class="fa-solid fa-wrench"></i> إسم الخدمة:</span> ${item.service_name}`;
     
             modalBody.appendChild(para);
         });
@@ -90,8 +88,14 @@ $(document).ready(function() {
                     note.textContent = item.note;
 
                     const status = document.createElement('td');
-                    status.textContent = item.status;
-
+                    status.innerHTML = `<select id="drop${index}" name="cars" data-order-number=${item.order_number}>
+                        <option value="pending">pending</option>
+                        <option value="confirmed">confirmed</option>
+                        <option value="canceled">canceled</option>
+                        <option value="shipping">shipping</option>
+                        <option value="delivered">delivered</option>
+                    </select>`;
+                                        
                     const phoneNum = document.createElement('td');
                     phoneNum.textContent = item.phone_number;
 
@@ -109,7 +113,10 @@ $(document).ready(function() {
                     row.appendChild(totalPrice);
                     row.appendChild(action);
 
-                    tableBody.appendChild(row);                   
+                    tableBody.appendChild(row);  
+                    
+                    document.querySelector(`select#drop${index}`).value = item.status;
+                                    
                 })         
 
                 btnsDetails = document.querySelectorAll('.details');
@@ -120,7 +127,48 @@ $(document).ready(function() {
                         addDetails(objs[index]);
                     });
                 });
-                
+                // Sending the status of the order -----
+                const drops = document.querySelectorAll('select');
+                // const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+    
+                drops.forEach((item) => {
+                    item.addEventListener('change', () => {
+                        console.log(item.dataset.orderNumber, item.value);
+
+                        // Now we use the API to update the status   
+                        fetch("http://127.0.0.1:8000/api/orders-status", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                accept: "application/json",
+                                Authorization: `Bearer ${token}`,
+                            },
+                            body: JSON.stringify(
+                                {
+                                   "status": item.value,
+                                   "order_number": item.dataset.orderNumber
+                                }
+                            )
+                        })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error("Network response was not ok");
+                                }
+                                return response.json();
+                            })
+                            .then((data) => {
+                                // Handle successful login, e.g., store token in local storage
+                                console.log("Status updated successful:", data);
+                                // successModal.show();
+                            })
+                            .catch((error) => {
+                                //////
+                            });
+                    });
+                    
+                })
+                    
+                // ====================================
             }
 
         })
