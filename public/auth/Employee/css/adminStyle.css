@@ -255,3 +255,15 @@ a.sidebar-link:hover {
     text-overflow: ellipsis; 
     /* border: 1px solid #000000; */
 }
+
+#update-header {
+    background: rgb(180, 180, 227, 0.5);
+    margin-top: 10px;
+    margin-right: 30px;
+    padding: 8px 10px 8px 10px;
+    visibility: hidden;
+}
+
+#update-header i {
+    color: blue;
+}

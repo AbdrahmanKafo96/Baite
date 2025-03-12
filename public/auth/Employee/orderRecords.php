@@ -17,26 +17,6 @@
         </div>
     </div>
 </div>
-<!-- End of the Modal -->
-
-<!-- Start of the Modal -->
-<!-- <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background: blue; color: white;">
-                <h5 class="modal-title">العملية</h5>
-            </div>
-            <div class="modal-body">
-                <p class="fw-bold" style="font-size: 20px"><i class="fa-solid fa-circle-check"></i>
-                    تمت العملية بنجاح</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">إغلاق</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- End of the Modal -->
 
 <!-- Start of the sidebar component -->
 <div class="wrapper">
@@ -103,7 +83,8 @@
 
     <div class="main p-3 mt-3" id="orders">
         <div class="me-5">
-            <h1 style="font-size: 30px;">سجلات الطلبات</h1>
+            <h1 onclick="test()" style="font-size: 30px;">سجلات الطلبات</h1>
+            <h5 id="update-header" class="d-inline-block"><i class="fa-solid fa-circle-check"></i> تم تعديل الحالة بنجاح</h5>
         </div>
 
         <div class="container">

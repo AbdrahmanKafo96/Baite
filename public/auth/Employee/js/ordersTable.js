@@ -159,7 +159,16 @@ $(document).ready(function() {
                             .then((data) => {
                                 // Handle successful login, e.g., store token in local storage
                                 console.log("Status updated successful:", data);
-                                // successModal.show();
+                                // Show a success notice ////
+                                $('#update-header').css('visibility', 'visible');
+
+                                    setTimeout(function() {
+                                        $('#update-header').fadeOut(function() {
+                                        // Callback function executed after fadeOut completes
+                                        $('#update-header').css('visibility', 'hidden');
+                                        });
+                                    }, 2000);
+                                /////////////////////////////
                             })
                             .catch((error) => {
                                 //////
@@ -218,3 +227,15 @@ $(document).ready(function() {
              );
          });
  }
+
+    // function test() {
+    //   $('#update-header').css('visibility', 'visible');
+
+    //   setTimeout(function() {
+    //     $('#update-header').fadeOut(function() {
+    //       // Callback function executed after fadeOut completes
+    //       $('#update-header').css('visibility', 'hidden');
+    //     });
+    //   }, 2500);
+    // }
+    
