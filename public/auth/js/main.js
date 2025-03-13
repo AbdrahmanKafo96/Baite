@@ -50,6 +50,26 @@ form.addEventListener('submit', function(event) {
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
+
+    if (document.querySelector('.warning')) {
+      console.log('warning exist');
+      document.querySelector('.warning').remove();
+
+      let warningPara = "<p>فشل تسجيل الدخول، البريد الإلكتروني أو كلمة المرور خاطئة.</p>";
+    const h3 = document.querySelector('#loginForm h3');
+    h3.insertAdjacentHTML("afterend", warningPara); 
+
+    // Set attribute of class to customize a warning css style
+    document.querySelector('#loginForm p').setAttribute('class', 'warning');
+
+    } else {
+      let warningPara = "<p>فشل تسجيل الدخول، البريد الإلكتروني أو كلمة المرور خاطئة.</p>";
+      const h3 = document.querySelector('#loginForm h3');
+      h3.insertAdjacentHTML("afterend", warningPara); 
+
+      // Set attribute of class to customize a warning css style
+      document.querySelector('#loginForm p').setAttribute('class', 'warning');
+    }
   });
 
   event.preventDefault();
