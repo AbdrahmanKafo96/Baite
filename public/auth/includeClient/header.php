@@ -44,5 +44,5 @@
                 </ul>
             </div>
         </div>
-        <a href="login.php" type="button" class="btn btn-danger operationButton ms-4"><i class="fa-solid fa-right-from-bracket ps-2"></i>تسجيل الخروج</a>
+        <a onclick="logOut()" type="button" class="btn btn-danger operationButton ms-4"><i class="fa-solid fa-right-from-bracket ps-2"></i>تسجيل الخروج</a>
     </nav>

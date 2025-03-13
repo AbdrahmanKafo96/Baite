@@ -1,8 +1,23 @@
 //////////
 
+if (document.readyState === "loading") {
+
+  if(localStorage.getItem('role') === 'employee' && localStorage.getItem('token')) {
+    location.assign("../Employee/statistics.php");
+  }
+}
+
+/////////
+
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function(event) {
+ if (localStorage.getItem('token') && localStorage.getItem('role')) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+  }
+
+
   // Get all input elements within the form
   const inputs = form.getElementsByTagName('input');
 
@@ -43,8 +58,9 @@ form.addEventListener('submit', function(event) {
       document.querySelector('#loginForm p').setAttribute('class', 'warning');
     } else {
       localStorage.setItem('token', data.data.token); 
+      localStorage.setItem('role', 'employee'); 
       // similar behavior as an HTTP redirect
-      window.location.replace("../Employee/index.php");
+      window.location.replace("../Employee/statistics.php");
     }
   })
   .catch(error => {

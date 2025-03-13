@@ -1,8 +1,21 @@
 //////////
 
+if (document.readyState === "loading") {
+
+  if(localStorage.getItem('role') === 'admin' && localStorage.getItem('token')) {
+    location.assign("../Admin/statistics.php");
+  }
+}
+
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function(event) {
+  if (localStorage.getItem('token') && localStorage.getItem('role')) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+  }
+
+
   // Get all input elements within the form
   const inputs = form.getElementsByTagName('input');
 
@@ -33,6 +46,7 @@ form.addEventListener('submit', function(event) {
   .then(data => {
     // Handle successful login, e.g., store token in local storage
     console.log('Login successful:', data.data.success);
+
     // if the login attempt failed create a warning span
     if (data.data.success === false) {
 
@@ -44,8 +58,9 @@ form.addEventListener('submit', function(event) {
       document.querySelector('#loginForm p').setAttribute('class', 'warning');
     } else {
       localStorage.setItem('token', data.data.token); 
+      localStorage.setItem('role', 'admin');
       // similar behavior as an HTTP redirect
-      window.location.replace("../Admin/index.php");
+      window.location.replace("../Admin/statistics.php");
     }
   })
   .catch(error => {

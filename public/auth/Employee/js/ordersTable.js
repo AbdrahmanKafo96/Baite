@@ -167,7 +167,7 @@ $(document).ready(function() {
                                         // Callback function executed after fadeOut completes
                                         $('#update-header').css('visibility', 'hidden');
                                         });
-                                    }, 2000);
+                                    }, 3500);
                                 /////////////////////////////
                             })
                             .catch((error) => {

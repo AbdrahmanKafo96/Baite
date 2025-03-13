@@ -1,3 +1,13 @@
+// Check if the user is admin 
+
+if (document.readyState === "loading") {
+  console.log(localStorage.getItem('role'));
+
+  if(localStorage.getItem('role') !== 'admin') {
+    location.assign("../../index.php");
+  }
+}
+
 // Script to collapse the sidebar on smaller screens
 
 const hamBurger = document.querySelector(".toggle-btn");
@@ -146,6 +156,7 @@ function logOut() {
       // Handle successful login, e.g., store token in local storage
       console.log('Logout successful:', data);
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       // similar behavior as an HTTP redirect
       window.location.replace("../../index.php");
     })

@@ -1,8 +1,22 @@
 // login form for client
 
+if (document.readyState === "loading") {
+
+  if(localStorage.getItem('role') === 'client' && localStorage.getItem('token')) {
+    location.assign("./clientDashBoard.php");
+  }
+}
+
+
 const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function(event) {
+  if (localStorage.getItem('token') && localStorage.getItem('role')) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+  }
+
+
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
 
@@ -29,6 +43,7 @@ form.addEventListener('submit', function(event) {
     localStorage.setItem('name', data.data.name); 
     localStorage.setItem('id', data.data.id); 
     localStorage.setItem('token', data.data.token); 
+    localStorage.setItem('role', 'client'); 
     localStorage.setItem('location', data.data.location); 
     localStorage.setItem('phone_number', data.data.phone_number); 
     window.location.replace("clientDashBoard.php");
