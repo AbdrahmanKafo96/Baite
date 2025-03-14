@@ -32,6 +32,7 @@
                                 نسيت كلمة المرور؟
                                 <a href="resetPassword.php">إعادة تعيين كلمة مرور جديدة</a>
                             </p> -->
+
                             <input type="submit" value="تسجيل الدخول" class="btn btn-primary mt-4 w-100 operationButton">
 
                             <a href="../../index.php" type="button" class="btn btn-primary mt-2 w-100 operationButton">الرجوع للرئيسية</a>

@@ -14,7 +14,7 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="registerEmployee.php" class="sidebar-link">
+                <a href="customersRecords.php" class="sidebar-link">
                     <i class="fa-solid fa-user pe-1"></i>
                     <span class="pe-2">إدارة الزبائن</span>
                 </a>
@@ -54,7 +54,7 @@
                         <th scope="col">البريد الإلكتروني</th>
                         <th scope="col" style="text-align: right">رقم الهاتف</th>
                         <th scope="col">الموقع</th>
-                        <th scope="col">حالة الحساب</th>
+                        <!-- <th scope="col">حالة الحساب</th> -->
                     </tr>
                 </thead>
                 <tbody>

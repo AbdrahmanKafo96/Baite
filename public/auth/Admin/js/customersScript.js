@@ -54,18 +54,18 @@ $(document).ready(function () {
             },
             {
                 data: "is_active",
-                render: function (data, type, row) {
-                    var isActiveValue = data === 1 ? "checked" : ""; // Set checked based on value
-                    var switchHTML = `
-             <div class="d-flex justify-content-right">
-               <div class="form-check form-switch">
-                 <input class="form-check-input switch" type="checkbox" id="switch_${row.rowIndex}" ${isActiveValue}>
-                 <label class="form-check-label" for="switch_${row.rowIndex}"></label>
-               </div>
-             </div>
-             `;
-                    return switchHTML;
-                },
+            //     render: function (data, type, row) {
+            //         var isActiveValue = data === 1 ? "checked" : ""; // Set checked based on value
+            //         var switchHTML = `
+            //  <div class="d-flex justify-content-right">
+            //    <div class="form-check form-switch">
+            //      <input class="form-check-input switch" type="checkbox" id="switch_${row.rowIndex}" ${isActiveValue}>
+            //      <label class="form-check-label" for="switch_${row.rowIndex}"></label>
+            //    </div>
+            //  </div>
+            //  `;
+            //         return switchHTML;
+            //     },
             },
             // {
             //     data: 'updated_at'

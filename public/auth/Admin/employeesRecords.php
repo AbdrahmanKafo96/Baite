@@ -58,7 +58,7 @@
                         <!-- <th scope="col">تاريخ</th> -->
                         <th scope="col">إسم الموظف</th>
                         <th scope="col">البريد الإلكتروني</th>
-                        <th scope="col" style="text-align: right">حالة الحساب</th>
+                        <!-- <th scope="col" style="text-align: right">حالة الحساب</th> -->
                         <!-- <th scope="col">تاريخ التحديث</th> -->
                     </tr>
                 </thead>
