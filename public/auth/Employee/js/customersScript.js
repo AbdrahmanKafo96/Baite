@@ -13,66 +13,40 @@ const token = localStorage.getItem("token");
 
 $(document).ready(function () {
     $("#customers").DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "http://127.0.0.1:8000/api/customers",
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            data: function (d) {
-                // Append page and draw parameters (DataTables expects this)
-                d.page = d.start / d.length + 1; // Convert `start` to `page`
-                d.length = d.length; // Send length (number of records per page)
-                d.draw = d.draw; // Send draw count
-            },
-            dataSrc: function (json) {
-                // This function modifies the data before sending to DataTable
-                return json.data; // Adjust according to your JSON structure
-            }, // Assuming the response data is directly in the array
-            pagingType: "full_numbers", // This enables pagination buttons like Next, Previous
-            pageLength: 10,
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: "http://127.0.0.1:8000/api/customers",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        // data: data,
-        columns: [
-            {
-                data: "id",
-            },
-            {
-                data: "name",
-            },
-            {
-                data: "email",
-            },
-            {
-                data: "phone_number",
-            },
-            {
-                data: "location",
-            },
-            {
-                data: "is_active",
-                render: function (data, type, row) {
-                    var isActiveValue = data === 1 ? "checked" : ""; // Set checked based on value
-                    var switchHTML = `
-             <div class="d-flex justify-content-right">
-               <div class="form-check form-switch">
-                 <input class="form-check-input switch" type="checkbox" id="switch_${row.rowIndex}" ${isActiveValue}>
-                 <label class="form-check-label" for="switch_${row.rowIndex}"></label>
-               </div>
-             </div>
-             `;
-                    return switchHTML;
-                },
-            },
-            // {
-            //     data: 'updated_at'
-            // }
-        ],
+        data: function (d) {
+          d.page = d.start / d.length + 1;
+          d.length = d.length;
+          d.draw = d.draw;
+        },
+        dataSrc: function (json) {
+          return json.data;
+        },
+        pagingType: "full_numbers",
+        pageLength: 10,
+      },
+      columns: [
+        { data: "id" },
+        { data: "name" },
+        { data: "email" },
+        { data: "phone_number" },
+        { data: "location" },
+      ],
+    }).on('draw.dt', function () { // Add the draw.dt event listener
+      const tds = document.querySelectorAll('#customers tbody td'); // select the tds inside the customer table body.
+      tds.forEach(td => {
+        td.style.textAlign = 'right'; // Apply your styles here
+      });
     });
-
+  
     // Customizing DataTable to the requirements of arabic langauge
     document.querySelector("label").innerHTML = "سجلات";
     document.querySelector("label").classList.add("me-2");
@@ -80,7 +54,8 @@ $(document).ready(function () {
     document.getElementById("dt-search-0").style.border = "1.6px solid gray";
     document.getElementById("dt-search-0").placeholder = "البحث فى السجلات";
     document.getElementById("dt-search-0").classList.add("me-4");
-});
+  });
+
 
 /* ===================================== */
 
