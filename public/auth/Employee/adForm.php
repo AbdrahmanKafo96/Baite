@@ -117,6 +117,20 @@
 </div>
 <!-- End of the sidebar component -->
 
+<!-- Success Modal -->
+
+<!-- <h1 class="text-center text-white bg-primary p-4">عملية الإضافة</h1>
+<div class="container mt-5">
+    <div class="wrapper d-flex justify-content-center align-items-center flex-column">
+        <span class="d-block text-primary p-4"><i class="fa-solid fa-circle-check text-center" style='font-size: 90px'></i></span>
+        <h2>تمت العملية بنجاح</h2>
+        <span class="p-3">سيتم إعادة التوجيه الأن</span>
+        <div class="spinner-border text-muted mt-3"></div>
+    </div>
+</div> -->
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 <script src="./js/ads.js"></script>
