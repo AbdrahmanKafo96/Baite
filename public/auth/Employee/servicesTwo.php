@@ -134,6 +134,52 @@
 
     // }
 
+    // Handle Modal 
+    function createAndShowModal(id) {
+        // Create the modal element
+        // console.log(id);
+
+        const item = id;
+
+        const modalDiv = document.createElement('div');
+        modalDiv.classList.add('modal', 'fade');
+        modalDiv.classList.add('modal', 'mt-5');
+        modalDiv.id = 'deleteModal';
+        modalDiv.tabIndex = '-1';
+        modalDiv.setAttribute('aria-labelledby', 'myDynamicModalLabel');
+        modalDiv.setAttribute('aria-hidden', 'true');
+
+        modalDiv.innerHTML =
+            '<div class="modal-dialog">' +
+            '    <div class="modal-content">' +
+            '        <div class="modal-header" style="background: red">' +
+            '            <h5 class="modal-title text-white" id="myDynamicModalLabel">حذف الإعلان</h5>' +
+            '        </div>' +
+            '        <div class="modal-body fw-bold">' +
+            '            هل أنت متأكد من حذف الإعلان؟' +
+            '        </div>' +
+            '        <div class="modal-footer">' +
+            '            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>' +
+            '            <button onclick="handleDelete(' + item + ')" type="button" class="btn btn-danger">حذف</button>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>';
+
+        // Append the modal to the body
+        document.body.appendChild(modalDiv);
+
+        // Create a Bootstrap modal instance
+        const modal = new bootstrap.Modal(modalDiv);
+
+        // Show the modal
+        modal.show();
+
+        // Optionally, remove the modal from the DOM after it's hidden
+        modalDiv.addEventListener('hidden.bs.modal', function() {
+            document.body.removeChild(modalDiv);
+        });
+    }
+
     // Delete function 
     function handleDelete(id) {
         const itemId = id;
@@ -208,7 +254,7 @@
                         '<p class="card-text">' + item.description + '</p>' +
                         '<div class="d-flex justify-content-end">' +
                         '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\', \'' + item.service_id + '\', \'' + item.image1_path + '\', \'' + item.cost + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
-                        '<a onclick="handleDelete(' + item.id + ')"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
+                        '<a onclick="createAndShowModal(' + item.id + ')"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';

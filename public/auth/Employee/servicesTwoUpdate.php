@@ -338,7 +338,20 @@
             .then((data) => {
                 // Handle successful login, e.g., store token in local storage
                 console.log("Updated successful:", data.data);
-                window.location.replace('./servicesTwo.php');
+
+                document.body.innerHTML = `<h1 class="text-center text-white bg-primary p-4">عملية الإضافة</h1>
+                    <div class="container mt-5">
+                        <div class="wrapper d-flex justify-content-center align-items-center flex-column">
+                            <span class="d-block text-success p-4"><i class="fa-solid fa-circle-check text-center" style='font-size: 90px'></i></span>
+                            <h2>تمت العملية بنجاح</h2>
+                            <span class="p-3">سيتم إعادة التوجيه الأن</span>
+                            <div class="spinner-border text-muted mt-3"></div>
+                        </div>
+                    </div>`;
+
+                setTimeout(function() {
+                    window.location.replace('./servicesTwo.php');
+                }, 3000); // 2000 milliseconds (2 seconds) delay            
             })
             .catch((error) => {
                 console.error(
