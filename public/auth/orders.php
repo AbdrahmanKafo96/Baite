@@ -1,15 +1,15 @@
 <!-- This is the orders page displaying client's orders -->
 <?php include './includeClient/header.php' ?>
 <!-- %%%%%%%%%%%%%% -->
-<div class="container">
-    <h2 class="text-center my-5 py-3">الطلبات</h2>
-    <div class="d-flex flex-row me-4">
-        <!-- <div id="cart" class="container mb-5"> -->
+<!-- <div class="container"> -->
+<h2 class="text-center my-5 py-3">الطلبات</h2>
+<div class="d-flex flex-wrap" style="margin-right: 160px">
+    <!-- <div id="cart" class="container mb-5"> -->
 
-        <!-- Dynamic elements here -->
+    <!-- Dynamic elements here -->
 
-        <!-- </div> -->
-        <!-- <div id="cart_summary" class="mb-5">
+    <!-- </div> -->
+    <!-- <div id="cart_summary" class="mb-5">
         <div class="container mb-4" style="width: 400px; box-shadow:
             0 -0.3rem 1rem rgba(0, 0, 0, 0.15), 
             0.3rem 0 1rem rgba(0, 0, 0, 0.15),
@@ -17,8 +17,8 @@
 
         </div>
     </div> -->
-    </div>
 </div>
+<!-- </div> -->
 
 <script>
     // Get all services 
@@ -86,7 +86,7 @@
 
                     let span2 = document.createElement('span');
                     span2.setAttribute('class', 'd-block item py-1 mt-4 cstm');
-                    span2.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> الحالة: ${item.status}`;
+                    span2.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> الحالة: <span class="badge ${item.status === 'confirmed' ? 'text-bg-success text-white' : item.status === 'shipping' ? 'text-bg-info text-white' : item.status === 'pending' ? 'text-bg-warning text-white' : item.status === 'canceled' ? 'text-bg-danger text-white' : item.status === 'delivered' ? 'text-bg-success text-white' : 'text-bg-secondary text-white'} px-3 py-2 rounded state">${item.status === 'confirmed' ? 'مؤكد' : item.status === 'shipping' ? 'شحن' : item.status === 'pending' ? 'قيد الإنتظار' : item.status === 'canceled' ? 'تم الإلغاء' : item.status === 'delivered' ? 'تم التوصيل' : 'غير معروف'} </span>`;
 
                     document.querySelector(`#cart_summary${index} .container .summ_wrapper`).appendChild(span2);
 
@@ -141,7 +141,6 @@
                 error
             );
         });
-
 
     function logOut() {
         const token = localStorage.getItem('token');
