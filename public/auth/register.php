@@ -85,44 +85,73 @@
 
         /* Validate if both fields of password and confirm pass are a match */
         if (password !== passConf) {
-            let warningPara = "<p>حقل كلمة المرور وتأكيد كلمة المرور غير متوافق</p>";
-            const h3 = document.querySelector('#registerEmp h3');
-            h3.insertAdjacentHTML("afterend", warningPara);
-            // Set attribute of class to customize a warning css style
-            document.querySelector('#registerEmp p').setAttribute('class', 'warning');
-        }
+            if (document.querySelector('.warning') === null) {
+                let warningPara = "<p>حقل كلمة المرور وتأكيد كلمة المرور غير متوافقان</p>";
+                const h3 = document.querySelector('#registerClient h3');
+                h3.insertAdjacentHTML("afterend", warningPara);
+                // Set attribute of class to customize a warning css style
+                document.querySelector('#registerClient p').setAttribute('class', 'warning');
+            }
+        } else {
 
-        fetch('http://127.0.0.1:8000/api/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password,
-                    name: name,
-                    phone_number: phone_number,
-                    is_active: "1",
-                    is_trusted: "0",
-                    location: "dsds"
+            fetch('http://127.0.0.1:8000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        name: name,
+                        phone_number: phone_number,
+                        is_active: "1",
+                        is_trusted: "0",
+                        location: "dsds"
+                    })
                 })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle successful login, e.g., store token in local storage
-                // console.log('Register successful:', data.data);
-                localStorage.setItem('token', data.data.token);
-                window.location.replace("clientDashBoard.php");
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle successful login, e.g., store token in local storage
+                    // console.log('Register successful:', data.data);
+                    // localStorage.setItem('token', data.data.token);
+                    // window.location.replace("clientDashBoard.php");
+
+                    if (document.querySelector('.warning') === null) {
+                        let warningPara = "<p style='background: blue; color: white'>تمت عملية التسجيل بنجاح</p>";
+                        const h3 = document.querySelector('#registerClient h3');
+                        h3.insertAdjacentHTML("afterend", warningPara);
+                        // Set attribute of class to customize a warning css style
+                        document.querySelector('#registerClient p').setAttribute('class', 'warning');
+
+                        setTimeout(function() {
+                            document.querySelector('.warning').remove();
+                        }, 7000);
+
+                        form.reset();
+
+                    } else {
+                        document.querySelector('.warning').remove();
+                        let warningPara = "<p style='background: blue'>تمت عملية التسجيل بنجاح</p>";
+                        const h3 = document.querySelector('#registerClient h3');
+                        h3.insertAdjacentHTML("afterend", warningPara);
+                        // Set attribute of class to customize a warning css style
+                        document.querySelector('#registerClient p').setAttribute('class', 'warning');
+
+                    }
+
+                    ///////////
+
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        }
 
         event.preventDefault();
     });
