@@ -80,7 +80,7 @@
 
                     let span1 = document.createElement('span');
                     span1.setAttribute('class', 'd-block item py-1 mt-4 cstm');
-                    span1.innerHTML = `<i class="fa-solid fa-barcode"></i> رقم الطلبية:  ${item.order_number}`;
+                    span1.innerHTML = `<i class="fa-solid fa-barcode"></i> رقم الطلبية:  <span class="text-black">${item.order_number}</span>`;
 
                     document.querySelector(`#cart_summary${index} .container .summ_wrapper`).appendChild(span1);
 
@@ -92,11 +92,9 @@
 
                     let span3 = document.createElement('span');
                     span3.setAttribute('class', 'd-block item py-1 mt-4 cstm');
-                    span3.innerHTML = `<i class="fa-solid fa-pencil"></i> الملاحظات: ${item.note}`;
+                    span3.innerHTML = `<i class="fa-solid fa-pencil"></i> الملاحظات: <span class="text-black">${item.note}</span>`;
 
                     document.querySelector(`#cart_summary${index} .container .summ_wrapper`).appendChild(span3);
-
-
 
                     totalSpan = document.createElement('span');
                     totalSpan.setAttribute('class', 'd-block total_price text-center py-5 fw-bold');
@@ -124,7 +122,7 @@
 
                         let detail1 = document.createElement('span');
                         detail1.setAttribute('class', 'd-block item py-1 mt-4 cstm');
-                        detail1.innerHTML = `<i class="fa-solid fa-wrench"></i> إسم الخدمة: ${item.service_name}`;
+                        detail1.innerHTML = `<i class="fa-solid fa-wrench"></i> إسم الخدمة: <span class="text-black">${item.service_name}</span>`;
 
                         document.querySelector(`#cart_summary${index} .container .summ_wrapper`).appendChild(detail1);
                         ///////////
