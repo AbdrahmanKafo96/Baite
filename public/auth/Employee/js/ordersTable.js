@@ -62,7 +62,7 @@ $(document).ready(function() {
             if(data.length < 1) {
                 const wrapperDiv = document.createElement('div');
                 wrapperDiv.innerHTML = `<img class="d-block mx-auto img-fluid" src="images/ad.png" alt="images-not-found" height="500" width="500">
-                <h3 class="text-center">Ù„Ø§ ØªÙˆØ¬Ø¯ Ø¥Ø¹Ù„Ø§Ù†Ø§Øª</h3>`;
+                <h3 class="text-center">لا توجد سجلات</h3>`;
                 document.getElementById('orders').appendChild(wrapperDiv);
             } else {
                 const tableBody = document.querySelector('#customersOrders tbody');
@@ -89,11 +89,11 @@ $(document).ready(function() {
 
                     const status = document.createElement('td');
                     status.innerHTML = `<select id="drop${index}" name="cars" data-order-number=${item.order_number}>
-                        <option value="pending">pending</option>
-                        <option value="confirmed">confirmed</option>
-                        <option value="canceled">canceled</option>
-                        <option value="shipping">shipping</option>
-                        <option value="delivered">delivered</option>
+                        <option value="pending">قيد الإنتظار</option>
+                        <option value="confirmed">مؤكد</option>
+                        <option value="canceled">تم الإلغاء</option>
+                        <option value="shipping">شحن</option>
+                        <option value="delivered">تم التوصيل</option>
                     </select>`;
                                         
                     const phoneNum = document.createElement('td');
