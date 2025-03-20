@@ -11,6 +11,13 @@ php artisan serve --host= ip
 php artisan storage:link
 composer dump-autoload 
 
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+php artisan route:cache
+
+
 APP_URL=http://127.0.0.1:8000
 
 composer require haruncpi/laravel-id-generator
