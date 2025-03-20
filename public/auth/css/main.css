@@ -1,4 +1,5 @@
 body {
+    font-family: 'Montserrat', sans-serif;
     padding: 0px;
     margin: 0px;
 }
@@ -45,7 +46,7 @@ article {
     margin-top: 90px;
 }
 
-article p {
+article p, #engineers p, #map p {
     font-size: 18px;
     font-weight: bold;
 }
@@ -110,4 +111,50 @@ footer a:hover {
     color: white;
     font-weight: bold;
     padding: 10px;
+}
+
+/* Start of the main index static pages */
+
+#hero-background {
+    position: relative;
+}
+
+#caption {
+    /* background-color: black; */
+    /* width: 270px;
+    position: absolute; 
+    top: 80px;
+    right: 460px; */
+}
+
+#caption img {
+    /* display: block;
+    position: absolute;
+    right: 550px;
+    top :0px;   */
+}
+
+#caption span {
+    line-height: 1.9;
+}
+
+#features .feature_box {
+    padding: 20px;
+    border-radius: 50px;
+}
+
+section#map {
+    background-color: rgba(163, 187, 203, 0.385);
+
+}
+
+section#map a {
+    background: #fff;
+    border: 2px solid blue;
+    color: #000;
+}
+
+section#map a:hover {
+    background: blue;
+    color: #fff;
 }
