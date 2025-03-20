@@ -33,7 +33,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.google.com">تواصل معنا</a>
+                        <a class="nav-link" href="{{ route('contact') }}">تواصل معنا</a>
                     </li>
                     <a href="auth/login.php" type="button" class="btn btn-primary operationButton">تسجيل الدخول</a>
                 </ul>
