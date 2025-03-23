@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">الرئيسية</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('/') }}">الرئيسية</a>
                     </li>
 
                     <li class="nav-item">
@@ -122,7 +122,7 @@
                 <div class="col-12 col-md-6 p-4">
                     <h2 class="p-2"><i class="fa-solid fa-map text-primary"></i> مناطق تواجد خدماتنا</h2>
                     <p>وكلائنا يوفرون خدماتنا فى مختلف مناطق ليبيا المختلفة</p>
-                    <a role="button" href="./contact.blade.php" class="btn btn-primary fw-bold pe-4 ps-4">تواصل معنا</a>
+                    <a href="{{ route('contact') }}" role="button" href="./contact.blade.php" class="btn btn-primary fw-bold pe-4 ps-4">تواصل معنا</a>
                 </div>
                 <div class="col-12 col-md-6">
                     <img src="{{ asset('assets/map.png') }}" alt="">
