@@ -89,11 +89,10 @@ $(document).ready(function() {
 
                     const status = document.createElement('td');
                     status.innerHTML = `<select id="drop${index}" name="cars" data-order-number=${item.order_number}>
-                        <option value="pending">قيد الإنتظار</option>
+                        <option value="pending">انتظار الموافقة</option>
+                        <option value="processing">تحت المعالجة</option>
                         <option value="confirmed">مؤكد</option>
                         <option value="canceled">تم الإلغاء</option>
-                        <option value="shipping">شحن</option>
-                        <option value="delivered">تم التوصيل</option>
                     </select>`;
                                         
                     const phoneNum = document.createElement('td');

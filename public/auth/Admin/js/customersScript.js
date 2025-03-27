@@ -52,8 +52,8 @@ $(document).ready(function () {
             {
                 data: "location",
             },
-            {
-                data: "is_active",
+            // {
+            //     data: "is_active",
             //     render: function (data, type, row) {
             //         var isActiveValue = data === 1 ? "checked" : ""; // Set checked based on value
             //         var switchHTML = `
@@ -66,7 +66,7 @@ $(document).ready(function () {
             //  `;
             //         return switchHTML;
             //     },
-            },
+            // },
             // {
             //     data: 'updated_at'
             // }

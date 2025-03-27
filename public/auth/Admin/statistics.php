@@ -61,7 +61,7 @@
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-list fa-2x mr-3" style="background: pink"></i>
                             <div class="pe-4">
-                                <h5 class="card-title">عدد المنتجات</h5>
+                                <h5 id="services_number" class="card-title">عدد الخدمات</h5>
                                 <p class="card-text">16</p>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-calculator fa-2x mr-3" style="background: rgba(0, 0, 255, 0.5)"></i>
                             <div class="pe-4">
-                                <h5 class="card-title">الكمية المتبقية</h5>
+                                <h5 id="achieved_services" class="card-title">عدد الطلبات المنجزة</h5>
                                 <p class="card-text">0</p>
                             </div>
                         </div>
@@ -85,13 +85,13 @@
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-box-open fa-2x mr-3"></i>
                             <div class="pe-4">
-                                <h5 class="card-title">عدد القطع فى المخزن</h5>
+                                <h5 id="employees_number" class="card-title">عدد الموظفين </h5>
                                 <p class="card-text">20</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="card text-right">
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-money-bill-wave fa-2x mr-3" style="background: pink"></i>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                     <div class="card text-right">
                         <div class="card-body d-flex align-items-center">

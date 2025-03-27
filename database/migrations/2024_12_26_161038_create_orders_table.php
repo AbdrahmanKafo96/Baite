@@ -17,17 +17,18 @@ return new class extends Migration
             $table->string('note');
             $table->enum("status", [
                 "pending",
+                "processing",
                 "confirmed",
                 'canceled',
-                'shipping',
-                'delivered',
+                // 'shipping',
+                // 'delivered',
             ]);
             $table->string('phone_number');
             $table->json('service_seclected');
-          //  $table->json('quantity_selected');
+            //  $table->json('quantity_selected');
             $table->float('total_price');
             $table->foreignId('user_id')->references('id')->on('customers');
-           // $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
+            // $table->foreignId('service_id')->references('id')->on('my_service_level_tows');
 
             $table->timestamps();
         });
