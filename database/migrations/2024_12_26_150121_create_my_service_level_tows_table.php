@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('service_id')->references('id')->on('my_service_level_ones');
             $table->string('service_name');
             $table->string('description');
+            $table->boolean('price_note');
             $table->string('image1_path')->nullable();
             $table->boolean('show');
-            $table->float('cost');
+            $table->float('cost')->nullable();
             $table->timestamps();
         });
     }
