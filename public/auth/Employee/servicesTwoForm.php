@@ -138,6 +138,13 @@
                     placeholder="سعر الخدمة" required />
             </div>
 
+            <div class="form-group">
+                <label class="py-3" for="price_note">
+                    <input type="checkbox" name="price_note" id="price_note">
+                    يتم التحديد بعد الكشف
+                </label>
+            </div>
+
             <div id="image-uploader" class="form-group mt-5">
                 <label id="uploaderIcon" for="adImage">
                     <i class="fa-solid fa-image d-inline-block"></i>
@@ -286,6 +293,7 @@
         const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
         const cost = document.querySelector("#cost").value;
         const token = localStorage.getItem("token");
+        const price_note = document.getElementById('price_note').checked;
 
         console.log(`Image: ${fileImgInput}, Service name: ${serviceName}, Description: ${description}, Option: ${option}, Status: ${switchBtn}, Cost: ${cost}`);
         console.log(fileImgInput);
@@ -298,6 +306,7 @@
         formData.append("image1_path", fileImgInput);
         formData.append("service_id", option);
         formData.append("cost", cost);
+        formData.append("price_note", price_note);
 
         fetch("http://127.0.0.1:8000/api/services-level-tow", {
                 method: "POST",

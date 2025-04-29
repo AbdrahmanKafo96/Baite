@@ -267,3 +267,8 @@ a.sidebar-link:hover {
 #update-header i {
     color: #fff;
 }
+
+input#price_note {
+    width: 20px;
+    height: 20px;
+}
