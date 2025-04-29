@@ -139,6 +139,13 @@
                     placeholder="سعر الخدمة" required />
             </div>
 
+            <div class="form-group">
+                <label class="py-3" for="price_note">
+                    <input type="checkbox" name="price_note" id="price_note">
+                    يتم التحديد بعد الكشف
+                </label>
+            </div>
+
             <!-- <div id="image-uploader" class="form-group mt-5">
                 <label id="uploaderIcon" for="adImage">
                     <i class="fa-solid fa-image d-inline-block"></i>
@@ -226,8 +233,18 @@
         let serviceID = sessionStorage.getItem('serviceID');
         let path = sessionStorage.getItem('Path');
         let cost = sessionStorage.getItem('cost');
+        let price_note = sessionStorage.getItem('price_note');
 
-        console.log(`id: ${id}, Name of service: ${serviceName}, Desciption: ${serviceDescription}, Status: ${show}, Service ID: ${serviceID}, Path: ${path}, cost: ${cost}`);
+        console.log(`id: ${id}, Name of service: ${serviceName}, Desciption: ${serviceDescription}, Status: ${show}, Service ID: ${serviceID}, Path: ${path}, cost: ${cost} price note: ${price_note}`);
+
+        console.log(price_note);
+
+        // customizing the checkbox depending on the choice chosen by the user
+        if (price_note === '1') {
+            document.getElementById('price_note').checked = true;
+        } else if (price_note === '0') {
+            document.getElementById('price_note').checked = false;
+        }
 
         const toggleLabel = document.querySelector('.form-check-label');
         const adNote = document.querySelector('#adNotification');
@@ -243,7 +260,7 @@
         }
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!
-        fetch("http://127.0.0.1:8000/api/services-level-one", {
+        fetch("http://127.0.0.1:8000/api/services-level-tow", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -271,7 +288,7 @@
 
                     document.querySelector('#servicesCategory').appendChild(option);
 
-
+                    // document.getElementById('price_note').checked = item.price_note;
                 })
                 // End of Code
                 console.log(document.querySelector(`option[value="${serviceID}"]`));
@@ -323,6 +340,7 @@
         const switchBtn = document.querySelector("#flexSwitchCheckDefault").checked;
         const cost = document.querySelector("#cost").value;
         const token = localStorage.getItem("token");
+        const price_note = document.getElementById('price_note').checked;
 
         // console.log(`ID: ${id}, Service Name: ${editedServiceName}, Desciption: ${editedServiceDesc}, Service ID: ${option}, Status: ${switchBtn} Image Path: ${icon}`);
 
@@ -333,6 +351,7 @@
         formData.append("service_id", option);
         formData.append("image1_path", imgPath);
         formData.append("cost", cost);
+        formData.append("price_note", price_note);
         formData.append("_method", "PUT");
 
         fetch("http://127.0.0.1:8000/api/services-level-tow/" + id, {

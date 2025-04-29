@@ -100,7 +100,7 @@
 
 <script>
     // A function that triggers when edit button is clicked and saves service's details into a sessionStorage
-    function handleClick(id, name, description, show, serviceID, imgPath, cost) {
+    function handleClick(id, name, description, show, serviceID, imgPath, cost, price_note) {
         console.log(`ID: ${id}, SERVICE NAME: ${name}, DESCRIPTION: ${description}, STATUS: ${show}, SERVICE ID: ${serviceID}, Path of image: ${imgPath}, Cost: ${cost}`);
         // clear all session storage before storing the new clicked values
         sessionStorage.clear();
@@ -113,6 +113,7 @@
         sessionStorage.setItem('serviceID', serviceID);
         sessionStorage.setItem('Path', imgPath);
         sessionStorage.setItem('cost', cost);
+        sessionStorage.setItem('price_note', price_note);
 
         // redirect to the edit form of the ads
         window.location.replace("./servicesTwoUpdate.php");
@@ -271,7 +272,7 @@
                         '<h5 class="card-title pb-3 text-right">' + item.service_name + '</h5>' +
                         '<p class="card-text">' + item.description + '</p>' +
                         '<div class="d-flex justify-content-end">' +
-                        '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\', \'' + item.service_id + '\', \'' + item.image1_path + '\', \'' + item.cost + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
+                        '<a onclick="handleClick(\'' + item.id + '\', \'' + item.service_name + '\', \'' + item.description + '\', \'' + item.show + '\', \'' + item.service_id + '\', \'' + item.image1_path + '\', \'' + item.cost + '\', \'' + item.price_note + '\')" class="btn btn-outline-primary"><i class="fas fa-edit"></i><span class="fw-bold"> تعديل </span></a>' +
                         '<a onclick="createAndShowModal(' + item.id + ')"  class="btn btn-outline-danger me-1 "><i class="fas fa-trash"></i><span class="fw-bold"> حذف </span></a>' +
                         '</div>' +
                         '</div>' +

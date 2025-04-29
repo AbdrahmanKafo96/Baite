@@ -139,7 +139,7 @@
                     colDiv.style.width = '700px';
 
                     colDiv.innerHTML = '<img height="110" width="110" alt="" class="img-fluid p-3 mt-3" src="' + item.image1_path + '">' +
-                        '<div class="pe-3 ps-5">' +
+                        '<div id="capsule" class="pe-3 ps-5">' +
                         '<h5 class="card-title pt-4">' + item.service_name + '</h5>' +
                         '<p style="line-height:1.6; width: 200px" class="card-text mt-1">' + item.description + '</p>' +
                         '<h6 class="cost">السعر: ' + item.cost + ' دينار</h6>' +
@@ -149,7 +149,13 @@
 
                         '<a type="button" class="btn btn-outline-primary mt-5 btnCustom details">تفاصيل</a>';
 
-                    // console.log();
+                    if (item.price_note === 1) {
+                        const priceNote = document.createElement('span');
+                        priceNote.textContent = 'يتم التحديد بعد الكشف';
+                        priceNote.classList.add('badge', 'rounded-pill', 'text-bg-secondary', 'p-2');
+                        document.getElementById('capsule').appendChild(priceNote);
+                    }
+
                     document.querySelector('#wrapper').appendChild(colDiv);
 
                 })
