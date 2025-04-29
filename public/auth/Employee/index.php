@@ -38,6 +38,12 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="employeesRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">إدارة الموظفين</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="orderRecords.php" class="sidebar-link">
                     <i class="fa-solid fa-cubes"></i>
                     <span class="pe-2">سجلات الطلبات</span>
@@ -77,7 +83,7 @@
     </aside>
     <div class="main p-3">
         <div class="text-center">
-            <h1> أهلا بك الي لوحة التحكم بالنظام قسم الموظف</h1>
+            <h1> أهلا بك الي لوحة التحكم بالنظام قسم المسؤول</h1>
         </div>
     </div>
 </div>

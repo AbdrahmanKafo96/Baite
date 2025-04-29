@@ -26,10 +26,22 @@
                 <i class="fa-sharp fa-solid fa-chart-line"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="./index.php">لوحة التحكم</a>
+                <a href="#">لوحة التحكم</a>
             </div>
         </div>
         <ul class="sidebar-nav">
+            <!-- <li class="sidebar-item">
+                <a href="customersRecords.php" class="sidebar-link">
+                    <i class="fa-solid fa-user pe-1"></i>
+                    <span class="pe-2">إدارة الزبائن</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="employeesRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">إدارة الموظفين</span>
+                </a>
+            </li> -->
             <li class="sidebar-item">
                 <a href="statistics.php" class="sidebar-link">
                     <i class="fas fa-chart-bar"></i>
@@ -40,6 +52,12 @@
                 <a href="customersRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span class="pe-2">سجلات الزبائن</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="employeesRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">إدارة الموظفين</span>
                 </a>
             </li>
             <li class="sidebar-item">

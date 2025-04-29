@@ -9,7 +9,7 @@
                 <i class="fa-sharp fa-solid fa-chart-line"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="./index.php">لوحة التحكم</a>
+                <a href="#">لوحة التحكم</a>
             </div>
         </div>
         <ul class="sidebar-nav">
@@ -18,8 +18,8 @@
                     <i class="fa-solid fa-user pe-1"></i>
                     <span class="pe-2">إدارة الزبائن</span>
                 </a>
-            </li> -->
-            <!-- <li class="sidebar-item">
+            </li>
+            <li class="sidebar-item">
                 <a href="employeesRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span class="pe-2">إدارة الموظفين</span>
@@ -35,6 +35,12 @@
                 <a href="customersRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span class="pe-2">سجلات الزبائن</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="employeesRecords.php" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span class="pe-2">إدارة الموظفين</span>
                 </a>
             </li>
             <li class="sidebar-item">
@@ -97,7 +103,7 @@
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-list fa-2x mr-3" style="background: pink"></i>
                             <div class="pe-4">
-                                <h5 class="card-title">عدد المنتجات</h5>
+                                <h5 class="card-title">الاجهزة تحت الصيانة</h5>
                                 <p class="card-text">16</p>
                             </div>
                         </div>
@@ -119,15 +125,15 @@
                 <div class="col-md-4">
                     <div class="card text-right">
                         <div class="card-body d-flex align-items-center">
-                            <i class="fas fa-box-open fa-2x mr-3"></i>
+                            <i class="fa-solid fa-house-chimney"></i>
                             <div class="pe-4">
-                                <h5 class="card-title">عدد القطع فى المخزن</h5>
+                                <h5 class="card-title">عدد الاجهزة التي تتطلب الصيانة</h5>
                                 <p class="card-text">20</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="card text-right">
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-money-bill-wave fa-2x mr-3" style="background: pink"></i>
@@ -137,13 +143,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                     <div class="card text-right">
                         <div class="card-body d-flex align-items-center">
                             <i class="fas fa-dollar-sign fa-2x mr-3" style="background: rgba(0, 0, 255, 0.5)"></i>
                             <div class=" pe-4">
-                                <h5 class="card-title">إجمالى المبيعات</h5>
+                                <h5 class="card-title">إجمالى الايرادات</h5>
                                 <p class="card-text"> دينار 0</p>
                             </div>
                         </div>
