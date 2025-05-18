@@ -358,7 +358,7 @@
 
         const formData = new FormData();
         formData.append("service_name", editedServiceName);
-        formData.append("description", editedServiceName);
+        formData.append("description", editedServiceDesc);
         formData.append("show", JSON.parse(switchBtn));
         formData.append("service_id", option);
         formData.append("icon", icon);

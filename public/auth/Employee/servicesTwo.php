@@ -172,10 +172,10 @@
             '<div class="modal-dialog">' +
             '    <div class="modal-content">' +
             '        <div class="modal-header" style="background: red">' +
-            '            <h5 class="modal-title text-white" id="myDynamicModalLabel">حذف الإعلان</h5>' +
+            '            <h5 class="modal-title text-white" id="myDynamicModalLabel">حذف الخدمة</h5>' +
             '        </div>' +
             '        <div class="modal-body fw-bold">' +
-            '            هل أنت متأكد من حذف الإعلان؟' +
+            '            هل أنت متأكد من حذف الخدمة؟' +
             '        </div>' +
             '        <div class="modal-footer">' +
             '            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>' +
