@@ -1,6 +1,18 @@
 composer install
-nooooo //php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 php artisan key:generate
+php artisan storage:link
+php artisan migrate:fresh --seed
+
+composer require haruncpi/laravel-id-generator
+
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+php artisan route:cache
+
+nooooo //php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
 npm install
 
 composer dump-autoload
@@ -23,7 +35,7 @@ APP_URL=http://127.0.0.1:8000
 composer require haruncpi/laravel-id-generator
 
 // Command to migrate the New or Updated DB (Required Command for Future Use)
-php artisan migrate:fresh --seed
+
 
 // Command to Run the Project
 php artisan serve
