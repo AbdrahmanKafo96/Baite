@@ -95,7 +95,7 @@
                         <th scope="col">الإسم</th>
                         <th scope="col">البريد الإلكتروني</th>
                         <th scope="col" style="text-align: right">رقم الهاتف</th>
-                        <th scope="col">الموقع</th>
+                        <th scope="col">العنوان</th>
                         <!-- <th scope="col">حالة الحساب</th> -->
                     </tr>
                 </thead>

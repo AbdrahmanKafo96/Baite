@@ -44,10 +44,10 @@
 </section> -->
 
 <script>
-    // Get all services 
+    // Get all services
     const token = localStorage.getItem('token');
     const id = sessionStorage.getItem('service_id');
-    // Global variable to add more items to basket 
+    // Global variable to add more items to basket
     let basketItems = 0;
 
     // Handle Order click
@@ -65,7 +65,7 @@
 
         document.querySelector('.cart-container span').textContent = basketItems;
 
-        // Start of Adding item to cart using Fetch api 
+        // Start of Adding item to cart using Fetch api
         const formData = new FormData();
         // formData.append('servcie_id', service_id);
         // formData.append('quantities', 1);
@@ -149,14 +149,15 @@
 
                         '<a type="button" class="btn btn-outline-primary mt-5 btnCustom details">تفاصيل</a>';
 
+
+                    document.querySelector('#wrapper').appendChild(colDiv);
                     if (item.price_note === 1) {
                         const priceNote = document.createElement('span');
                         priceNote.textContent = 'يتم التحديد بعد الكشف';
                         priceNote.classList.add('badge', 'rounded-pill', 'text-bg-secondary', 'p-2');
+
                         document.getElementById('capsule').appendChild(priceNote);
                     }
-
-                    document.querySelector('#wrapper').appendChild(colDiv);
 
                 })
 
@@ -180,7 +181,7 @@
                     'accept': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                // body: `{"token": "${token}"}` 
+                // body: `{"token": "${token}"}`
             })
             .then(response => {
                 if (!response.ok) {
