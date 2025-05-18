@@ -11,7 +11,7 @@
     <!-- </div> -->
     <!-- <div id="cart_summary" class="mb-5">
         <div class="container mb-4" style="width: 400px; box-shadow:
-            0 -0.3rem 1rem rgba(0, 0, 0, 0.15), 
+            0 -0.3rem 1rem rgba(0, 0, 0, 0.15),
             0.3rem 0 1rem rgba(0, 0, 0, 0.15),
             0 0.3rem 1rem rgba(0, 0, 0, 0.15);">
 
@@ -21,7 +21,7 @@
 <!-- </div> -->
 
 <script>
-    // Get all services 
+    // Get all services
     const token = localStorage.getItem('token');
 
     fetch("http://127.0.0.1:8000/api/get-my-order", {
@@ -98,7 +98,7 @@
 
                     totalSpan = document.createElement('span');
                     totalSpan.setAttribute('class', 'd-block total_price text-center py-5 fw-bold');
-                    totalSpan.innerHTML = `<i style="color:blue" class="fa-solid fa-money-check-dollar"></i><span style="color: red"> <span style="color: blue">الإجمالى </span>${item.total_price} دينار </span>`;
+                    totalSpan.innerHTML = `<i style="color:blue" class="fa-solid fa-money-check-dollar"></i><span style="color: black"> <span style="color: blue">الإجمالى </span>${item.total_price} دينار </span>`;
 
                     document.querySelector(`#cart_summary${index} .container`).appendChild(totalSpan);
 
@@ -151,7 +151,7 @@
                     'accept': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                // body: `{"token": "${token}"}` 
+                // body: `{"token": "${token}"}`
             })
             .then(response => {
                 if (!response.ok) {
