@@ -19,12 +19,12 @@
                     <span class="pe-2">إدارة الزبائن</span>
                 </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
                 <a href="employeesRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span class="pe-2">إدارة الموظفين</span>
                 </a>
-            </li> -->
+            </li> --> -->
             <li class="sidebar-item">
                 <a href="statistics.php" class="sidebar-link">
                     <i class="fas fa-chart-bar"></i>
@@ -37,12 +37,12 @@
                     <span class="pe-2">سجلات الزبائن</span>
                 </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
                 <a href="employeesRecords.php" class="sidebar-link">
                     <i class="fas fa-users"></i>
                     <span class="pe-2">إدارة الموظفين</span>
                 </a>
-            </li>
+            </li> -->
             <li class="sidebar-item">
                 <a href="orderRecords.php" class="sidebar-link">
                     <i class="fa-solid fa-cubes"></i>
@@ -120,7 +120,7 @@
     }
     // // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
-    // // Delete function 
+    // // Delete function
     // function handleDelete(id) {
     //     const itemId = id;
     //     const token = localStorage.getItem('token');
@@ -153,7 +153,7 @@
 
     // }
 
-    // Handle Modal 
+    // Handle Modal
     function createAndShowModal(id) {
         // Create the modal element
         // console.log(id);
@@ -199,7 +199,7 @@
         });
     }
 
-    // Delete function 
+    // Delete function
     function handleDelete(id) {
         const itemId = id;
         const token = localStorage.getItem('token');
